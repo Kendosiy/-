@@ -1,0 +1,46 @@
+unit Unit2;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, Menus, ComCtrls;
+
+type
+  TForm2 = class(TForm)
+    MainMenu1: TMainMenu;
+    N1: TMenuItem;
+    N2: TMenuItem;
+    N3: TMenuItem;
+    N4: TMenuItem;
+    N5: TMenuItem;
+    FontDialog1: TFontDialog;
+    RichEdit1: TRichEdit;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure N5Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form2: TForm2;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm2.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+
+      Action:=caFree;
+end;
+
+procedure TForm2.N5Click(Sender: TObject);
+begin
+       if FontDialog1.Execute then RichEdit1.Font:=FontDialog1.Font;
+
+end;
+
+end.
