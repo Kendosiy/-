@@ -53,7 +53,7 @@ header div .search img{
 nav{
 	background-color: #362f73;
 	display: inline-block;
-	position: relative;
+	/*position: relative; */
 	width: 100%;
 }
 nav ul li:hover > ul {
@@ -113,6 +113,17 @@ nav ul li{
 	padding: 3px;
 }
 /* ///////////////////////////////////////////////////////////////////////////////// */
+main aside{
+	float:left;
+	width: 250px;
+	background-color: #A4A4A4;
+}
+main aside h2{
+	margin: 0px;
+}
+main aside ol{
+	padding-left:25px;
+}
 main article{
 	font-family: Arial;
 	background-color: white;
@@ -120,10 +131,25 @@ main article{
 	padding: 0px 20px;
 	padding-bottom:50px;
 }
+main .tema{
+	padding-left: 300px;
+}
+main .tema img{
+	float: right;
+	padding: 0px 0px 5px 5px;
+}
+main .tema table{
+	border-collapse: collapse;
+	width: 100%;
+}
+main .tema td,main .tema tr {
+	padding: 5px;
+	border: solid 1px;
+}
 main p{
 	text-align: left;
 	font-family: Arial;
-	margin: 15px;
+	margin: 15px 0px;
 }
 /* ///////////////////////////////////////////////////////////////////////////////// */
 /* footer{

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href="style.css" rel="stylesheet">
+	</head>
+	<body>
+		<header>
+			<div>
+				<h1>Учебный портал</h1>
+				<div class="search">
+					<p>Что ищем?</p>
+					<img src="res/search.png">
+				</div>
+			</div>
+		</header>
+		<nav>
+			<ul class="main_menu">
+				<li><a href="index.html">Главная</a></li>
+				<li>
+					<p>Справочники</p>
+					<ul class="submenu">
+						<li>HTML</li>
+						<li>CSS</li>
+						<li>Delphi</li>
+					</ul>
+				</li>
+				<li>
+					<p>Курсы</p>
+					<ul class="submenu">
+						<li>Курс №1</li>
+						<li>Курс №2</li>
+						<li>Курс №3</li>
+					</ul>
+				</li>
+				<li>
+					<p>Учебные материалы</p>
+					<ul class="submenu">
+						<li><a href="labrab.html">Лабораторные работы</a></li>
+						<li>Практические работы</li>
+						<li>Тесты</li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+		<main>
+			<aside>
+				<h2>Быстрая навигация</h2>
+				<ol>
+					<li>Компонент ListBox</li>
+					<li>Компонент CheckListBox</li>
+					<li>Компонент ComboBox</li>
+					<li>Класс TStrings</li>
+				</ol>
+			</aside>
+			<article class="tema">
+				<h2>Компонент ListBox</h2>
+				<img src="res\tema2\1.jpg">
+				<p>Компонент класса TListBox представляет собой стандартный для Windows список выбора, 
+				с помощью которого пользователь может выбрать один или несколько элементов выбора. 
+				В компоненте предусмотрена возможность программной прорисовки элементов, поэтому список 
+				может содержать не только строки, но и произвольные изображения. Создание элементов (опций) списка компонента реализуется с 
+				помощью методов его свойства Items - Add, Append, Insert или LoadFromFile.</p>
+				<table>
+					<tr>
+						<td>property AutoComplete: Boolean;</td>
+						<td>Определяет, будет ли компонент автоматически получать фокус ввода при нажатии пользователем на клавиатуру.</td>
+					</tr>
+					<tr>
+						<td>type TBorderStyle = bsNone..-bsSingle; property Border-Style: TBorderStyle;</td>
+						<td>Определяет стиль рамки: bsNone - нет рамки; bssingle - рамка толщиной 1 пиксель</td>
+					</tr>
+					<tr>
+						<td>property Canvas: TCanvas; </td>
+						<td>Канва для программной прорисовки элементов </td>
+					</tr>
+					<tr>
+						<td>property Columns: Longing;</td>
+						<td>Определяет количество колонок элементов в списке</td>
+					</tr>
+					<tr>
+						<td>property Count: Integer;</td>
+						<td>Содержит количество строк в компоненте</td>
+					</tr>
+					<tr>
+						<td>property ExtendedSelect: Boolean;</td>
+						<td>Если ExtendedSelect =True и MultiSelect==True, выбор элемента без одновременного нажатия Crtl или Alt отменяет предыдущий выбор</td>
+					</tr>
+					<tr>
+						<td>property IntegralHeight:Boolean;  </td>
+						<td>Если IntegralHeight=True и Style<>lb0wner-DrawVariabe, в списке показывается целое число элементов</td>
+					</tr>
+					<tr>
+						<td>property ItemHeight: Integer; </td>
+						<td>Определяет высоту элемента в пикселях для Style=lbOwnerDrawFixed</td>
+					</tr>
+					<tr>
+						<td>property Itemlndex: Integer;</td>
+						<td>Содержит индекс сфокусированного элемента. Если MultiSelect=False, совпадает с индексом выделенного элемента</td>
+					</tr>
+					<tr>
+						<td>property Items: TStrings; </td>
+						<td>Содержит набор строк, показываемых в компоненте</td>
+					</tr>
+					<tr>
+						<td>property MultiSelect: Boolean;</td>
+						<td>Разрешает/отменяет выбор нескольких элементов </td>
+					</tr>
+					<tr>
+						<td>property SelCount: Integer;</td>
+						<td>Содержит количество выбранных элементов</td>
+					</tr>
+					<tr>
+						<td>property Selected[X: Integer] : Boolean;</td>
+						<td>Содержит признак выбора для элемента с индексом х (первый элемент имеет индекс 0)</td>
+					</tr>
+					<tr>
+						<td>property Sorted: Boolean; </td>
+						<td>Разрешает/отменяет сортировку строк в алфавитном порядке</td>
+					</tr>
+					<tr>
+						<td>type TListBoxStyle = (IbStandard, IbOwnerDrawFixed, IbOwnerDrawVariable) ; <br> property Style: TListBoxStyle;</td>
+						<td>Определяет способ прорисовки элементов: <br>IbStandard - элементы рисует Windows; 
+							<br>ibOwnerDrawFixed - рисует программа, все элементы имеют одинаковую высоту, определяемую свойством ItemHeight;
+							<br>IbOwnerDrawVariable -рисует программа, элементы имеют разную высоту</td>
+					</tr>
+					<tr>
+						<td>property TabWidth: Integer;</td>
+						<td>Задает ширину табуляционного пробела</td>
+					</tr>
+					<tr>
+						<td>property Toplndex: Integer;</td>
+						<td>Индекс первого видимого в окне элемента</td>
+					</tr>
+				</table>
+				<h2>Компонент CheckListBox</h2>
+				<h2>Компонент ComboBox</h2>
+				<h2>Класс TStrings</h2>
+			</article>
+		</main>
+		<footer>
+			<div></div>
+		</footer>
+	</body>
+</html>
