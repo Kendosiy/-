@@ -46,21 +46,23 @@
 			<aside>
 				<h2>Быстрая навигация</h2>
 				<ol>
-					<li>Компонент ListBox</li>
-					<li>Компонент CheckListBox</li>
-					<li>Компонент ComboBox</li>
-					<li>Класс TStrings</li>
+					<li><a href="#1">Компонент ListBox</a></li>
+					<li><a href="#2">Компонент CheckListBox</a></li>
+					<li><a href="#3">Компонент ComboBox</a></li>
+					<li><a href="#4">Класс TStrings</a></li>
 				</ol>
 			</aside>
 			<article class="tema">
+				<a name="1"></a>
 				<h2>Компонент ListBox</h2>
 				<img src="res\tema2\1.jpg">
-				<p>Компонент класса TListBox представляет собой стандартный для Windows список выбора, 
+				<p>Компонент класса <strong>TListBox</strong> представляет собой стандартный для Windows список выбора, 
 				с помощью которого пользователь может выбрать один или несколько элементов выбора. 
 				В компоненте предусмотрена возможность программной прорисовки элементов, поэтому список 
 				может содержать не только строки, но и произвольные изображения. Создание элементов (опций) списка компонента реализуется с 
-				помощью методов его свойства Items - Add, Append, Insert или LoadFromFile.</p>
+				помощью методов его свойства <strong>Items: Add, Append, Insert, LoadFromFile</strong>.</p>
 				<table>
+					<h4>Свойства</h4>
 					<tr>
 						<td>property AutoComplete: Boolean;</td>
 						<td>Определяет, будет ли компонент автоматически получать фокус ввода при нажатии пользователем на клавиатуру.</td>
@@ -87,7 +89,7 @@
 					</tr>
 					<tr>
 						<td>property IntegralHeight:Boolean;  </td>
-						<td>Если IntegralHeight=True и Style<>lb0wner-DrawVariabe, в списке показывается целое число элементов</td>
+						<td>Если IntegralHeight=True и Style != lb0wner-DrawVariabe, в списке показывается целое число элементов</td>
 					</tr>
 					<tr>
 						<td>property ItemHeight: Integer; </td>
@@ -132,10 +134,301 @@
 						<td>Индекс первого видимого в окне элемента</td>
 					</tr>
 				</table>
+				<a name="2"></a>
 				<h2>Компонент CheckListBox</h2>
+				<p>Подобно тому как <strong>TRadioGroup</strong> группирует зависимые переключатели, <strong>TcheckListBox</strong> группирует независимые переключатели, 
+				   позволяя обратиться к любому из них по индексу.
+				   Чтобы вставить в компонент группу независимых переключателей, следует раскрыть редактор его свойства <strong>Items</strong> и ввести одну или несколько 
+				   текстовых строк - каждая строка будет соответствовать поясняющей надписи справа от переключателя.
+				   Для компонента определено событие "<strong>property OnClickCheck: TNotifyEvent</strong>", которое наступает при изменении состояния любого переключателя.</p>
+				<table>
+					<h4>Свойства</h4>
+					<tr>
+						<td>property AllowGrayed: Boolean; </td>
+						<td>Разрешает/запрещает использовать в переключателях третье состояние cbGrayed </td>
+					</tr>
+					<tr>
+						<td>property BorderStyle: TBorderStyle;</td>
+						<td>Определяет тип рамки, очерчивающей компонет: bsNone - нет рамки; bsSingie - рамка толщиной в 1 пиксель</td>
+					</tr>
+					<tr>
+						<td>property Canvas: TCanvas;</td>
+						<td>Это свойство используется для программной прорисовки опций </td>
+					</tr>
+					<tr>
+						<td>property Checked[Index:Integer]: Boolean;</td>
+						<td>Содержит выбор пользователя типа Да/Нет для переключателя с индексом index. Состояния cbUnchecked И cbGrayed отражаются как False</td>
+					</tr>
+					<tr>
+						<td>property Columns: Integers;</td>
+						<td>Определяет количество колонок опций</td>
+					</tr>
+					<tr>
+						<td>property Flat: Boolean;</td>
+						<td>Разрешает/запрещает трехмерную прорисовку окошек выбора</td>
+					</tr>
+					<tr>
+						<td>property Header[Index: Integer] : Boolean;</td>
+						<td>Запрещает прорисовку окошка выбора для опции с индексом index. Таким образом вставляются заголовки отдельных секций</td>
+					</tr>
+					<tr>
+						<td>property HeaderBackgroundColor: TColor;</td>
+						<td>Цвет фона для заголовка (см. свойство Header)</td>
+					</tr>
+					<tr>
+						<td>property HeaderColor:TColor;</td>
+						<td>Цвет текста для заголовка (см. свойство Header)</td>
+					</tr>
+					<tr>
+						<td>property IntegralHeight:Boolean;</td>
+						<td>Если имеет значение True, компонент автоматически изменяет высоту так, чтобы в нем полностью отображались опции, 
+						в противном случае последняя опция может не полностью отображаться в окне компонента</td>
+					</tr>
+					<tr>
+						<td>property ItemEnabled[Index:Integer]: Boolean;</td>
+						<td>Разрешает/запрещает выбор опции с индексом Index</td>
+					</tr>
+					<tr>
+						<td>property ItemHeight: Integer;</td>
+						<td>Если свойство Style компонента имеет значение IsOwnerDrawFixed, значение ItemHeight Определяет высоту каждой опции компонента. 
+						При других значениях Style это свойство игнорируется</td>
+					</tr>
+					<tr>
+						<td>property Itemlndex: Integer;</td>
+						<td>Содержит индекс выбранной опции (индексация опций начинается с нуля)</td>
+					</tr>
+					<tr>
+						<td>property Items: TStrings;</td>
+						<td>Содержит опции компонента</td>
+					</tr>
+					<tr>
+						<td>property MultiSelect: Boolean;</td>
+						<td>Если содержит True, пользователь может выбирать несколько опций</td>
+					</tr>
+					<tr>
+						<td>property SelCount: Integer;</td>
+						<td>Содержит количество выбранных опций компонента, если свойство MultiSelect содержит True</td>
+					</tr>
+					<tr>
+						<td>property Selected[Index: Integer]: Boolean;</td>
+						<td>Содержит True, если опция с индексом index выбрана</td>
+					</tr>
+					<tr>
+						<td>property Sorted: Boolean;</td>
+						<td>Сортирует по алфавиту надписи на переключателях</td>
+					</tr>
+					<tr>
+						<td>property State[Index: Integer] : TCheckBoxState;</td>
+						<td>Содержит состояние переключателя с индексом Index: cbUnchecked - нет; cbChecked ~ да; cbGrayed - не совсем</td>
+					</tr>
+					<tr>
+						<td>property Style: TListBox Style;</td>
+						<td>Определяет способ прорисовки опций компонента: IbStandard - опции прорисовывает Windows; <br>
+						ibOwnerDrawFixed - компонент использует программный метод прорисовки опций, каждый из которых имеет одинаковую высоту ItemHeight; <br>
+						IbOwnerDrawVariable - опции прорисовываются программно и могут иметь разную высоту</td>
+					</tr>
+					<tr>
+						<td>property TabWidth: Integer;</td>
+						<td>Определят ширину табулостопов</td>
+					</tr>
+					<tr>
+						<td>property Toplndex: Integer;</td>
+						<td>Содержит индекс самой первой отображаемой опции</td>
+					</tr>
+				</table>
+				<a name="3"></a>
 				<h2>Компонент ComboBox</h2>
+				<img src="res\tema2\2.jpg">
+				<p>Комбинированный список TComboBox представляет собой комбинацию списка TListBox и редактора TEdit, и поэтому большинство его свойств и методов заимствованы 
+				у этих компонентов. Существуют пять модификаций компонента, определяемые его свойством style: <br><strong>csSimple, csDropDown, csDropDownList, csOwnerDrawFixed И 
+				csOwner DrawVariabie</strong>.<br> 
+				В первом случае список всегда раскрыт, в остальных он раскрывается после нажатия кнопки справа от редактора. В модификации <strong>csDropDownList</strong> редактор 
+				работает в режиме отображения выбора и его нельзя использовать для ввода новой строки (в других модификациях это возможно). Модификации <strong>csOwnerDrawFixed
+				</strong> и <strong>csOwnerDrawVariable</strong> используются программной прорисовки элементов списка. Используемые для этого свойства и методы полностью совпадают 
+				со свойствами и методами <strong>TListBox</strong> аналогичного назначения.<br>Фактически “своими” у компонента являются лишь свойства и события, 
+				связанные с раскрытием списка:<strong><br>property DropDownCount: Integer;<br>property DroppedDown: Boolean;<br>property OnDropDown: TNotifyEvent;<br></strong>
+				Свойство <strong>DropDownCount</strong> определяет количество элементов списка, появление которых еще не приводит к необходимости прокрутки списка. 
+				По умолчанию это свойство имеет значение 8: если в списке указано 9 и более элементов (т. е. больше, чем содержит <strong>DropDownCount</strong>), 
+				при его раскрытии к окну будет добавлена полоса прокрутки. Свойство <strong>DroppedDown</strong> определяет, раскрыт ли в данный момент список. 
+				Это свойство доступно также для записи, что позволяет программно управлять состоянием списка. Событие <strong>OnDropDown</strong> происходит при 
+				изменении состояния списка. Наполнение списка ведется методами <strong>Add</strong>, <strong>Append</strong>, <strong>Insert</strong> и т. п. 
+				его свойства <strong>Items</strong> класса <strong>TStrings</strong>. </p>
+				<a name="4"></a>
 				<h2>Класс TStrings</h2>
-			</article>
+				<p>Абстрактный класс <strong>TStrings</strong> инкапсулирует поля и методы для работы с наборами строк.
+				От него порождены многочисленные специализированные потомки, обслуживающие наборы строк в таких компонентах, как <strong>TComboBox</strong>,
+				<strong>TListBox</strong>, <strong>TRichEdit</strong> и др.
+				Эти классы (<strong>TComboBoxStrings, TListBoxStrings, TRichEditStrings</strong> и др.) объявляются в разделах <strong>Implementation</strong> соответствующих 
+				модулей (<strong>Stdctris, Сomctris </strong>и др.) и поэтому скрыты от браузера Delphi и не включены в Help-службу.
+				Единственным доступным наследником <strong>TStrings</strong> является <strong>TStringList</strong> - полнофункциональный класс общего назначения.
+				Замечательной особенностью <strong>TStrings</strong> и его потомков является то обстоятельство, что элементами наборов служат пары строка-объект, 
+				в которых строка - собственно строка символов, а объект -объект любого класса Delphi. Такая двойственность позволяет сохранять в <strong>TStrings</strong> 
+				объекты с текстовыми примечаниями, сортировать объекты, отыскивать нужный объект по его описанию и т. д. 
+				Кроме того, в качестве объекта может использоваться потомок от <strong>TStrings</strong>, что позволяет создавать многомерные наборы строк.</p>
+				<p>Набор строк технически реализуется подобно <strong>TList</strong> - в виде массива указателей. Свойство <strong>Capacity</strong> показывает текущую длину этого 
+				массива, а свойство <strong>count</strong> - количество элементов, занятых в нем. Если при добавлении очередного элемента <strong>capacity</strong> окажется меньше 
+				<strong>count</strong>, происходит автоматическое расширение массива. При этом в динамической памяти резервируется место для размещения <strong>Capacity + 16
+				</strong> указателей, в новый массив переписывается содержимое старого массива, после чего старый массив уничтожается. Если вам известно количество элементов в 
+				создаваемом наборе строк, имеет смысл заранее нужным образом установить свойство <strong>capacity</strong>, чтобы сократить непроизводительные расходы на 
+				многократные расширения массива указателей. Свойство <strong>commaText</strong> интерпретирует содержимое набора строк в виде одной длинной строки с элементами вида 
+				"первая строка", "вторая строка", "третья строка" и т. д. (каждая строка набора заключается в двойные кавычки и отделяется от соседней строки запятой; если в строке 
+				встречается символ “ " ”, он удваивается). Свойство <strong>Text</strong> интерпретирует содержимое набора в виде одной длинной строки с элементами, разделенными 
+				стандартным признаком <strong>eoln (#13#10)</strong>. Свойства <strong>Names</strong> и <strong>Values</strong> обрабатывают строки вида <strong>Name=Value</strong>.
+				Такие строки широко используются в различных файлах инициации, например, в файле win.ini.</p>
+				<p>Методы <strong>Add, Append, Insert, Clear</strong> и т.п. В классе <strong>TStrings</strong> - абстрактные. Связано это с тем, что класс инкапсулирует их и 
+				такимобразом делает доступными во всех потомках, но он при этом не накладывает никаких ограничений на то, как располагаются в памяти строки и объекты. Каждый 
+				потомок решает эту задачу наиболее удобным для него способом. Например, потомок <strong>TStringList</strong> располагает строки и объекты в общей динамической 
+				памяти, для чего перекрывает все абстрактные методы своего родителя. Замечу, что? если вы создадите экземпляр класса <strong>TStrings</strong> с помощью его 
+				конструктора <strong>Create</strong>, компилятор предупредит вас о том, что этот экземпляр содержит абстрактные методы, так что пользоваться им нужно лишь в 
+				исключительных случаях.</p>
+				<table>
+					<h4>Свойства</h4>
+					<tr>
+						<td>property Capacity: Integer; </td>
+						<td>Текущая емкость набора строк </td>
+					</tr>
+					<tr>
+						<td>property CommaText: String; </td>
+						<td>Служит для установки или получения всего набора строк в виде единой строки с кавычками и запятыми. Текущее количество строк в наборе. </td>
+					</tr>
+					<tr>
+						<td>property Count: Integer; </td>
+						<td>Интерпретирует все строки списка в виде одной длинной строки</td>
+					</tr>
+					<tr>
+						<td>property DelimitedText: String; </td>
+						<td>Каждая строка окружается символами QuoteChar и отделяется от соседней символом Delimiter </td>
+					</tr>
+					<tr>
+						<td>property Delimiter: Char; </td>
+						<td>Символ для выделения строк в свойстве DelimitedText </td>
+					</tr>
+					<tr>
+						<td>property Names[Index: Integer] : String; </td>
+						<td>Для строки с индексом Index возвращает часть Name, если это строка вида Name=Value, в противном случае возвращает пустую строку </td>
+					</tr>
+					<tr>
+						<td>property Objects[Index: Integer] : TObject; </td>
+						<td>Открывает доступ к объекту, связанному со строкой с индексом Index </td>
+					</tr>
+					<tr>
+						<td>property QuoteChar: Char; </td>
+						<td>Символ для разделения строк в свойстве DelimitedText </td>
+					</tr>
+					<tr>
+						<td>property Strings[Index: Integer] : String; </td>
+						<td>Открывает доступ к строке с индексом Index </td>
+					</tr>
+					<tr>
+						<td>property StringsAdapter: TStringsAdapter; </td>
+						<td>Это свойство используется только при разработке компонентов, отвечающих стандарту Act iv </td>
+					</tr>
+					<tr>
+						<td>property Text: String; </td>
+						<td>Интерпретирует набор строк в виде одной длинной строки с разделителями eoln между отдельными строками набора</td>
+					</tr>
+					<tr>
+						<td>property Values[const Name: String]: String; </td>
+						<td>По части Name отыскивает в наборе и возвращает часть Value для строк вида Name=Value </td>
+					</tr>
+				</table>
+				<table>
+					<h4 style="margin-top:10px;">Методы</h4>
+					<tr>
+						<td>function Add(const S: String) : Integer;<br>
+						function AddObject(const S:String; aObject: TObject):Integer;</td>
+						<td>Добавляет строку в набор данных и возвращает ее индекс добавляет строку и объект в набор данных </td>
+					</tr>
+					<tr>
+						<td>procedure AddStrings( Strings: TStrings); </td>
+						<td>Добавляет к текущему набору новый набор строк</td>
+					</tr>
+					<tr>
+						<td>procedure Append(const S:String) ; </td>
+						<td>То же, что Add, но не возвращает индекс вставленной строки</td>
+					</tr>
+					<tr>
+						<td>procedure Assign(Source: TPersistent) ;</td>
+						<td>Уничтожает прежний набор строк и загружает из Source новый набор. В случае не удачи возникает исключение EсоnvertError</td>
+					</tr>
+					<tr>
+						<td>procedure BeginUpdate; </td>
+						<td>Устанавливает флаг начала обновления. До вызова EndUpdate блокируется сортировка строк, что ускоряет процесс много кратного изменения данных</td>
+					</tr>
+					<tr>
+						<td>procedure Clear; </td>
+						<td>Очищает набор данных и освобождает связанную с ним память </td>
+					</tr>
+					<tr>
+						<td>procedure Delete(Index: Integer) ;</td>
+						<td>Уничтожает элемент набора с индексом Index и освобождает связанную с ним память </td>
+					</tr>
+					<tr>
+						<td>procedure EndUpdate; </td>
+						<td>Сбрасывает флаг изменения и при необходимости сортирует строки </td>
+					</tr>
+					<tr>
+						<td>function Equals(Strings:TStrings): Boolean; </td>
+						<td>Сравнивает построчно текущий набор данных с набором Strings и возвращает True, если наборы идентичны </td>
+					</tr>
+					<tr>
+						<td>procedure Exchange(Indexl,Index3: Integers;</td>
+						<td>Меняет местами строки с индексами Index1 и Index2. Если объект сортируется, вызывает исключение EstringListError</td>
+					</tr>
+					<tr>
+						<td>function GetObject(Index:Integer): TObject; virtual; </td>
+						<td>Возвращает объект, связанный со строкой Index </td>
+					</tr>
+					<tr>
+						<td>function GetText: PChar;</td>
+						<td>Загружает строки из единого массива, в котором они отделяются друг от друга признаком EOLN </td>
+					</tr>
+					<tr>
+						<td>function IndexOf(const S:String): Integer;</td>
+						<td>Для строки S возвращает ее индекс или -1, если такой строки в наборе нет </td>
+					</tr>
+					<tr>
+						<td>function IndexOfName(const Name: String): Integer; </td>
+						<td>Возвращает индекс первой строки вида Name=Value, в которой часть Name совпадает с параметром обращения </td>
+					</tr>
+					<tr>
+						<td>function IndexOfObject (aObject: TObject): Integer; </td>
+						<td>Для объекта aObj ect возвращает индекс строки или -1, если такого объекта в наборе нет </td>
+					</tr>
+					<tr>
+						<td>procedure Insert(Index: Integer; const S: Strings;</td>
+						<td>Вставляет строку в набор и присваивает ей индекс Index </td>
+					</tr>
+					<tr>
+						<td>procedure InsertObject (Index: Integer; const S: String; aObject: TObject) </td>
+						<td>Вставляет строку и объект в набор и присваивает им индекс Index </td>
+					</tr>
+					<tr>
+						<td>procedure LoadFromFile (const FileName: Strings; </td>
+						<td>Загружает набор из файла </td>
+					</tr>
+					<tr>
+						<td>procedure LoadFromStream (Stream: TStream) ; </td>
+						<td>Загружает набор из потока</td>
+					</tr>
+					<tr>
+						<td>procedure Move(Curlndex, Nwlndex: Integers; </td>
+						<td>Перемещает строку из положения Curlndex в положение Newlndex </td>
+					</tr>
+					<tr>
+						<td>procedure SaveToFile(const FileName: Strings; </td>
+						<td>Сохраняет набор в файле </td>
+					</tr>
+					<tr>
+						<td>procedure SaveToStream (Stream: TStream) ; </td>
+						<td>Сохраняет набор в потоке </td>
+					</tr>
+					<tr>
+						<td>procedure SetText(Text:PChar); </td>
+						<td>Выгружает строки в единый массив, в котором они отделяются друг от друга при знаком EOLN </td>
+					</tr>
+				</table>
+			</article>	
 		</main>
 		<footer>
 			<div></div>

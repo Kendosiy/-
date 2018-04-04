@@ -114,15 +114,24 @@ nav ul li{
 }
 /* ///////////////////////////////////////////////////////////////////////////////// */
 main aside{
+	font-family: Arial;
 	float:left;
 	width: 250px;
 	background-color: #A4A4A4;
+	border-radius: 2px;
+}
+main aside a{
+	color: white;
 }
 main aside h2{
-	margin: 0px;
+	margin: 0 0 0 5px;
+}
+main h4{
+	margin: 0;
 }
 main aside ol{
 	padding-left:25px;
+	color: white;
 }
 main article{
 	font-family: Arial;
