@@ -1,7 +1,13 @@
+html {
+	height: 100%;
+}
+
 body{
 	background-color: white;
 	min-width:880px;
 	margin: 0;
+	position: relative;
+    min-height: 100%;
 }
 /* ///////////////////////////////////////////////////////////////////////////////// */
 header{
@@ -9,11 +15,7 @@ header{
 	height: 75px; 
 	width: 100%; 
 }
-
-header div{
-	height: 100%;
-}
-header div h1{
+header h1{
 	font-size: 300%; 
 	float: left; 
 	color: white;
@@ -21,33 +23,7 @@ header div h1{
 	margin: 15px 0px 0px 10px;
 	font-weight: normal;
 }
-header div .search{
-	height: 35px; 
-	width: 325px;
-	margin: 18px; 
-	float: right; 
-	background-color: white;
-	border: 1px solid grey;
-	box-shadow: inset 5px 5px 10px rgba(0,0,0,0.10);
-	border-radius: 2px;
-}
-header div .search p{
-	float: left;
-	margin: 2px;
-	padding: 2px 0px 0px 10px;
-	color: #868585;
-	font-family: Calibri Light; 
-	font-size: 140%;
-	
-}
-header div .search img{
-	float: right;
-	margin: 0px;
-	padding: 4px;
-	height: 80%;
-	width:auto;
-	opacity: 0.65;
-}
+
 /* ///////////////////////////////////////////////////////////////////////////////// */
 
 nav{
@@ -113,18 +89,33 @@ nav ul li{
 	padding: 3px;
 }
 /* ///////////////////////////////////////////////////////////////////////////////// */
+main {
+	padding-bottom: 60px;
+}
 main aside{
 	font-family: Arial;
 	float:left;
 	width: 250px;
 	background-color: #A4A4A4;
 	border-radius: 2px;
+	margin-left: 15px;
+	margin-top: 15px;
+}
+.fixed {
+	
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 main aside a{
 	color: white;
 }
 main aside h2{
 	margin: 0 0 0 5px;
+}
+main article h2 {
+	margin:0;
+	padding-top: 15px;
 }
 main h4{
 	margin: 0;
@@ -138,7 +129,11 @@ main article{
 	background-color: white;
     min-height: 95%;
 	padding: 0px 20px;
-	padding-bottom:50px;
+}
+main article caption {
+	text-align: left;
+	font-weight: bold;
+	margin: 0;
 }
 main .tema{
 	padding-left: 300px;
@@ -161,9 +156,12 @@ main p{
 	margin: 15px 0px;
 }
 /* ///////////////////////////////////////////////////////////////////////////////// */
-/* footer{
+footer{
 
     background: #8C8B8B;
+	position: absolute;
+	bottom: 0;
+	left: 0;
     width: 100%;
-	height:5%;
-} */
+	height:50px;
+}

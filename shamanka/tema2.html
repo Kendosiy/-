@@ -7,10 +7,6 @@
 		<header>
 			<div>
 				<h1>Учебный портал</h1>
-				<div class="search">
-					<p>Что ищем?</p>
-					<img src="res/search.png">
-				</div>
 			</div>
 		</header>
 		<nav>
@@ -25,25 +21,15 @@
 					</ul>
 				</li>
 				<li>
-					<p>Курсы</p>
-					<ul class="submenu">
-						<li>Курс №1</li>
-						<li>Курс №2</li>
-						<li>Курс №3</li>
-					</ul>
-				</li>
-				<li>
 					<p>Учебные материалы</p>
 					<ul class="submenu">
 						<li><a href="labrab.html">Лабораторные работы</a></li>
-						<li>Практические работы</li>
-						<li>Тесты</li>
 					</ul>
 				</li>
 			</ul>
 		</nav>
 		<main>
-			<aside>
+			<aside id="sidebar">
 				<h2>Быстрая навигация</h2>
 				<ol>
 					<li><a href="#1">Компонент ListBox</a></li>
@@ -62,7 +48,7 @@
 				может содержать не только строки, но и произвольные изображения. Создание элементов (опций) списка компонента реализуется с 
 				помощью методов его свойства <strong>Items: Add, Append, Insert, LoadFromFile</strong>.</p>
 				<table>
-					<h4>Свойства</h4>
+					<caption>Свойства</caption>
 					<tr>
 						<td>property AutoComplete: Boolean;</td>
 						<td>Определяет, будет ли компонент автоматически получать фокус ввода при нажатии пользователем на клавиатуру.</td>
@@ -142,7 +128,7 @@
 				   текстовых строк - каждая строка будет соответствовать поясняющей надписи справа от переключателя.
 				   Для компонента определено событие "<strong>property OnClickCheck: TNotifyEvent</strong>", которое наступает при изменении состояния любого переключателя.</p>
 				<table>
-					<h4>Свойства</h4>
+					<caption>Свойства</caption>
 					<tr>
 						<td>property AllowGrayed: Boolean; </td>
 						<td>Разрешает/запрещает использовать в переключателях третье состояние cbGrayed </td>
@@ -282,7 +268,7 @@
 				конструктора <strong>Create</strong>, компилятор предупредит вас о том, что этот экземпляр содержит абстрактные методы, так что пользоваться им нужно лишь в 
 				исключительных случаях.</p>
 				<table>
-					<h4>Свойства</h4>
+					<caption>Свойства</caption>
 					<tr>
 						<td>property Capacity: Integer; </td>
 						<td>Текущая емкость набора строк </td>
@@ -430,8 +416,9 @@
 				</table>
 			</article>	
 		</main>
-		<footer>
+		<footer class="footer">
 			<div></div>
 		</footer>
+		<script src="scripts.js"></script>
 	</body>
 </html>
