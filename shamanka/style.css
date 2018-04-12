@@ -139,8 +139,7 @@ main .tema{
 	padding-left: 300px;
 }
 main .tema img{
-	float: right;
-	padding: 0px 0px 5px 5px;
+	padding: 5px;
 }
 main .tema table{
 	border-collapse: collapse;
