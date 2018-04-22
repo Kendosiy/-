@@ -77,6 +77,14 @@ nav .submenu{
 	box-shadow: 5px 5px 24px 1px rgba(0,0,0,0.35);
 	border-top: 3px solid #1d183b;
 }
+nav #sub1{
+	width: 270.09px;
+}
+
+nav #sub2{
+	width: 251.81px;
+}
+
 nav ul li{
 	float: left; 
 	list-style: none; 
@@ -135,6 +143,15 @@ main article caption {
 	font-weight: bold;
 	margin: 0;
 }
+
+main ul li {
+	list-style-type: none;
+}
+
+main a {
+text-decoration: none;
+}
+
 main .tema{
 	padding-left: 300px;
 }
