@@ -1,33 +1,34 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta charset="utf-8">
 		<link href="../../style.css" rel="stylesheet">
 	</head>
 	<body>
 		<header>
 			<div>
-				<h1>Учебный портал</h1>
+				<a href="../../index.html"><h1>Учебный портал</h1></a>
 			</div>
+			<nav>
+					<ul class="main_menu">
+					<li>
+						<a href="#"><p>Справочные материалы&#9207;</p></a>
+						<ul class="submenu" id="sub1">
+							<li><a href="../../delphi-lab-teor.html">Теория по Delphi</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#"><p>Лабораторные работы&#9207;</p></a>
+						<ul class="submenu" id="sub2">
+							<li><a href="../../delphi-lab-prac.html">Задания по Delphi</a></li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
 		</header>
-		<nav>
-			<ul class="main_menu">
-				<li><a href="../../index.html">Главная</a></li>
-				<li>
-					<p>Справочные материалы</p>
-					<ul class="submenu">
-						<li>HTML & CSS</li>
-						<li><a href="../../delphi-lab-teor.html">Delphi</a></li>
-					</ul>
-				</li>
-				<li>
-					<p>Учебные материалы</p>
-					<ul class="submenu">
-						<li><a href="../../delphi-lab-prac.html">Лабораторные работы Delphi</a></li>
-					</ul>
-				</li>
-			</ul>
-		</nav>
 		<main>
+			<div class="prev"><a href="tema5.html"><img src="../../res/prev.png"></a></div>
+			<div class="next"><a href="tema7.html"><img src="../../res/next.png"></a></div>
 			<aside id="sidebar">
 				<h2>Быстрая навигация</h2>
 				<ol>
@@ -42,8 +43,8 @@
 				</ol>
 			</aside>
 			<article class="tema">
-				<p><b>Компоненты отображения
-				текстовой информации</b></p>
+				<h2>Компоненты отображения
+				текстовой информации</h2>
 
 				<p >Таблица 1 - Компоненты ввода и отображения текстовой
 				информации</p>

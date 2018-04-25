@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href="../../style.css" rel="stylesheet">
+	</head>
+	<body>
+		<header>
+			<div>
+				<h1>Учебный портал</h1>
+			</div>
+		</header>
+		<nav>
+			<ul class="main_menu">
+				<li><a href="../../index.html">Главная</a></li>
+				<li>
+					<p>Справочные материалы</p>
+					<ul class="submenu">
+						<li><a href="../../delphi-lab-teor.html">Теория по Delphi</a></li>
+					</ul>
+				</li>
+				<li>
+					<p>Лабораторные работы</p>
+					<ul class="submenu">
+						<li><a href="../../delphi-lab-prac.html">Задания по Delphi</a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+		<main>
+			<aside id="sidebar">
+				<h2>Быстрая навигация</h2>
+				<ol>
+					<li><a href="#1">Таблица атрибутов компонента</a></li>
+				</ol>
+			</aside>
+			<article class="tema">
+				<h2>Компонент RichEdit</h2>
+				<p>
+					<strong>Страница </strong>
+					– Win32l
+				</p>
+				<p>
+					В компоненте Memo формат (шрифт, его атрибуты, выравнивание) одинаков для
+					всего текста.
+				</p>
+				<p>
+					Компонент <strong>RichEdit </strong>работает с текстом в обогащённом
+					формате RTF. При желании изменить атрибуты вновь вводимого фрагмента текста
+					вы можете задать свойство <strong>SelAttributes</strong>. Это свойство типа
+					TtextAtributes, которое в свою очередь имеет подсвойства: Color (цвет),
+					Name(имя шрифта), Size(размер), Style(стиль) и ряд других.
+				</p>
+				<p>
+					Например, введите на форму компонент <strong>RichEdit</strong>, <strong>FontDialog</strong> со страницы
+					Dialog и кнопку <strong>Button</strong>, которая позволит пользователю менять атрибуты
+					текста. В обработчик щелчка кнопки введите текст:
+				</p>
+				<p>
+					if FontDialog1. Execute then
+					RichEdit1.SelAttributes.Assign(FontDialog1.Font);
+				</p>
+				<p>
+					RichEdit1.SetFocus;
+				</p>
+				<p>
+					Запустите приложение и вы увидите, что можете изменять шрифт выделенного
+					текста. Если ничего не выделено, то установленные атрибуты влияют на
+					атрибуты нового текста, вводимого начиная с текущей позиции курсора.
+					Позиция курсора определяется свойством <strong>SelStart</strong>.
+				</p>
+				<p>
+					Свойство <strong>DefAttributes </strong>содержит атрибуты по умолчанию, они
+				действуют до момента изменения атрибутов свойством	<strong>SelAttributes.</strong>
+				</p>
+				<p>
+					За выравнивание, отступы и т.д. в пределах текущего абзаца отвечает
+				свойство <strong>Paragraph </strong>типа<strong> </strong>	<strong>TParaAtributes</strong>. Свойства этого типа приведены в таблице:
+				</p>
+				<a name="1"></a>
+				<table border="1" cellspacing="0" cellpadding="0">
+					<tbody>
+						<tr>
+							<td width="151" valign="top">
+								<p>
+									<strong>Alignment</strong>
+								</p>
+							</td>
+							<td width="506" valign="top">
+								<p>
+									Выравнивание текста. Может принимать значение taLeftJastify
+									(влево), taCenter (по центру), taRightJastify(вправо)
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="151" valign="top">
+								<p>
+									<strong>FirstIndent</strong>
+								</p>
+							</td>
+							<td width="506" valign="top">
+								<p>
+									Число пикселей отступа красной строки.
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="151" valign="top">
+								<p>
+									<strong>Numbering</strong>
+								</p>
+							</td>
+							<td width="506" valign="top">
+								<p>
+									Управляет вставкой маркеров. Значения nsNone – отсутствие
+									маркеров, nsBullet – маркеры ставятся.
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="151" valign="top">
+								<p>
+									<strong>LeftIndent</strong>
+								</p>
+							</td>
+							<td width="506" valign="top">
+								<p>
+									Отступ в пикселях от левого края
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="151" valign="top">
+								<p>
+									<strong>RightIndent</strong>
+								</p>
+							</td>
+							<td width="506" valign="top">
+								<p>
+									Отступ в пикселях от правого края
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="151" valign="top">
+								<p>
+									<strong>TabCount</strong>
+								</p>
+							</td>
+							<td width="506" valign="top">
+								<p>
+									Количество позиций табуляции
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="151" valign="top">
+								<p>
+									<strong>Tab</strong>
+								</p>
+							</td>
+							<td width="506" valign="top">
+								<p>
+									Значение позиций табуляции в пикселях
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					Значения свойства <strong>Paragraph</strong> можно задавать только в процессе выполнения
+					приложения. Значения его подсвойств относятся к тому абзацу, в котором
+					находится курсор.
+				</p>
+				<p>
+					Пример.
+				</p>
+				<p>
+					Пусть в вашем приложении есть окно редактирования <strong>Edit</strong>, в которое вводится
+					имя сотрудника и есть кнопка, при нажатии на которую в окно <strong>RichEdit</strong> должна
+					занестись шапка характеристики этого сотрудника, после чего пользователь
+					может заполнять текст характеристики.
+				</p>
+				<p>
+					Обработчик события щелчка по кнопке может иметь вид:
+				</p>
+				<p>
+					RichEdit1.Clear; //очистка
+				</p>
+				<p>
+					 RichEdit1.Paragraph.Alignment:=taCenter; //выравнивание по центру
+				</p>
+				<p>
+					 RichEdit1.SelAttributes.Style:= [fsBold]; //установление жирного шрифта
+				</p>
+				<p>
+					 RichEdit1.Lines.Add('ХАРАКТЕРИСТИКА');
+				</p>
+				<p>
+					 RichEdit1.Lines.Add('Сотрудник'+edit1.Text);
+				</p>
+				<p>
+					RichEdit1.SelAttributes.Assign(RichEdit1.DefAttributes);//восстановление атрибутов по умолчанию
+				</p>
+				<p>
+					 RichEdit1.Paragraph.Alignment:=taLeftJustify;
+				</p>
+				<p>
+					 RichEdit1.SetFocus;
+				</p>
+				<p>
+					Загрузка в окно <strong>RichEdit1</strong> текста из файла может осуществляться командой
+				</p>
+				<p>
+					RichEdit1.Lines.LoadFromFile(‘text.txt’);
+				</p>
+				<p>
+					Сохранение в файле:
+				</p>
+				<p>
+					RichEdit1.Lines.SaveToFile(‘text.txt’);
+				</p>
+			</article>	
+		</main>
+		<footer class="footer">
+			<div></div>
+		</footer>
+		<script src="../../scripts.js"></script>
+	</body>
+</html>

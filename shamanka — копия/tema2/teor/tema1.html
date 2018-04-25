@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href="../../style.css" rel="stylesheet">
+	</head>
+	<body>
+		<header>
+			<div>
+				<h1>Учебный портал</h1>
+			</div>
+		</header>
+		<nav>
+			<ul class="main_menu">
+				<li><a href="../../index.html">Главная</a></li>
+				<li>
+					<p>Справочные материалы</p>
+					<ul class="submenu">
+						<li><a href="../../delphi-lab-teor.html">Теория по Delphi</a></li>
+					</ul>
+				</li>
+				<li>
+					<p>Лабораторные работы</p>
+					<ul class="submenu">
+						<li><a href="../../delphi-lab-prac.html">Задания по Delphi</a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+		<main>
+			<aside id="sidebar">
+				<h2>Быстрая навигация</h2>
+				<ol>
+					<li><a href="#1">Символы шаблона маски</a></li>
+				</ol>
+			</aside>
+			<article class="tema">
+				<h2>Однострочный текстовый редактор с маской ввода</h2>
+				<p>
+					<strong>Класс </strong>
+					– TMaskEdit
+				</p>
+				<p>
+					<strong>Страница </strong>
+					– Additional
+				</p>
+				<p>
+					<strong>Назначение:</strong>
+					ввод строки текста по шаблону.
+				</p>
+				<p>
+					<strong>Основные свойства:</strong>
+				</p>
+				<table border="1" cellspacing="0" cellpadding="0" width="673">
+					<tbody>
+						<tr>
+							<td width="100" valign="top">
+								<p align="center">
+									Свойство
+								</p>
+							</td>
+							<td width="313" valign="top">
+								<p align="center">
+									Описание
+								</p>
+							</td>
+							<td width="115" valign="top">
+								<p align="center">
+									Тип
+								</p>
+							</td>
+							<td width="145" valign="top">
+								<p align="center">
+									Значение
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="100">
+								<p align="center">
+									<strong>AutoSelect</strong>
+								</p>
+							</td>
+							<td width="313">
+								<p>
+									Автоматическое выделение всего текста в редакторе при
+									получении фокуса ввода
+								</p>
+							</td>
+							<td width="115">
+								<p align="center">
+									Bool
+								</p>
+							</td>
+							<td width="145">
+								<p align="center">
+									true, false
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="100">
+								<p align="center">
+									<strong>AutoSize</strong>
+								</p>
+							</td>
+							<td width="313" valign="top">
+								<p>
+									Автоматическое изменение высоты редактора при изменении
+									размера шрифта
+								</p>
+							</td>
+							<td width="115">
+								<p align="center">
+									Bool
+								</p>
+							</td>
+							<td width="145">
+								<p align="center">
+									true, false
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="100">
+								<p align="center">
+									<strong>BorderStyle</strong>
+								</p>
+							</td>
+							<td width="313">
+								<p>
+									Стиль рамки
+								</p>
+							</td>
+							<td width="115">
+								<p align="center">
+									TBorder Style
+								</p>
+							</td>
+							<td width="145">
+								<p>
+									bsNone – нет рамки bsSingle–есть рамка
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="100">
+								<p align="center">
+									<strong>MaxLength</strong>
+								</p>
+							</td>
+							<td width="313" valign="top">
+								<p>
+									Максимальное число символов в тексте
+								</p>
+							</td>
+							<td width="115">
+								<p align="center">
+									int
+								</p>
+							</td>
+							<td width="145">
+								<p>
+									0 – без ограничений
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="100">
+								<p align="center">
+									<strong>Modified</strong>
+								</p>
+							</td>
+							<td width="313" valign="top">
+								<p>
+									Фиксирует факт изменения текста
+								</p>
+							</td>
+							<td width="115">
+								<p align="center">
+									Bool
+								</p>
+							</td>
+							<td width="145">
+								<p align="center">
+									true, false
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="100">
+								<p align="center">
+									<strong>Password Char</strong>
+									<strong></strong>
+								</p>
+							</td>
+							<td width="313">
+								<p>
+									Символ, которым заменяются реальные символы при вводе
+									пароля
+								</p>
+							</td>
+							<td width="115">
+								<p align="center">
+									char
+								</p>
+							</td>
+							<td width="145">
+							</td>
+						</tr>
+						<tr>
+							<td width="100">
+								<p align="center">
+									<strong>ReadOnly</strong>
+								</p>
+							</td>
+							<td width="313">
+								<p>
+									Запрет на изменение текста пользователем
+								</p>
+							</td>
+							<td width="115">
+								<p align="center">
+									Bool
+								</p>
+							</td>
+							<td width="145">
+								<p align="center">
+									true, false
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="100">
+								<p align="center">
+									<strong>SelLength</strong>
+								</p>
+							</td>
+							<td width="313">
+								<p>
+									Количество выделенных символов
+								</p>
+							</td>
+							<td width="115">
+								<p align="center">
+									int
+								</p>
+							</td>
+							<td width="145">
+							</td>
+						</tr>
+						<tr>
+							<td width="100">
+								<p align="center">
+									<strong>SelStart</strong>
+								</p>
+							</td>
+							<td width="313">
+								<p>
+									Номер 1-го выделенного символа
+								</p>
+							</td>
+							<td width="115">
+								<p align="center">
+									int
+								</p>
+							</td>
+							<td width="145">
+							</td>
+						</tr>
+						<tr>
+							<td width="100">
+								<p align="center">
+									<strong>SelText</strong>
+								</p>
+							</td>
+							<td width="313">
+								<p>
+									Выделенный текст
+								</p>
+							</td>
+							<td width="115">
+								<p align="center">
+									AnsiString
+								</p>
+							</td>
+							<td width="145">
+							</td>
+						</tr>
+						<tr>
+							<td width="100">
+								<p align="center">
+									<strong>Text</strong>
+								</p>
+							</td>
+							<td width="313">
+								<p>
+									Текст, содержащийся в редакторе
+								</p>
+							</td>
+							<td width="115">
+								<p align="center">
+									TMaskedText
+								</p>
+							</td>
+							<td width="145">
+							</td>
+						</tr>
+						<tr>
+							<td width="100">
+								<p align="center">
+									<strong>EditMask</strong>
+								</p>
+							</td>
+							<td width="313">
+								<p>
+									Маска ввода
+								</p>
+							</td>
+							<td width="115">
+								<p align="center">
+									TEditMask
+								</p>
+							</td>
+							<td width="145">
+							</td>
+						</tr>
+					</tbody>
+				</table>
+					<a name="1"></a>
+					<h2>Символы шаблона маски</h2>
+				<table border="1" cellspacing="0" cellpadding="0">
+					<tbody>
+						<tr>
+							<td width="47" valign="top">
+								<p>
+									№
+								</p>
+							</td>
+							<td width="72" valign="top">
+								<p align="center">
+									Символ
+								</p>
+							</td>
+							<td width="538" valign="top">
+								<p align="center">
+									Значение в шаблоне ввода
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47" valign="top">
+								<p>
+									1
+								</p>
+							</td>
+							<td width="72" valign="top">
+								<p align="center">
+									<strong>!</strong>
+								</p>
+							</td>
+							<td width="538" valign="top">
+								<p>
+									Наличие - недостающие символы заменяются пробелами, которые
+									располагаются в начале строки, отсутствие – недостающие
+									символы заменяются пробелами, которые располагаются в конце
+									строки.
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47" valign="top">
+								<p>
+									2
+								</p>
+							</td>
+							<td width="72" valign="top">
+								<p align="center">
+									<strong>&gt;</strong>
+								</p>
+							</td>
+							<td width="538" valign="top">
+								<p>
+									Все последующие символы должны вводиться в верхнем регистре
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47" valign="top">
+								<p>
+									3
+								</p>
+							</td>
+							<td width="72" valign="top">
+								<p align="center">
+									<strong>&lt;</strong>
+								</p>
+							</td>
+							<td width="538" valign="top">
+								<p>
+									Все последующие символы должны вводиться в нижнем регистре
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47" valign="top">
+								<p>
+									4
+								</p>
+							</td>
+							<td width="72" valign="top">
+								<p align="center">
+									<strong>&lt;&gt;</strong>
+								</p>
+							</td>
+							<td width="538" valign="top">
+								<p>
+									Анализ регистра не производится
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47" valign="top">
+								<p>
+									5
+								</p>
+							</td>
+							<td width="72" valign="top">
+								<p align="center">
+									<strong>\</strong>
+								</p>
+							</td>
+							<td width="538" valign="top">
+								<p>
+									Следующий символ является буквенным, а не специальным для
+									маски
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47" valign="top">
+								<p>
+									6
+								</p>
+							</td>
+							<td width="72" valign="top">
+								<p align="center">
+									<strong>L</strong>
+								</p>
+							</td>
+							<td width="538" valign="top">
+								<p>
+									В данной позиции должна быть буква
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47" valign="top">
+								<p>
+									7
+								</p>
+							</td>
+							<td width="72" valign="top">
+								<p align="center">
+									<strong>l</strong>
+								</p>
+							</td>
+							<td width="538" valign="top">
+								<p>
+									В данной позиции должна быть буква или ничего
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47" valign="top">
+								<p>
+									8
+								</p>
+							</td>
+							<td width="72" valign="top">
+								<p align="center">
+									<strong>A</strong>
+								</p>
+							</td>
+							<td width="538" valign="top">
+								<p>
+									В данной позиции должна быть буква или цифра
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47" valign="top">
+								<p>
+									9
+								</p>
+							</td>
+							<td width="72" valign="top">
+								<p align="center">
+									<strong>a</strong>
+								</p>
+							</td>
+							<td width="538" valign="top">
+								<p>
+									В данной позиции должна быть буква или цифра или ничего
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47" valign="top">
+								<p>
+									10
+								</p>
+							</td>
+							<td width="72" valign="top">
+								<p align="center">
+									<strong>C</strong>
+								</p>
+							</td>
+							<td width="538" valign="top">
+								<p>
+									В данной позиции должен быть любой символ
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47" valign="top">
+								<p>
+									11
+								</p>
+							</td>
+							<td width="72" valign="top">
+								<p align="center">
+									<strong>c</strong>
+								</p>
+							</td>
+							<td width="538" valign="top">
+								<p>
+									В данной позиции может быть любой символ или ничего
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47" valign="top">
+								<p>
+									12
+								</p>
+							</td>
+							<td width="72" valign="top">
+								<p align="center">
+									<strong>0</strong>
+								</p>
+							</td>
+							<td width="538" valign="top">
+								<p>
+									В данной позиции должна быть цифра
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47" valign="top">
+								<p>
+									13
+								</p>
+							</td>
+							<td width="72" valign="top">
+								<p align="center">
+									<strong>9</strong>
+								</p>
+							</td>
+							<td width="538" valign="top">
+								<p>
+									В данной позиции должна быть цифра или ничего
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47" valign="top">
+								<p>
+									14
+								</p>
+							</td>
+							<td width="72" valign="top">
+								<p align="center">
+									<strong>#</strong>
+								</p>
+							</td>
+							<td width="538" valign="top">
+								<p>
+									В данной позиции должна быть цифра, знак “+”, знак “-” или
+									ничего
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47" valign="top">
+								<p>
+									15
+								</p>
+							</td>
+							<td width="72" valign="top">
+								<p align="center">
+									<strong>:</strong>
+								</p>
+							</td>
+							<td width="538" valign="top">
+								<p>
+									Разделения часов, минут, секунд
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47" valign="top">
+								<p>
+									16
+								</p>
+							</td>
+							<td width="72" valign="top">
+								<p align="center">
+									<strong>/</strong>
+								</p>
+							</td>
+							<td width="538" valign="top">
+								<p>
+									Разделение месяцев дней и годов в датах
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47" valign="top">
+								<p>
+									17
+								</p>
+							</td>
+							<td width="72" valign="top">
+								<p align="center">
+									<strong>_</strong>
+								</p>
+							</td>
+							<td width="538" valign="top">
+								<p>
+									Автоматическая вставка в текст пробела
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>	
+		</main>
+		<footer class="footer">
+			<div></div>
+		</footer>
+		<script src="../../scripts.js"></script>
+	</body>
+</html>
