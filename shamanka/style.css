@@ -114,12 +114,17 @@ main .prev{
 	position: fixed;
 	bottom: 0px;
 	left: 0px;
+	opacity: 0.7;
 	padding: 30px 10px;
+}
+main .prev:hover, main .next:hover{
+	opacity: 0.9;
 }
 main .next{
 	position: fixed;
 	bottom: 0px;
 	right: 0px;
+	opacity: 0.7;
 	padding: 30px 10px;
 }
 main aside{
