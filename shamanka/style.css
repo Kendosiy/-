@@ -18,15 +18,15 @@ body{
 }
 /* ///////////////////////////////////////////////////////////////////////////////// */
 header{
-	background-color: #42398c;
-	width: 100%; 
+	background-color: #42398c; 
+	padding: 0 auto;
 }
 header h1{
 	font-size: 450%; 
 	text-align: center;
 	color: white;
 	font-family:"Better_Together";
-	margin:0;
+	margin:0 auto;
 	font-weight: normal;
 	text-shadow: 2px 2px 3px black;
 }
