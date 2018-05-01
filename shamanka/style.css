@@ -2,8 +2,9 @@
 	font-family:"Better_Together";
 	src: url("fonts/11665.otf") format("opentype"); 
 	font-style: normal; 
-	font-weight: normal; 
+	font-weight: normal;
 }
+
 html {
 	height: 100%;
 }
@@ -17,16 +18,17 @@ body{
 }
 /* ///////////////////////////////////////////////////////////////////////////////// */
 header{
-	background-color: #362f73;
+	background-color: #42398c;
 	width: 100%; 
 }
 header h1{
-	font-size: 400%; 
+	font-size: 450%; 
 	text-align: center;
 	color: white;
 	font-family:"Better_Together";
 	margin:0;
 	font-weight: normal;
+	text-shadow: 2px 2px 3px black;
 }
 header a{
 	text-decoration: none;
@@ -35,7 +37,7 @@ header a{
 /* ///////////////////////////////////////////////////////////////////////////////// */
 
 nav{
-	background-color: #362f73;
+	background-color: #42398c;
 	margin: 0 auto;
 	padding:10px 0;
     width: 675px;
@@ -181,6 +183,7 @@ main ul li {
 	padding: 10px;
 	font-family:"Segoe UI";
 	font-weight:normal;
+	font-size: 13pt;
 	background: #f0f0f0;
 }
 .list_lab {
@@ -191,6 +194,7 @@ main ul li {
 	padding: 10px;
 	font-family:"Segoe UI";
 	font-weight:normal;
+	font-size: 13pt;
 	background: #f0f0f0;
 }
 .list_lab a, .list_lab_top a{

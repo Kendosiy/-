@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link href="../../style.css" rel="stylesheet">
+	</head>
+	<body>
+		<header>
+			<div>
+				<a href="../../index.html"><h1>Учебный портал</h1></a>
+			</div>
+			<nav>
+					<ul class="main_menu">
+					<li>
+						<a href="#"><p>Справочные материалы&#9207;</p></a>
+						<ul class="submenu" id="sub1">
+							<li><a href="../../delphi-lab-teor.html">Теория по Delphi</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#"><p>Лабораторные работы&#9207;</p></a>
+						<ul class="submenu" id="sub2">
+							<li><a href="../../delphi-lab-prac.html">Задания по Delphi</a></li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<main>
+			<div class="prev"><a href="tema1.html"><img src="../../res/prev.png"></a></div>
+			<div class="next" style="opacity: 0.5;"><img src="../../res/next.png"></div>
+			<aside id="sidebar">
+				<h2>Быстрая навигация</h2>
+				<ol>
+					<li><a href="#1">THeaderControl</a></li>
+					<li><a href="#2">TStatusBar</a></li>
+					<li><a href="#3">Создание обработчиков события</a></li>
+				</ol>
+			</aside>
+			<article class="tema">
+				<a name="1"></a>
+				<h2>
+					THeaderControl - управляющий заголовок
+				</h2>
+				<p>
+					Компонент THeaderControl представляет собой многоколончатый заголовок с
+					регулируемыми размерами колонок (секций). Каждая колонка (секция) заголовка
+					может содержать текст и/или графику. Компонент способен обрабатывать
+					событие onResize, которое возникает при каждом изменении размеров любой
+					секции. В ходе обработки этого события программа обычно соответствующим
+					образом изменяет линейные размеры столбцов таблицы или подобной структуры,
+					с которой связан компонент.
+				</p>
+				<p>
+					В программе, окно которой показано на рис. 18.30, компонент THeaderControl
+					используется для управления положением и линейными размерами трех других
+					компонентов. Для реализации программы выполните следующее:
+				</p>
+				<ul type="disc">
+					<li>
+						Положите на пустую форму компоненты THeaderControl, ТЕdit, TMemo и
+						TButton. По умолчанию HeaderControll .Align =alTop - убедитесь в этом и
+						установите свойство, если это не так. Положение и размеры других
+						компонентов не имеют значения.
+					</li>
+					<li>
+				Создайте такие обработчики событий OnCreate для формы Form1,		<strong> </strong>а также OnResize и OnSectionResize для компонента
+						HeaderControll:
+					</li>
+				</ul>
+				<p>
+					<img
+						width="429"
+						height="158"
+						src="tema2/image001.jpg"
+					/>
+				</p>
+				<p>
+					<strong><em>Рис. 18.30.</em></strong>
+					<em>
+						Пример использования компонента THeaderControl для управления
+						положением и размерами других компонентов
+					</em>
+				</p>
+				<p>
+					<strong>const</strong>
+				</p>
+				<p>
+					Delta = 10;// <em>Зазор между границами заголовка и компонентами</em>
+				</p>
+				<p>
+					<strong>procedure</strong>
+					TFormI.FormCreate(Sender: TObject);
+				</p>
+				<p>
+					<strong>var</strong>
+				</p>
+				<p>
+					HSection: THeaderSection;
+				</p>
+				<p>
+					k: Integer;
+				</p>
+				<p>
+					<strong>begin</strong>
+				</p>
+				<p>
+					// <em>Создаем три секции заголовка:</em>
+				</p>
+				<p>
+					<strong>with</strong>
+					HeaderControll<strong> do </strong>
+				</p>
+				<p>
+					<strong>for</strong>
+					k := 0 <strong>to</strong> 2 <strong>do</strong>
+				</p>
+				<p>
+					<strong>begin</strong>
+				</p>
+				<p>
+					HSection := Sections.Add;
+				</p>
+				<p>
+					HSection.Text := 'Секция №' + IntToStr(k);
+				</p>
+				<p>
+					HSection.Width := Forml.Width<strong> div 3;</strong>
+				</p>
+				<p>
+					HSection.MinWidth := 3 * Delta;
+				</p>
+				<p>
+					<strong>end;</strong>
+				</p>
+				<p>
+					<strong>end; </strong>
+				</p>
+				<p>
+					<strong>procedure</strong>
+					Tform1.HeaderControllResize(Sender: TObject);
+				</p>
+				<p>
+					// <em>Устанавливает положение и размеры компонентов </em>
+				</p>
+				<p>
+					<strong>begin</strong>
+				</p>
+				<p>
+					<strong>with</strong>
+					HeaderControll<strong> do </strong>
+				</p>
+				<p>
+					<strong>begin</strong>
+				</p>
+				<p>
+					Editl.Left := Delta;
+				</p>
+				<p>
+					Editl.Top := HeaderControll.Height + 1;
+				</p>
+				<p>
+					Editl.Width := Sections.Items[0].Width - 2 * Delta;
+				</p>
+				<p>
+					Memol.Left := Sections.Items[1].Left + Delta;
+				</p>
+				<p>
+					Memol.Top := HeaderControll.Height + 1;
+				</p>
+				<p>
+					Memol.Width := Sections.Items[1].Width - 2 * Delta;
+				</p>
+				<p>
+					Buttonl.Left := Sections.Items[2].Left + Delta;
+				</p>
+				<p>
+					Buttonl.Top := HeaderControll.Height + 1;
+				</p>
+				<p>
+					Buttonl.Width := Sections.Items[2].Width - 2 * Delta;
+				</p>
+				<p>
+					<strong>end </strong>
+				</p>
+				<p>
+					<strong>end;</strong>
+				</p>
+				<p>
+					<strong>procedure</strong>
+					TFormI.HeaderControllSectionResize(
+				</p>
+				<p>
+					HeaderControl: THeaderControl; Section: THeaderSection);
+				</p>
+				<p>
+					<strong>begin</strong>
+				</p>
+				<p>
+					HeaderControllResize(Self)
+				</p>
+				<p>
+					<strong>end; </strong>
+				</p>
+				<p>
+					He забудьте определить в области видимости обработчиков FormCreate И
+					HeaderControllResize глобальную константу Delta.
+				</p>
+				<p>
+					Для заголовка создается объект класса THeadersections, определяющий секции
+					заголовка. Его свойство
+				</p>
+				<p>
+					<strong>property</strong>
+					Items[Index: Integer]: THeaderSection;
+				</p>
+				<p>
+				открывает доступ к индексированным объектам-секциям класса THeaderSection.	<strong> </strong>Свойства класса THeaderSection:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="39%" valign="top">
+								<p>
+									property Alignment: TAlignment;
+								</p>
+							</td>
+							<td width="61%" valign="top">
+								<p>
+									Определяет выравнивание текста: taLeftJustify - прижат
+									влево; taCenter - центрирован по горизонтали; taRight
+									Justify - прижат вправо
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="39%" valign="top">
+								<p>
+									property AllowClick:.Boolean;
+								</p>
+							</td>
+							<td width="61%" valign="top">
+								<p>
+									Разрешает/запрещает генерацию события OnSectionClick при
+									щелчке по секции
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="39%" valign="top">
+								<p>
+									property Left: Integer;
+								</p>
+							</td>
+							<td width="61%" valign="top">
+								<p>
+									Определяет положение левой границы секции относительно
+									границ компонента (в пикселях)
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="39%" valign="top">
+								<p>
+									property MaxWidth: Integer;
+								</p>
+							</td>
+							<td width="61%" valign="top">
+								<p>
+									Определяет максимальную ширину секции в пикселях
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="39%" valign="top">
+								<p>
+									property MinWidth: Integer;
+								</p>
+							</td>
+							<td width="61%" valign="top">
+								<p>
+									Определяет минимальную ширину секции в пикселях
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="39%" valign="top">
+								<p>
+									property Right: Integer;
+								</p>
+							</td>
+							<td width="61%" valign="top">
+								<p>
+									Определяет положение правой границы секции относительно
+									границ компонента (в пикселях)
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="39%" valign="top">
+								<p>
+									THeaderSectionStyle = (hsText, hsOwnerDraw) ;
+								</p>
+								<p>
+									property Style: THeaderSectionStyle;
+								</p>
+							</td>
+							<td width="61%" valign="top">
+								<p>
+									Определяет способ формирования секции: hsText - секция
+									содержит только текст и изображается автоматически;
+									hsOwnerDraw - секция прорисовывается программой
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="39%" valign="top">
+								<p>
+									Property Width: Integer;
+								</p>
+							</td>
+							<td width="61%" valign="top">
+								<p>
+									Содержит текущую ширину секции в пикселях
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					Метод function THeaderSections.Add: THeaderSection;
+				</p>
+				<p>
+					добавляет очередную секцию заголовка. Некоторые свойства класса
+				</p>
+				<p>
+					THeaderSection:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="50%" valign="top">
+								<p>
+									property AllowClick: Boolean-property DisplayName: String;
+									property Imagelndex: TImageIndex;
+								</p>
+							</td>
+							<td width="50%" valign="top">
+								<p>
+									Если содержит True, разрешает щелкнуть по секции заголовка
+									как по кнопке. В этом случае управление передается в
+									обработчик события OnSectionClick Имя заголовка секции
+									Указывает индекс изображения из хранилища images, которое
+									будет появляться следом за текстом заголовка
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="50%" valign="top">
+								<p>
+									property MaxWidth: Integer; property MinWidth: Integer;
+									type THeaderSectionStyle == (hsText, hsOwnerDraw) ;
+								</p>
+							</td>
+							<td width="50%" valign="top">
+								<p>
+									Определяет максимальную и минимальную ширину секции
+									Определяет тип секции: hsText - секция содержит только
+									текст; hsOwnerDraw - секция нуждается в программной
+									прорисовке
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="50%" valign="top">
+								<p>
+									property Style: THeaderSectionStyle; property Text: String;
+								</p>
+							</td>
+							<td width="50%" valign="top">
+								<p>
+									Содержит текст секции
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					Свойства Компонента THeaderControl:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									property Canvas: TCanvas;
+								</p>
+							</td>
+							<td width="53%" valign="top">
+								<p>
+									С помощью этого свойства можно изображать графику в секциях
+									заголовка
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									property HotTrack: Boolean;
+								</p>
+							</td>
+							<td width="53%" valign="top">
+								<p>
+									Разрешает/запрещает цвето выделение секции, над которой
+									располагается указатель мыши
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									property Sections: THeaderSections;
+								</p>
+							</td>
+							<td width="53%" valign="top">
+								<p>
+									Содержит секции заголовка
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					Для компонента определены следующие события:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									TDrawSectionEvent = procedure( Header-Control:
+									THeaderControl; Section: THeaderSection; const Rect: TRect;
+									Pressed: Boolean) of object; property OnDrawSection:
+									TDrawSectionEvent;
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Возникает при необходимости прорисовать секцию, для которой
+									установлен СТИЛЬ hsOwnerDraw: Section - объект-секция; Rect
+									- прямоугольник прорисовки;Pressed -признак нажатой кнопки
+									мыши
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									property OnResize: TNotifyEvent;
+								</p>
+								<p>
+									TSectionNotifyEvent = procedure( Head-
+								</p>
+								<p>
+									erControl: THeaderControl; Section:
+								</p>
+								<p>
+									THeaderSection) of object;
+								</p>
+								<p>
+									property OnSectionCli.ck: TSectionNoti
+								</p>
+								<p>
+									fyEvent;
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Возникает при изменении размеров компонента возникает при
+									щелчке мышью по секции Section
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									TSectionNotifyEvent = procedure( Head-
+								</p>
+								<p>
+									erControl: THeaderControl; Section:
+								</p>
+								<p>
+									THeaderSection) of object;
+								</p>
+								<p>
+									property OnSectionResize: TSectionNo tifyEvent;
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Возникает при изменении размеров секции Section
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									TSectionTrackState = (tsTrackBegin,
+								</p>
+								<p>
+									tsTrackMove, tsTrackEnd) ;
+								</p>
+								<p>
+									TSectionTrackEvent = procedure( Head-
+								</p>
+								<p>
+									erControl: THeaderControl; Section:
+								</p>
+								<p>
+									THeaderSection; Width: Integer; State:
+								</p>
+								<p>
+									TSectionTrackState) of objects-
+								</p>
+								<p>
+									property OnSectionTrack: TSection
+								</p>
+								<p>
+									TrackEvent;
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Возникает при изменении размеров секции и позволяет
+									обработать три возможных состояния:
+								</p>
+								<p>
+									tsTrackBegin - начало переме
+								</p>
+								<p>
+									щения границы;tsTrackMove -
+								</p>
+								<p>
+									идет перемещение границы;
+								</p>
+								<p>
+									tsTrackEnd - конец перемещения
+								</p>
+								<p>
+									границы
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<a name="2"></a>
+				<h2>
+					TStatusBar - информационная панель
+				</h2>
+				<p>
+					Компонент TStatusBar предназначен для создания панелей состояния, которые
+					обычно располагаются в нижней части основной формы. Компонент может иметь
+					несколько секций, а также кнопку изменения размеров окна, в которое он
+					помещен.
+				</p>
+				<p>
+					<img
+						width="186"
+						height="148"
+						src="tema2/image002.jpg"
+					/>
+				</p>
+				<p>
+					<strong><em>Рис. 18.31</em></strong>
+					<em>
+						. Пример компонента с тремя панелями и кнопкой изменения размеров окна
+					</em>
+				</p>
+				<p>
+					На рис. 18.31 показан компонент TStatusBar с тремя панелями и кнопкой
+					изменения размеров окна, созданный таким обработчиком события OnCreate для
+					формы Form1(предварительно на пустую форму положите компонент TSatusBar):
+				</p>
+				<p>
+					<strong>procedure</strong>
+					TFormI.FormCreate(Sender: TObject);
+				</p>
+				<p>
+					var
+				</p>
+				<p>
+					Panel: TStatusPanel;
+				</p>
+				<p>
+					k: Integer;
+				</p>
+				<p>
+					begin
+				</p>
+				<p>
+					<strong>with</strong>
+					StatusBarl<strong> do </strong>
+				</p>
+				<p>
+					<strong>for</strong>
+					k := 0 to 2 do
+				</p>
+				<p>
+					begin
+				</p>
+				<p>
+					Panel := Panels.Add;
+				</p>
+				<p>
+					Panel.Text := 'Панель №' + IntToStr(k);
+				</p>
+				<p>
+					Panel.. Width := Forml. Width<strong> div 3 </strong>
+				</p>
+				<p>
+					<strong>end;</strong>
+				</p>
+				<p>
+					<strong>end;</strong>
+				</p>
+				<p>
+					С компонентом связывается объект класса TStatusPanels, который определяет
+					панели компонента. Каждая панель относится к классу TstatusPanel и имеет
+					такие свойства:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									property Alignment: TAlignment;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Определяет выравнивание текста относительно границ секции;
+									taLeftJustify: прижимается влево; taCenter - центрируется
+									по горизонтали; taRightJustify - прижимается вправо
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									property Bevel: TStatusPanel-Bevel;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Определяет стиль рамки секции: pbNone -нет рамки; pbLowered
+									- вдавленная рамка; pbRaised - приподнятая рамка
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									type TStatusPanelStyle = (psText, psOwnerDraw); property
+									Style: TStatusPanelStyle; property Text: String; property
+									Width: Integer;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Определяет способ формирования изображения панели: psText -
+									панель содержит только текст и изображается автоматически;
+									psOwnerDraw - панель прорисовывается программой Определяет
+									текст надписи в секции Определяет ширину секции в пикселях
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" valign="top">
+								<p align="center">
+									Свойства компонента TStatusBar:
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									property Canvas: TCanvas;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Канва для прорисовки панелей
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									property Panels: TStatusPanels;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Содержит объекты-панели. Свойство TStatusPanels.items
+									[index: Integer]: TStatusPanei открывает доступ к панели по
+									ее индексу
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									property SimplePanel: Boolean;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Запрещает/разрешает создание нескольких панелей. Если
+									содержит True, компонент имеет единственную панель
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									property SimpleText: String;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Содержит текст панели для sim-plePanel=True
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									property SizeGrip: Boolean;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Разрешает/запрещает вставку кнопки изменения размеров окна.
+									Игнорируется, если AlignoalBottom
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" valign="top">
+								<p align="center">
+									Для компонента определены такие события:
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									TDrawPanelEvent = procedure( StatusBar: TStatusBar; Panel:
+									TStatusPanei; const Rect: TRect) of object-property
+									OnDrawPanel: TDrawPanelEvent;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Возникает при необходимости прорисовки панели Panel, если
+									ее свойство Style определено как psOwnerDraw: Rect -
+									прямоугольник прорисовки
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									Property OnResize: TNo.tifyEvent;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Возникает при изменении размеров компонента
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>	
+		</main>
+		<footer class="footer">
+			<div></div>
+		</footer>
+		<script src="../../scripts.js"></script>
+	</body>
+</html>

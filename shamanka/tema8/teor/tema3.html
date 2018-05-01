@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link href="../../style.css" rel="stylesheet">
+	</head>
+	<body>
+		<header>
+			<div>
+				<a href="../../index.html"><h1>Учебный портал</h1></a>
+			</div>
+			<nav>
+					<ul class="main_menu">
+					<li>
+						<a href="#"><p>Справочные материалы&#9207;</p></a>
+						<ul class="submenu" id="sub1">
+							<li><a href="../../delphi-lab-teor.html">Теория по Delphi</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#"><p>Лабораторные работы&#9207;</p></a>
+						<ul class="submenu" id="sub2">
+							<li><a href="../../delphi-lab-prac.html">Задания по Delphi</a></li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<main>
+			<div class="prev"><a href="tema2.html"><img src="../../res/prev.png"></a></div>
+			<div class="next" style="opacity: 0.5;"><img src="../../res/next.png"></div>
+			<aside id="sidebar">
+				<h2>Быстрая навигация</h2>
+				<ol>
+					<li><a href="#1">TToolBar и ToolButton</a></li>
+					<li><a href="#2">TCoolBar и TCoolBand</a></li>
+					<li><a href="#3">TPageScroller</a></li>
+				</ol>
+			</aside>
+			<article class="tema">
+				<a name="1"></a>
+				<h2>
+						TToolBar и ToolButton - инструментальная панель и кнопки для нее
+				</h2>
+				<p>
+					Компонент TToolBar представляет собой специальный контейнер для создания
+					инструментальных панелей. Главная отличительная черта TToolBar - его
+					способность гибкого управления дочерними элементами, которые он может
+					группировать, выравнивать по размерам, располагать в несколько рядов.
+					Компонент может манипулировать любыми вставленными в него дочерними
+					элементами, но все его возможности в полной мере проявляются только со
+					специально для него разработанным компонентом TToolButton (инструментальная
+					кнопка). Этот компонент похож на кнопку TSpeedButton, но не ищите его в
+					палитре компонентов - его там нет. Поскольку он разработан специально для
+					TToolBar, вставить его в инструментальную панель можно только после щелчка
+					правой кнопкой на компоненте TToolBar и выборе NewButton или NewSeparator
+					(сепараторы предназначены для функционального выделения на инструментальной
+					панели групп элементов и представляют собой разновидности кнопок
+					TTooiButton). Компонент TTooiButton не имеет свойства, предназначенного для
+					хранения картинки, однако TToolBar умеет использовать контейнер TimageList,
+					чтобы извлечь из него нужную картинку и поместить ее на инструментальную
+					кнопку.
+				</p>
+				<p>
+					Методику использования TToolBar совместно с TToolButton рассмотрим на
+					примере программы, окно которой показано на рис. 18.32.
+				</p>
+				<p>
+					<img
+						width="324"
+						height="150"
+						src="tema3/image001.jpg"
+					/>
+				</p>
+				<p>
+					<strong><em>Рис. 18.32.</em></strong>
+					<em> Пример TToolBar с кнопками TTooiButton</em>
+				</p>
+				<ul type="disc">
+					<li>
+						Поместите на пустую форму компонент TimageList, щелкните по нему правой
+						кнопкой мыши и выберите продолжение ImageList Editor.
+					</li>
+					<li>
+						Для заполнения контейнера ImageList1 подойдут любые небольшие по
+				размеру изображения. К сожалению, растры из каталога images | BUTTONS[		<em>См<strong>.</strong> замечание в начале главы.</em>] рассчитаны на
+						использование в кнопках TSpeedButton и содержат по два изображения
+						каждый -обычное и для запрещенной кнопки. Кнопки TToolButton также
+						могут иметь два или три изображения, но эти изображения необходимо
+						размещать в разных контейнерах rimageList, поэтому использование
+						заготовок из каталога images | buttons в кнопках TToolButton приведет к
+						появлению на них по два изображения одновременно[
+						<em>
+							Точнее, при вставке двойной картинки редактор компонента спросит у
+							вас, надо ли ее разделять на две отдельные картинки.
+						</em>
+						]. Чтобы этого не произошло, загрузите пиктограммы из каталога images |
+						icons: щелкните по кнопке Add окна редактора и выберите в этом каталоге
+						файл chemical.
+					</li>
+					<li>
+						Повторите П. 2 для фацлов Chip, Construe, Earth, Finance, Handchek,
+						Shipping, Skyline И Technlgy, после чего закройте редактор ImageList.
+					</li>
+					<li>
+						Поместите на форму компонент TToolBar, в окне Инспектора объектов
+						разыщите свойство images, раскройте список в правой колонке строки
+						images и выберите imageListi. Мы указали компоненту на источник
+						изображений и можем теперь вставлять в него кнопки.
+					</li>
+					<li>
+						Щелкните по ToolBar1 правой кнопкой мыши и выберите New Button.
+					</li>
+					<li>
+						Вставьте еще две кнопки, после чего вставьте разделитель NewSeparator.
+					</li>
+					<li>
+						Разместите на TooiBarl остальные кнопки и сепараторы (см. рис. 18.33).
+					</li>
+					<li>
+						Если вы захотите, чтобы кнопки имели модный “плоский” вид, установите в
+						свойство Flat компонента ToolBarl значение True.
+					</li>
+				</ul>
+				<p>
+					Свойство Buttons компонента TToolBar позволяет обратиться к каждому
+					дочернему компоненту как к объекту класса TToolButton, имеющему такие
+					свойства:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="41%" valign="top">
+								<p>
+									property AllowAlIUp: Boolean;.
+								</p>
+							</td>
+							<td width="59%" valign="top">
+								<p>
+									Если содержит True, синхронизирует свое состояние с
+									состоянием других кнопок в той же группе: в любой момент
+									может быть нажата только одна кнопка группы. Игнорируется,
+									если Grouped=False
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="41%" valign="top">
+								<p>
+									property Caption: String;
+								</p>
+							</td>
+							<td width="59%" valign="top">
+								<p>
+									Содержит связанный с кнопкой текст, который будет показан,
+									если свойство ShowCaptions компонента TTooiBar имеет
+									значение True
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="41%" valign="top">
+								<p>
+									property Down: Boolean;
+								</p>
+							</td>
+							<td width="59%" valign="top">
+								<p>
+									Определяет состояние кнопки: если содержит True, кнопка
+									утоплена
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="41%" valign="top">
+								<p>
+									property DropdownMenu: TPopupMenu;
+								</p>
+							</td>
+							<td width="59%" valign="top">
+								<p>
+									Связывает вспомогательное меню с нажатой кнопкой
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="41%" valign="top">
+								<p>
+									property Grouped: Boolean;
+								</p>
+							</td>
+							<td width="59%" valign="top">
+								<p>
+									Разрешает/запрещает учитывать свойство ailOwAlIUp
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="41%" valign="top">
+								<p>
+									property Imagelndex: Integer;
+								</p>
+							</td>
+							<td width="59%" valign="top">
+								<p>
+									Определяет индекс связанного с кнопкой изображения
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="41%" valign="top">
+								<p>
+									property Indeterminate: Boolean;
+								</p>
+							</td>
+							<td width="59%" valign="top">
+								<p>
+									Запрещает/разрешает выбор кнопки.
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="41%" valign="top">
+								<p>
+									TToolButtonStyle = (tbsButton,
+								</p>
+								<p>
+									tbsCheck, tbsDropDown,
+								</p>
+								<p>
+									tbsSeparator, tbsDivider) ;
+								</p>
+								<p>
+									property Style: TToolButton
+								</p>
+								<p>
+									Style;
+								</p>
+							</td>
+							<td width="59%" valign="top">
+								<p>
+									Определяет стиль кнопки: tbsButton - обычная кнопка;
+									tbsCheck - западающая кнопка (остается в нажатом положении;
+									для ее освобождения нужно щелкнуть по ней еще раз);
+									tbsDropDown - кнопка с символом раскрывающегося списка;
+									tbsSeparator - разделитель (на месте этой кнопки будет
+									пустое место); tbsDivider - разделитель (в работающей
+									программе на местеэтой кнопки будет вертикальная черта)
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="41%" valign="top">
+								<p>
+									property Wrap: Boolean;
+								</p>
+							</td>
+							<td width="59%" valign="top">
+								<p>
+									Если имеет значение True, кнопка завершает текущий ряд
+									кнопок. Игнорируется, если свойство wrapable компонента
+									TToolBar имеет значение True
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					Свойства компонента TToolBar:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									property AutoSize: Boolean;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Если содержит True, высота компонента будет
+								</p>
+								<p>
+									автоматически согласовываться с высотой кнопок
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									property ButtonCount: Integer;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Содержит количество вставленных в инструментальную панель
+									дочерних компонентов (не только кнопок TToolButton)
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									property ButtonHeight: Integer;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Определяет высоту кнопок TtoolButton
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									property Disabledlmages: TImageList;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Определяет контейнер для изображений запрещенных кнопок
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									property Flat: Boolean;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Если содержит True, панель и кнопки на ней прозрачны для
+									фона и вокруг кнопки появляется граница, только когда над
+									ней располагается указатель мыши
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									property Hotlmages: TImageList;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Определяет контейнер изображений для кнопок в момент, когда
+									над кнопкой располагается указатель мыши
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									property Images: TImageList;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Определяет контейнер для изображений кнопок в обычном
+									состоянии
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									property Indent: Integer;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Определяет отступ в пикселях от левого края компонента для
+									первого дочернего элемента
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									property List: Boolean;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Если имеет значение True, изображение прижимается к левой
+									границе кнопки, а текст - к правой, в противном случае
+									текст выводится под изображением. Игнорируется, если
+									showCaptions = False
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									property RowCount: Integer;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Содержит количество рядов кнопок
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									property ShowCaptions: Boolean;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Разрешает/запрещает показ на кнопках текста
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									property Wrapable: Boolean;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+				Запрещает/разрешает располагать<strong> </strong>кнопки в					<strong> </strong>нескольких рядах
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					Для компонента определено событие OnResize, возникающее при изменении
+					размеров компонента.
+				</p>
+				<a name="2"></a>
+				<h2>
+						TCoolBar и TCoolBand - инструментальная панель и полосы для нее
+				</h2>
+				<p>
+					Компонент TCoolBar предназначен для создания настраиваемых инструментальных
+					панелей. Для каждого размещаемого на нем элемента TCoolBar создает объект
+					класса TCoolBand (полоса), который может изменять свои размеры и положение
+					в пределах границ компонента.
+				</p>
+				<p>
+					Следует сразу же заметить, что в отличие от TcontrolBar (страница
+					Additional палитры компонентов) компонент TCoolBar предназначен для
+					примерно таких же задач, но и в версии 2, где он появился впервые, и в
+					версии б он все еще кажется “сырым”, плохо отлаженным.
+				</p>
+				<p>
+					Центральным свойством компонента является Bands - массив созданных в
+					компоненте полос TCoolBand. Каждая полоса может иметь текст, пиктограмму и
+					произвольный управляющий элемент. В отличие от ттоо1ваг или TControiBar
+					полоса в TCoolBar всегда содержит только один интерфейсный элемент, но
+					ничто не мешает этому элементу быть элементом-контейнером для размещения
+					нескольких компонентов. Размещенный на полосе компонент окружен специальным
+					окном TCoolBar и всегда стремится занять левый верхний угол полосы, при
+					этом остальные размеры полосы изменяются так, чтобы полностью охватить
+					элемент.
+				</p>
+				<p>
+					Поясним сказанное несложным примером.
+				</p>
+				<ul type="disc">
+					<li>
+						Поместите на пустую форму компонент TCoolBar - он тотчас же займет
+				верхнюю часть формы, так как по умолчанию его свойства Alignment		<strong> </strong>содержит alTop.
+					</li>
+					<li>
+						Щелкните по компоненту левой кнопкой и выберите Bands Editor (редактор
+						полос).
+					</li>
+					<li>
+						Окно редактора похоже на многие другие используемые в Delphi
+						окна-редакторы: щелкните по кнопке, чтобы вставить в компонент новую
+						полосу.
+					</li>
+					<li>
+						В окне Инспектора объектов можете задать текст для полосы и связанную с
+						ней пиктограмму свойствами соответственно Text и imageindex
+						(предварительно компонент в свойстве images должен уже содержать ссылку
+						на связанный с ним контейнер TimageList). Свойство BitMap используется
+						для заполнения полосы чередующимся узором. Для простоты ограничьтесь
+						указанием текста полоса i и закройте редактор полос.
+					</li>
+					<li>
+						Поместите ниже полосы, но в тот же контейнер CoollBar1 любой
+						управляющий элемент, например, редактор TEdit. Подобно полосе он
+						растянется вдоль верхнего края и будет окружен специальным окном с
+						полосой-кнопкой для реализации механизма Drag&amp;Dock.
+					</li>
+					<li>
+						Вновь раскройте редактор полос, щелкните по ранее установленной полосе
+						и в Инспекторе объектов раскройте список в свойстве Control - в нем
+						окажется только что вставленный в форму компонент TEdit. Щелкните по
+						нему - и он “перепрыгнет” на первую полосу, оставив ранее занимавшую им
+						полосу TCoolBar пустой. Таким способом происходит связывание полосы
+						TCooiBar с компонентом.
+					</li>
+					<li>
+						Освободившуюся полосу можно связать с новым управляющим элементом
+						(например, ComboBox) и т. д.
+					</li>
+					<li>
+						Вид работающей программы показан на рис. 18.33.
+					</li>
+				</ul>
+				<p>
+					<img
+						width="360"
+						height="255"
+						src="tema3/image002.jpg"
+					/>
+					<img
+						width="409"
+						height="126"
+						src="tema3/image003.jpg"
+					/>
+				</p>
+				<p>
+					<strong><em>Рис. 18.33.</em></strong>
+					<em> Вид окна CollBar при рачых тчтпччких пользователя </em>
+				</p>
+				<p>
+					Свойства TCoolBand:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									property Bitmap: TBitmap;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Определяет изображение, которое будет циклически
+									повторяться по всему пространству полосы
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									property BorderStyle: TBorder-Style;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Определяет наличие рамки у полосы: bsNone - нет рамки;
+									bssingle - рамка толщиной в 1 пиксель
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									property Break: Boolean;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Если содержит True, полоса располагается в новой строке, в
+									противном случае - в той же строке, что и предыдущая полоса
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									property Control: TWinControl;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Указывает элемент, который содержит полоса
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									property FixedBackground: Boolean;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Запрещает/разрешает периодическое повто рение изображения
+									Bitmap по всей поверхности полосы
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									property FixedSize: Boolean;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Запрещает/разрешает изменение размеров полосы
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									property HorizontalOnly: Boolean;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Предписывает показывать полосу только для значения False
+									свойства Vertical компонента-владельца TCoolBar
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									property Imagelndex: Integers;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Содержит индекс связанного с полосой изображения
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									property MinHeight: Integers;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Определяет минимальное значение высоты полосы при изменении
+									ее размеров
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									property MinWidth: Integers;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Определяет минимальное значение ширины полосы при изменении
+									ее размеров
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									property ParentBitmap: Boolean;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Разрешает/запрещает использовать значение свойства Bitmap
+									компонента-владельца TCoolBar вместо собственного свойства
+									Bitmap
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									property Text: String;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Содержит текст полосы
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									property Visible: Boolean;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Если содержит False, полоса не видна на этапе прогона
+									программы
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									property Width: Boolean;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Определяет ширину полосы в пикселях
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					Свойства компонента TCoolBar:
+				</p>
+				<table border="0" cellspacing="0" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									property AutoSize: Boolean;
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Если содержит True, высота компонента будет автоматически
+									согласовываться с высотой полос
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									property BandBorderStyle: TBorderStyle;
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Определяет наличие рамок: bsNone - нет рамок; bssingle -
+									каждая полоса имеет рамку толщиной в 1 пиксель
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									property Bands: TCoolBands;
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Содержит список всех полос. Свойство items этого объекта
+									открывает доступ к полосе по ее индексу
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									property Bitmap: TBitmap;
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Определяет изображение, которое будут использовать все
+									полосы
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									property FixedOrder: Boolean;
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Запрещает/разрешает перемещение полос
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									property FixedHeight: Boolean;
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Запрещает/разрешает изменение размера полос
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									property Images; TImageList;
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Указывает контейнер для изображений, связанных с каждой
+									полосой
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									property ShowText: Boolean;
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Если содержит True, на полосе показывается связанный с ней
+									текст
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									property Vertical: Boolean;
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Если содержит True, полосы располагаются по вертикали
+									компонента
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" valign="top">
+								<p>
+									Для компонента определены такие события:
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<table border="0" cellspacing="0" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									property OnChange: TNotifyEvent;
+								</p>
+							</td>
+							<td width="53%" valign="top">
+								<p>
+									Возникает при изменении свойств Break,
+								</p>
+								<p>
+									Index или Width у любой полосы
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									property OnResize: TNotifyEvent;
+								</p>
+							</td>
+							<td width="53%" valign="top">
+								<p>
+									Возникает при изменении размеров компонента
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<a name="3"></a>
+				<h2>
+					TPageScroller - панель с прокруткой
+				</h2>
+				<p>
+					Компонент служит контейнером для размещения длинных узких компонентов
+					наподобие TToolBar. Его отличительная черта - наличие небольших стрелок
+					прокрутки по сторонам контейнера в случае, если ширина (высота) дочернего
+					окна превышает соответствующий размер компонента. Чтобы увидеть компонент в
+					действии, щелкните по странице Win32 галереи компонентов Delphi (сам
+				компонент TPageScroller на этой странице обычно не виден[	<em>Для разрешения экрана 800х600.</em>]), и, чтобы получить к нему доступ,
+					следует щелкнуть по кнопке с небольшой стрелкой в правой части страницы.
+				</p>
+				<p>
+					По назначению компонент весьма напоминает уже рассмотренный в п. 18.2.9
+					компонент TScrollBox и отличается от него двумя обстоятельствами: компонент
+					не содержит полос прокрутки, а прокрутка осуществляется так, чтобы
+					полностью показать ранее невидимый дочерний компонент.
+				</p>
+				<p>
+					Свойства компонента:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									property AutoScroll: Boolean;
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Разрешает/запрещает автоматическую
+								</p>
+								<p>
+									прокрутку при перемещении указателя
+								</p>
+								<p>
+									мыши над кнопкой прокрутки
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									property ButtonSize: Integer;
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Определяет размер в пикселях кнопок про
+								</p>
+								<p>
+									крутки: для горизонтальной ориентации -
+								</p>
+								<p>
+									ширину, для вертикальной - высоту
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									property Control: TWinControl;
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Содержит ссылку на прокручиваемое окно
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									property DragScroll: Boolean;
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Указывает, будет ли компонент приемни ком в операциях
+									Drag&amp;Drop. Если содержит True, компонент будет
+									прокручивать дочернее окно при перемещении над ним
+									указателя мыши с “грузом”
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									property Margin: Integer;
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Указывает расстояние в пикселях от границы компонента до
+									соответствующей стороны дочернего окна
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									type TPageScrollerOs-xentation =
+								</p>
+								<p>
+									(soHorizontal, soVertical) ;
+								</p>
+								<p>
+									property Orientation: TPageS crollerOrientation;
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Определяет ориентацию компонента: soHorizontal -по
+									горизонтали; soVertical -по вертикали
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									property Position: Integer;
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Определяет текущее положение прокручиваемого окна
+									относительно границ компонента
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>	
+		</main>
+		<footer class="footer">
+			<div></div>
+		</footer>
+		<script src="../../scripts.js"></script>
+	</body>
+</html>

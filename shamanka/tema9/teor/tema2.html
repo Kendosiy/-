@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link href="../../style.css" rel="stylesheet">
+	</head>
+	<body>
+		<header>
+			<div>
+				<a href="../../index.html"><h1>Учебный портал</h1></a>
+			</div>
+			<nav>
+					<ul class="main_menu">
+					<li>
+						<a href="#"><p>Справочные материалы&#9207;</p></a>
+						<ul class="submenu" id="sub1">
+							<li><a href="../../delphi-lab-teor.html">Теория по Delphi</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#"><p>Лабораторные работы&#9207;</p></a>
+						<ul class="submenu" id="sub2">
+							<li><a href="../../delphi-lab-prac.html">Задания по Delphi</a></li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<main>
+			<div class="prev"><a href="tema1.html"><img src="../../res/prev.png"></a></div>
+			<div class="next"><a href="tema3.html"><img src="../../res/next.png"></a></div>
+<!-- 			<aside id="sidebar">
+				<h2>Быстрая навигация</h2>
+				<ol>
+					<li><a href="#1">Структура проекта</a></li>
+					<li><a href="#2">Структура модуля</a></li>
+					<li><a href="#3">Создание обработчиков события</a></li>
+				</ol>
+			</aside> -->
+			<article class="tema">
+				<h2>
+					TTimer – таймер
+				</h2>
+				<p>
+					Панель System
+				</p>
+				<p align="center">
+					<strong></strong>
+				</p>
+				<p>
+					Компонент TTimer (таймер) служит для отсчета интервалов реального времени.
+					Его свойство interval определяет интервал времени в миллисекундах, который
+					должен пройти от включения таймера до наступления события onTimer. Таймер
+					включается при установке значения True в его свойство Enabled. Раз
+					включенный таймер все время будет возбуждать события onTimer до тех пор,
+					пока его свойство Enabled не примет значения False.
+				</p>
+				<p>
+					Следует учесть, что в силу специфики реализации аппаратного таймера
+					персонального IBM-совместимого компьютера минимальный реально достижимый
+					интервал отсчета времени не может быть меньше 55 миллисекунд (этот интервал
+					называется <em>тиком).</em> Более того, любой интервал времени,
+					отсчитываемый с помощью таймера, всегда кратен 55 миллисекундам. Чтобы
+					убедиться в этом, проделайте следующий эксперимент, в котором
+					подсчитывается среднее время между двумя срабатываниями таймера:
+				</p>
+				<p>
+					· Положите на пустую форму компонент TTimer. Установите в его свойство
+					interval любое число в диапазоне от 1 до 55 включительно.
+				</p>
+				<ul>
+					<li>
+						Напишите такой обработчик события onTimer:
+					</li>
+				</ul>
+				<p>
+					<strong>var</strong>
+				</p>
+				<p>
+					BegTime: TDateTime;
+				</p>
+				<p>
+					<strong>procedure</strong>
+					TFormI.TimerlTimer(Sender: TObject);
+				</p>
+				<p>
+					<strong>var</strong>
+				</p>
+				<p>
+					h, m, s, ms: Word;// <em>Переменные для декодирования времени </em>
+				</p>
+				<p>
+					<strong>const</strong>
+				</p>
+				<p>
+					MaxTick = 10; // <em>Количество интервалов таймера </em>
+				</p>
+				<p>
+					<strong>begin</strong>
+				</p>
+				<p>
+					<strong>if</strong>
+					Tag = 0<strong> then</strong>
+				</p>
+				<p>
+					BegTime := Time; // <em>Запоминаем начальное время </em>
+				</p>
+				<p>
+					Tag := Tag + 1; // <em>Наращиваем счетчик тиков </em>
+				</p>
+				<p>
+					<strong>if</strong>
+					Tag = MaxTick<strong> </strong><strong>then</strong><strong> </strong>
+				</p>
+				<p>
+					<strong>begin</strong>
+				</p>
+				<p>
+					Timeri.Enabled := False; // <em>Выключаем</em><em> </em><em>таймер</em>
+				</p>
+				<p>
+					<em>// </em>
+					<em>Декодируем</em>
+					<em> </em>
+					<em>значение</em>
+					<em> 1 </em>
+					<em>тика</em>
+					<em></em>
+				</p>
+				<p>
+					DecodeTime((Time-BegTime)/MaxTick, h, m, s, ms);
+				</p>
+				<p>
+					// <em>Выводим результат в заголовке окна:</em>
+				</p>
+				<p>
+					Caption := IntToStr(s) + ' s ' + IntToStr(ms) + ' ms'
+				</p>
+				<p>
+					<strong>end </strong>
+				</p>
+				<p>
+					<strong>end; </strong>
+				</p>
+				<p>
+					Обратите внимание на определение глобальной переменной BegTime в области
+					видимости процедуры TimerlTimer. Необходимость нескольких (MaxTick)
+					срабатываний для точного усреднения результата связана с тем, что системные
+					часы также обновляются каждые 55 мс. После запуска программы в заголовке
+					окна вы увидите строку
+				</p>
+				<p>
+					О s 55 ms,
+				</p>
+				<p>
+					в которой указывается, сколько реального времени разделяет два соседних
+					события OnTimer. Этот результат повторится для любых значений константы
+					MaxTick. Если вы установите Interval таймера в диапазоне от 56 до 110
+					миллисекунд, в заголовке будет указано 110 ms И Т. Д.
+				</p>
+			</article>	
+		</main>
+		<footer class="footer">
+			<div></div>
+		</footer>
+		<script src="../../scripts.js"></script>
+	</body>
+</html>
