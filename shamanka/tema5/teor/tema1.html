@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link href="../../style.css" rel="stylesheet">
+	</head>
+	<body>
+		<header>
+			<div>
+				<a href="../../index.html"><h1>Учебный портал</h1></a>
+			</div>
+			<nav>
+					<ul class="main_menu">
+					<li>
+<<<<<<< HEAD
+						<a href="#"><p>Справочные материалы</p></a>
+=======
+						<a href="#"><p>Справочные материалы&#9207;</p></a>
+>>>>>>> f12edd62888d7f1067e2a4e99743dfe436d13998
+						<ul class="submenu" id="sub1">
+							<li><a href="../../delphi-lab-teor.html">Теория по Delphi</a></li>
+						</ul>
+					</li>
+					<li>
+<<<<<<< HEAD
+						<a href="#"><p>Лабораторные работы</p></a>
+=======
+						<a href="#"><p>Лабораторные работы&#9207;</p></a>
+>>>>>>> f12edd62888d7f1067e2a4e99743dfe436d13998
+						<ul class="submenu" id="sub2">
+							<li><a href="../../delphi-lab-prac.html">Задания по Delphi</a></li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<main>
+			<div class="prev" style="opacity: 0.5;"><img src="../../res/prev.png"></div>
+			<div class="next"><a href="tema2.html"><img src="../../res/next.png"></a></div>
+			<aside id="sidebar">
+				<h2>Быстрая навигация</h2>
+				<ol>
+					<li><a href="#1">TScrollBar</a></li>
+					<li><a href="#2">TTrackBar</a></li>
+				</ol>
+			</aside>
+			<article class="tema">
+				<a name="1"></a>
+				<h2>
+					TScrollBar - управление значением величины
+				</h2>
+				<p>
+					Панель Standard
+				</p>
+				<p>
+					<img
+						width="273"
+						height="107"
+						src="tema1/image001.jpg"
+						align="left"
+						hspace="12"
+						alt="18"
+					/>
+					Компонент TScrollBar представляет собой стандартный для Windows управляющий
+					элемент, похожий на полосу прокрутки окна. Обычно он используется для
+					визуального управления значением числовой величины.
+				</p>
+				<p>
+					Свойства компонента:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									TSrollBarKind = (sbHorizontal, sbVertical) ; property Kind:
+									TScrollBarKind;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Определяет ориентацию компонента: sbHorizontal - бегунок
+									перемещается по горизонтали; sbVertical - бегунок
+									перемещается по вертикали
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									property LargeChange: TScroll-Barinc;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									“Большой” сдвиг бегунка (при щелчке мышью рядом с концевой
+									кнопкой)
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									property Max: Integer;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Максимальное значение диапазона изменения числовой величины
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									property Min: Integers;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Минимальное значение диапазона изменения числовой величины
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									property PageSize: Integers;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Определяет размер позиции табуляции бегунка
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									property Position: Integers;property
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Текущее значение числовой величины
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									SmallChange: TScroll-Barinc;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									“Малый” сдвиг бегунка (при щелчке мышью по концевой кнопке)
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					С помощью метода
+				</p>
+				<p>
+					<strong>procedure</strong>
+					SetParams(APosition, AMax, AMin: Integer);
+				</p>
+				<p>
+					можно сразу установить свойства Position, мах и Min.
+				</p>
+				<p>
+					С компонентом связано два события:
+				</p>
+				<p>
+					<strong>type</strong>
+					TScrollEvent = procedure(Sender: TObject;
+				</p>
+				<p>
+				ScrollCode: TScrollCode;<strong> var</strong> ScrollPos: Integer)	<strong> of objects; </strong>
+				</p>
+				<p>
+					<strong>property</strong>
+					OnScroll: TScrollEvent;
+				</p>
+				<p>
+					<strong>property</strong>
+					OnChange: TNotifyEvent;
+				</p>
+				<p>
+					Первое возникает при любом изменении свойства position, второе - при
+					изменении параметров методом Setparams.
+				</p>
+				<p>
+					Подобно TButton компонентом полностью управляет Windows поэтому у него нет
+					свойства Color.
+				</p>
+				<a name="2"></a>
+				<h2>
+					TTrackBar-регулятор величины
+				</h2>
+				<p>
+					Панель Win32
+				</p>
+				<p>
+					<strong></strong>
+				</p>
+				<p>
+					<img
+						width="269"
+						height="88"
+						src="tema1/image002.jpg"
+					/>
+				</p>
+				<p>
+					Компонент класса TTrackBar предназначен для визуального управления числовой
+					величиной. Он во многом схож со стандартным элементом TScroll-Ваг и
+					отличается от него в основном оформлением.
+				</p>
+				<p>
+					Свойства компонента:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="31%" valign="top">
+								<p>
+									property Frequency: Integer;
+								</p>
+							</td>
+							<td width="68%" valign="top">
+								<p>
+									Определяет частоту нанесения меток: 1 - каждое значение
+									диапазона изменения имеет метку; 2 - каждое 2-е значение и
+									т. д.
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="31%" valign="top">
+								<p>
+									property LineSize: Integer;
+								</p>
+							</td>
+							<td width="68%" valign="top">
+								<p>
+									Определяет смещение ползунка при нажатии клавиш курсора или
+									при единичном перемещении мышью
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="31%" valign="top">
+								<p>
+									property Max: Integer;
+								</p>
+							</td>
+							<td width="68%" valign="top">
+								<p>
+									Определяет максимальное значение диапазона изменения
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="31%" valign="top">
+								<p>
+									property Min: Integer;
+								</p>
+							</td>
+							<td width="68%" valign="top">
+								<p>
+									Определяет минимальное значение диапазона измене ния
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="31%" valign="top">
+								<p>
+									property Orientation:
+								</p>
+								<p>
+									TTrackBarOrientation;
+								</p>
+							</td>
+							<td width="68%" valign="top">
+								<p>
+									Определяет ориентацию компонента: trHorizontal
+									-горизонтальная; trVertical -вертикальная
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="31%" valign="top">
+								<p>
+									property PageSize: Integer;
+								</p>
+							</td>
+							<td width="68%" valign="top">
+								<p>
+									Определяет смещение ползунка при нажатии клавиш Page Up,
+									Page Down или при щелчке мышью на концах шкалы
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="31%" valign="top">
+								<p>
+									property Position: Integer;
+								</p>
+							</td>
+							<td width="68%" valign="top">
+								<p>
+									Определяет текущее положение ползунка
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="31%" valign="top">
+								<p>
+									property SelEnd: Integer-
+								</p>
+							</td>
+							<td width="68%" valign="top">
+								<p>
+									Задает конечную позицию выделения
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="31%" valign="top">
+								<p>
+									property SelStart: Integer
+								</p>
+							</td>
+							<td width="68%" valign="top">
+								<p>
+									Задает начальную позицию выделения
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="31%" valign="top">
+								<p>
+									-property SliderVisible: Boolean-property ThumbLength:
+									Integer; TTickMark = (tmBottomRight, tmTopLeft, tmBoth) ;
+									property TickMarks: TTickMark; TTickStyle = (tsNone,
+									tsAuto, tsManual) ; property TickStyle: TTickStyle;
+								</p>
+							</td>
+							<td width="68%" valign="top">
+								<p>
+									Определяет, будет ли видимым указатель компонента
+									Определяет длину указателя
+								</p>
+								<p>
+									Определяет способ нанесения меток: tmBottomRight -внизу или
+									справа; tmTopLeft - вверху или слева; tmBottom - по обеим
+									сторонам
+								</p>
+								<p>
+									Определяет стиль нанесения меток: tsNone - нет меток;
+									tsAuto - метки наносятся с частотой Frequence; tsManual -
+									наносятся начальная и конечная метки, остальные наносит
+									программа с помощью метода setTick
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					С помощью метода
+				</p>
+				<p>
+					<strong>procedure</strong>
+					SetTick(Value: Integer);
+				</p>
+				<p>
+					устанавливается метка в позицию, определяемую значением value.
+				</p>
+			</article>	
+		</main>
+		<footer class="footer">
+			<div></div>
+		</footer>
+		<script src="../../scripts.js"></script>
+	</body>
+</html>

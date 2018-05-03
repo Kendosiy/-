@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link href="../../style.css" rel="stylesheet">
+	</head>
+	<body>
+		<header>
+			<div>
+				<a href="../../index.html"><h1>Учебный портал</h1></a>
+			</div>
+			<nav>
+					<ul class="main_menu">
+					<li>
+						<a href="#"><p>Справочные материалы</p></a>
+						<ul class="submenu" id="sub1">
+							<li><a href="../../delphi-lab-teor.html">Теория по Delphi</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#"><p>Лабораторные работы</p></a>
+						<ul class="submenu" id="sub2">
+							<li><a href="../../delphi-lab-prac.html">Задания по Delphi</a></li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<main>
+			<div class="prev" style="opacity: 0.5;"><img src="../../res/prev.png"></div>
+			<div class="next"><a href="tema2.html"><img src="../../res/next.png"></a></div>
+			<aside id="sidebar">
+				<h2>Быстрая навигация</h2>
+				<ol>
+					<li><a href="#1">WinExec</a></li>
+					<li><a href="#2">ShellExecute</a></li>
+				</ol>
+			</aside>
+			<article class="tema">
+				<h2>Запуск других приложений из вашего</h2>
+				<p>
+					<br/>
+					Существует две наиболее часто применяемых функций. WinExec и ShellExecute.
+					<br/>
+					<a name="1"></a>
+					<h2>Функция WinExec</h2>
+					<br/>
+					WinExec, оставлена для совместимости с ранними версиями Windows, но я
+					рекомендую для обычного запуска программы с командной строкой использовать
+					эту. У нее мало параметров запуска.
+					<br/>
+					Используемый модуль - Windows.
+					<br/>
+				Описание:	<strong>WinExec (FileName: PChar; CmdShow: Cardinal) : Cardinal;</strong>
+					<br/>
+					где: <strong>FileName</strong> - путь, имя запускаемого приложения,
+					параметры командной строки. Все указывается в одной строке;
+					<br/>
+					<strong>CmdShow</strong>
+					- стиль окна. Показывает, в каком состоянии будет отображаться окно при
+					запуске.
+					<br/>
+					Параметры отображения окна <strong>CmdShow</strong>:
+				</p>
+				<table border="1" cellspacing="0" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="21%" valign="top">
+								<p>
+									<strong>SW_HIDE</strong>
+								</p>
+							</td>
+							<td width="79%">
+								<p>
+									Запускаемое приложение делается невидимым
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="21%" valign="top">
+								<p>
+									<strong>SW_MAXIMIZE</strong>
+								</p>
+							</td>
+							<td width="79%">
+								<p>
+									Расширяет окно на весь экран
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="21%" valign="top">
+								<p>
+									<strong>SW_MINIMIZE</strong>
+								</p>
+							</td>
+							<td width="79%">
+								<p>
+									Запускаемое приложение минимизируется. После запуска
+									активизируется окно высшего уровня, т.е. окно, откуда было
+									запущено это приложение
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="21%" valign="top">
+								<p>
+									<strong>SW_RESTORE</strong>
+								</p>
+							</td>
+							<td width="79%">
+								<p>
+									Делает окно таким, каким оно было запущено в последний раз
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="21%" valign="top">
+								<p>
+									<strong>SW_SHOW</strong>
+								</p>
+							</td>
+							<td width="79%">
+								<p>
+									Отображает окно в своем текущем размере и позиции
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					Для не-Windows приложений определяет состояние окна файл PIF, если таковой
+					имеется в наличии. Если необходимо закрывать окно после завершения работы
+					такого приложения необходимо создать PIF ярлык к нему в том же каталоге с
+					таким же названием и поставить галочку "Закрывать окно по завершению сеанса
+					работы". Все дополнительные параметры запуска устанавливаются там же.
+					<br/>
+					<strong>Возвращаемые значения функции WinExec:</strong>
+				</p>
+				<table border="1" cellspacing="0" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="35%" valign="top">
+								<p>
+									<strong>31</strong>
+								</p>
+							</td>
+							<td width="65%">
+								<p>
+									нормальный запуск
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="35%" valign="top">
+								<p>
+									<strong>0</strong>
+								</p>
+							</td>
+							<td width="65%">
+								<p>
+									системе не хватает памяти или ресурсов
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="35%" valign="top">
+								<p>
+									<strong>ERROR_BAD_FORMAT</strong>
+								</p>
+							</td>
+							<td width="65%">
+								<p>
+									EXE файл поврежден или имеет неверный формат (Windows на
+									такой файл говорит, что он не является приложением Win32)
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="35%" valign="top">
+								<p>
+									<strong>ERROR_FILE_NOT_FOUND</strong>
+								</p>
+							</td>
+							<td width="65%">
+								<p>
+									файл не найден
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="35%" valign="top">
+								<p>
+									<strong>ERROR_PATH_NOT_FOUND</strong>
+								</p>
+							</td>
+							<td width="65%">
+								<p>
+									путь к файлу задан неверно
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					Если имя выполняемого файла в параметре FileName не содержит пути
+					директории, Windows производит поиск выполняемого файла в такой
+					последовательности:
+					<br/>
+					1. Каталог из которого приложение было запущено. Это рабочий каталог
+					<br/>
+					2. Системный каталог Windows (обычно C:\WINDOWS\SYSTEM).
+					<br/>
+					3. Каталог Windows.
+					<br/>
+					4. Директории, указанные в переменной операционной среды в среде PATH.
+					Узнать о каталогах этой переменной можно, введя PATH в командной строке
+					сеанса MS-DOS.
+					<br/>
+					<strong>Пример использования функции WinExec в программе:</strong>
+					<br/>
+					<strong>WinExec ('command.com', SW_SHOW); </strong>
+					<em>// запускает сеанс MS-DOS</em>
+					<br/>
+					<a name="2"></a>
+					<h2>
+						Функция ShellExecute
+					</h2>
+					<br/>
+					Функция<strong> ShellExecute</strong> не только запускает программы, а
+					открывает, редактирует или печатает файл, с учетом зарегестрированного
+					типа, а также открывает указанную папку проводником. Возвращает Handle
+					ссылку на открытое окно.
+					<br/>
+					Используемый модуль <strong>ShellAPI</strong>. Его нужно не забыть указать
+					в разделе <strong>Uses</strong>.
+					<br/>
+					Описание:
+					<strong>
+						ShellExecute (hWnd: HWND; Operation: PChar; FileName: PChar; Parametrs:
+						PChar; Directory: PChar; CmdShow: Integer): HINST;
+					</strong>
+					<br/>
+					где: <strong>hWnd</strong> - Handle родительского окна, в который будут
+					передаваться сообщения запускаемого приложения. Можно указывать
+					Handle-ссылку окна вашего приложения.
+				</p>
+				<p>
+					<strong>Operation</strong>
+				- производимая операция. <strong>Open</strong> - открыть,	<strong>print</strong> - напечатать, <strong>explore</strong> - открыть
+					папку. По умолчанию open, если указать <strong>nil</strong>.
+					<br/>
+					<strong>FileName</strong>
+					- имя файла или документа, интернет ссылка, e-mail адрес.
+					<br/>
+					<strong>Parametrs</strong>
+					- параметры, передаваемые приложению в командной строке.
+					<br/>
+					<strong>Directory</strong>
+					- каталог по умолчанию.
+					<br/>
+					<strong>CmdShow</strong>
+					- стиль окна. Показывает, в каком состоянии будет отображаться окно при
+					запуске. Подробно рассказано выше.
+				</p>
+				<p>
+				Вместо параметров <strong>Operation</strong>, <strong>Parametrs</strong> и	<strong>Directory</strong> можно ставить nil. Они являются не обязательными
+					параметрами для запуска.
+					<br/>
+					В случае успешного запуска возвращает Handle окна, в случае неудачи
+					возвращает код ошибки меньше или равное 32. Список возможных ошибок можно
+					прочитать в справке по этой команде.
+					<br/>
+					<strong>Пример использования команды ShellExecute в программе:</strong>
+					<br/>
+					ShellExecute (Form1.Handle, nil, 'http://programming.dax.ru', nil, nil,
+					SW_RESTORE); //запуск нашей странички
+					<br/>
+					ShellExecute (Form1.Handle, nil, PChar (Application.ExeName), nil, nil,
+					SW_RESTORE); //запуск второй копии этой программы
+					<br/>
+					ShellExecute (Form1.Handle, nil, 'iexplore', 'http://programming.dax.ru',
+					nil, SW_RESTORE); //запуск в отдельном окне
+					<br/>
+					ShellExecute (Form1.Handle, nil,
+					'mailto:semen@krovatka.net?subject=delphi', nil, nil, SW_RESTORE);
+					//написать мне письмо
+					<br/>
+					ShellExecute (Form1.Handle, nil, 'c:\1.doc', nil, nil, SW_RESTORE);
+					//открыть документ
+				</p>
+			</article>	
+		</main>
+		<footer class="footer">
+			<div></div>
+		</footer>
+		<script src="../../scripts.js"></script>
+	</body>
+</html>

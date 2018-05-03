@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link href="../../style.css" rel="stylesheet">
+	</head>
+	<body>
+		<header>
+			<div>
+				<a href="../../index.html"><h1>Учебный портал</h1></a>
+			</div>
+			<nav>
+					<ul class="main_menu">
+					<li>
+						<a href="#"><p>Справочные материалы&#9207;</p></a>
+						<ul class="submenu" id="sub1">
+							<li><a href="../../delphi-lab-teor.html">Теория по Delphi</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#"><p>Лабораторные работы&#9207;</p></a>
+						<ul class="submenu" id="sub2">
+							<li><a href="../../delphi-lab-prac.html">Задания по Delphi</a></li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<main>
+			<div class="prev"><a href="tema3.html"><img src="../../res/prev.png"></a></div>
+			<div class="next" style="opacity: 0.5;"><img src="../../res/next.png"></div>
+			<aside id="sidebar">
+				<h2>Быстрая навигация</h2>
+				<ol>
+					<li><a href="#1">TRadioGroup</a></li>
+					<li><a href="#2">TGroupBox</a></li>
+					<li><a href="#3">TRadioButton </a></li>
+					<li><a href="#4">TCheckBox</a></li>
+				</ol>
+			</aside>
+			<article class="tema">
+			<a name="1"></a>
+				<h2>
+					<img
+						width="256"
+						height="186"
+						src="tema4/image001.jpg"
+						align="left"
+						hspace="12"
+						alt="18"
+					/>
+					TRadioGroup - группа зависимых переключателей
+				</h2>
+				<p>
+					Компонент класса TRadioGroup представляет собой специальный контейнер,
+					предназначенный для размещения зависимых переключателей класса
+					TRadioButton. Каждый размещаемый в нем переключатель помещается в
+					специальный список items и доступен по индексу, что упрощает обслуживание
+					группы.
+				</p>
+				<p>
+					Свойства компонента:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									property Columns: Integers;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Определяет количество столбцов переключателей
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									property Itemlndex: Integer;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Содержит индекс выбранного переключателя
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									property Items: TStrings;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Содержит список строк с заголовками элементов.
+									Добавление/удаление элементов достигается
+									добавлением/удалением строк списка items (см. п. 16.3.1)
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					После размещения компонента на форме он пуст. Чтобы создать в нем хотя бы
+					один переключатель, следует раскрыть редактор списка Items и ввести хотя бы
+					одну строку: строки Items используются как поясняющие надписи справа от
+					переключателей, а их количество определяет количество переключателей в
+					группе. Замечу также, что после создания компонента его свойство Itemlndex
+					по умолчанию имеет значение -1, это означает, что ни один переключатель в
+					группе не выбран. Если в момент появления компонента на экране в каком-то
+					переключателе выбор уже должен быть установлен, необходимо на этапе
+					конструирования с помощью окна Инспектора объектов или программно
+					(например, в обработчике OnActivate формы) установить в свойство ItemIndex
+					номер соответствующего переключателя (нумерация начинается с 0). Это же
+					свойство позволяет программе проанализировать выбор пользователя, например:
+				</p>
+				<p>
+					<strong>case</strong>
+					RadioGroupl.Itemlndex<strong> of</strong>
+				</p>
+				<p>
+					0: ...; <em>//Выбран 1-й переключатель</em>
+				</p>
+				<p>
+					1: ...; <em>//Выбран 2-й переключатель</em>
+				</p>
+				<p>
+					<strong>else</strong>
+				</p>
+				<p>
+					..... <em>//Не выбран ни один переключатель</em>
+				</p>
+				<p>
+					<strong>end; </strong>
+				</p>
+				<p>
+					Компонент RadioGroup удобен, если надписи кнопок имеют примерно одинаковую
+					длину и если число кнопок в каждом столбце одинаково. В противном случае
+					удобнее
+					<img
+						width="256"
+						height="186"
+						src="tema4/image002.jpg"
+						align="left"
+						hspace="12"
+						alt="18"
+					/>
+					использовать компоненты RadioButton, сгруппированные панелью GroupBox.
+				</p>
+				<p>
+					<strong></strong>
+				</p>
+				<a name="2"></a>
+				<h2>
+					TGroupBox - панель группирования
+				</h2>
+				<p>
+					Этот компонент служит контейнером для размещения дочерних компонентов и
+					представляет собой прямоугольное окно с рамкой и текстом в разрыве рамки.
+					Обычно с его помощью выделяется группа управляющих элементов, объединенных
+					по функциональному назначению. Свойства и методы этого класса целиком
+					унаследованы им от своих предков TCustomControi и TWincontrol
+				</p>
+				<a name="3"></a>
+				<h2>
+					TRadioButton - зависимые переключатели
+				</h2>
+				<p>
+					В отличие от TCheckBox компоненты TradioButton
+					<img
+						width="196"
+						height="166"
+						src="tema4/image003.jpg"
+						align="left"
+						hspace="12"
+						alt="18"
+					/>
+					представляют собой зависимые переключатели, предназначенные для выбора
+					одного из нескольких взаимоисключающих решений. На форму (точнее, в
+					компонент-контейнер) помещается по меньшей мере два таких компонента. Они
+					могут иметь только два состояния, определяемых свойством Сhecked. Если в
+					одном компоненте это свойство принимает значение True, во всех других
+					компонентах, расположенных в том же контейнере, свойства Сhecked принимают
+					значения False.
+				</p>
+				<p>
+					Помимо свойства checked компонент TRadioButton имеет еще одно специфичное
+					свойство - Alignment, аналогичное такому же свойству TCheckBox. Как и в
+					TCheckBox, программист не может изменять размеры и цвет круглого окошка
+					компонента.
+				</p>
+				<a name="4"></a>
+				<h2>
+					TCheckBox - независимый переключатель
+				</h2>
+				<p>
+					<strong></strong>
+				</p>
+				<p>
+					<img
+						width="196"
+						height="166"
+						src="tema4/image004.jpg"
+						align="left"
+						hspace="12"
+						alt="18"
+					/>
+					Независимый переключатель TCheckBox используется для того, чтобы
+				пользователь мог указать свое решение типа <em>Да/Нет</em> или	<em>Да/Нет/Не совсем</em> (в последнем случае в окошке компонента
+					устанавливается флаг выбора, но само окошко закрашивается серым цветом).
+					Это решение отражается в свойстве State компонента, доступном как для
+					чтения, так и для записи. В составе диалогового окна может быть несколько
+					компонентов TCheckBox. Состояние любого из них не зависит от состояния
+					остальных, поэтому такие переключатели называются независимыми.
+				</p>
+				<p>
+					Типичное использование компонента:
+				</p>
+				<p>
+					if CheckBoxl.Checked<strong> then </strong>
+				</p>
+				<p>
+					<strong>else</strong>
+				</p>
+				<p>
+					Или:
+				</p>
+				<p>
+					<strong>case</strong>
+					CheckBoxl.State<strong> of </strong>cbChecked :... ;
+				</p>
+				<p>
+					cbUnchecked:...;
+				</p>
+				<p>
+					cbGrayed :...;
+				</p>
+				<p>
+					<strong>end;</strong>
+				</p>
+				<p>
+					Свойства компонента:
+				</p>
+				<table border="0" cellspacing="0" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									type TLeftRight = (taLeftJustify, taRightJustify) ;
+									property Alignment: TLeftRight;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Определяет положение текста: taLeftJustify - с левой
+									стороны компонента; taRightJustify - С Правой стороны
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									property AllowGrayed: Boolean;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+				Разрешает/запрещает использование состояния cbGrayed					<em>(Не совсем)</em>
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									ptoperty Caption: Strings
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Содержит связанный с компонентом текст
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									property Checked: Boolean;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Содержит выбор пользователя типа <em>Да/Нет. </em>Состояния
+									cbUnchecked и cbGrayed отражаются как False
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									type TCheckBoxState = (cbUnchecked, cbChecked, cbGrayed) ;
+									property State: TCheckBoxState
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Содержит состояние компонента: cbUnchecked - нет; cbChecked
+									- да; cbGrayed - не совсем
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					Свойство color компонента фактически игнорируется, а свойства Height и
+					width определяют размеры прямоугольника, в котором выводится связанный с
+					переключателем текст, и не влияют на размеры прямоугольного окошка. Сам
+					текст указывается в свойстве Caption.
+				</p>
+			</article>	
+		</main>
+		<footer class="footer">
+			<div></div>
+		</footer>
+		<script src="../../scripts.js"></script>
+	</body>
+</html>

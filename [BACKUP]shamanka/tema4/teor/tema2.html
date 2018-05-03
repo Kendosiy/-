@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link href="../../style.css" rel="stylesheet">
+	</head>
+	<body>
+		<header>
+			<div>
+				<a href="../../index.html"><h1>Учебный портал</h1></a>
+			</div>
+			<nav>
+					<ul class="main_menu">
+					<li>
+						<a href="#"><p>Справочные материалы&#9207;</p></a>
+						<ul class="submenu" id="sub1">
+							<li><a href="../../delphi-lab-teor.html">Теория по Delphi</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#"><p>Лабораторные работы&#9207;</p></a>
+						<ul class="submenu" id="sub2">
+							<li><a href="../../delphi-lab-prac.html">Задания по Delphi</a></li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<main>
+			<div class="prev"><a href="tema1.html"><img src="../../res/prev.png"></a></div>
+			<div class="next" style="opacity: 0.5;"><img src="../../res/next.png"></div>
+			<aside id="sidebar">
+				<h2>Быстрая навигация</h2>
+				<ol>
+					<li><a href="#1">TUpDown - спаренная кнопка</a></li>
+					<li><a href="#2">TSpinEdit - редактор для ввода целого числа</a></li>
+					<li><a href="#3">TDateTimePicker - ввод и отображение даты/времени</a></li>
+					<li><a href="#4">TMonthCalendar - календарь</a></li>
+					<li><a href="#5">TCalendar - ввод и отображение даты</a></li>
+				</ol>
+			</aside>
+			<article class="tema">
+				<h2>Ввод и отображение чисел, дат и времени</h2>
+				<p>
+					Таблица компонентов ввода и отображения чисел, дат и времени
+				</p>
+				<table border="1" cellspacing="0" cellpadding="0">
+					<tbody>
+						<tr>
+							<td width="28" valign="top">
+								<p>
+									<strong></strong>
+								</p>
+							</td>
+							<td width="200" valign="top">
+								<p>
+									Компонент
+								</p>
+							</td>
+							<td width="91" valign="top">
+								<p>
+									Станица
+								</p>
+							</td>
+							<td width="338" valign="top">
+								<p>
+									Описание
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="28" valign="top">
+								<p>
+									<strong>1</strong>
+								</p>
+							</td>
+							<td width="200" valign="top">
+								<p>
+									UpDown (кнопка-счётчик)
+								</p>
+							</td>
+							<td width="91" valign="top">
+								<p>
+									Win32
+								</p>
+							</td>
+							<td width="338" valign="top">
+								<p>
+									Кнопка-счётчик, в сочетании с компонентами Edit и другими
+									позволяющая вводить цифровую информацию. Основное свойство
+									- <strong>Position</strong>
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="28" valign="top">
+								<p>
+									<strong>2</strong>
+								</p>
+							</td>
+							<td width="200" valign="top">
+								<p>
+									SpinEdit(кнопка-счётчик с окном редактирования)
+								</p>
+							</td>
+							<td width="91" valign="top">
+								<p>
+									Samples
+								</p>
+							</td>
+							<td width="338" valign="top">
+								<p>
+									Окно редактирования в сочетании с кнопкой-счётчиком. Почти
+				то же, что комбинация Edit и UpDown Основное свойство -					<strong>Value</strong>
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="28" valign="top">
+								<p>
+									<strong>3</strong>
+								</p>
+							</td>
+							<td width="200" valign="top">
+								<p>
+									DateTimePicker(окно ввода дат и времени)
+								</p>
+							</td>
+							<td width="91" valign="top">
+								<p>
+									Win32
+								</p>
+							</td>
+							<td width="338" valign="top">
+								<p>
+									Ввод даты (с выпадающим календарём) и времени. Основное
+									свойство – <strong>Date и </strong><strong>Time</strong>
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="28" valign="top">
+								<p>
+									<strong>4</strong>
+								</p>
+							</td>
+							<td width="200" valign="top">
+								<p>
+									MonthCalendar(окно ввода дат)
+								</p>
+							</td>
+							<td width="91" valign="top">
+								<p>
+									Win32
+								</p>
+							</td>
+							<td width="338" valign="top">
+								<p>
+				Ввод дат с выбором из календаря. Основное свойство -					<strong>Date</strong>
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="28" valign="top">
+								<p>
+									<strong>5</strong>
+								</p>
+							</td>
+							<td width="200" valign="top">
+								<p>
+									Calendar(календарь на указанный месяц)
+								</p>
+							</td>
+							<td width="91" valign="top">
+								<p>
+									Samples
+								</p>
+							</td>
+							<td width="338" valign="top">
+								<p>
+									Отображение календаря на указанный месяц . Основное
+									свойство – <strong>Month и </strong><strong>Day</strong>
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="28" valign="top">
+								<p>
+									<strong>6</strong>
+								</p>
+							</td>
+							<td width="200" valign="top">
+								<p>
+									F1Book (страницы Excel)
+								</p>
+							</td>
+							<td width="91" valign="top">
+								<p>
+									ActiveX
+								</p>
+							</td>
+							<td width="338" valign="top">
+								<p>
+									Компонент ввода и обработки числовой информации,
+									аналогичный страницам Excel
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p align="center">
+					<a name="1"></a>
+					<strong>TUpDown - спаренная кнопка</strong>
+				</p>
+				<p>
+					<img
+						width="156"
+						height="166"
+						src="tema2/image001.jpg"
+					/>
+				</p>
+				<p>
+					Компонент TUpDown предназначен для регулирования числовой величины. Он
+					имеет пару кнопок, с помощью которых величина наращивается или уменьшается.
+					Обычно компонент TUpDown связан с другим компонентом класса TEdit, который
+					отображает регулируемую величину и при необходимости может редактировать
+					ее. Связанный компонент называется компаньоном.
+				</p>
+				<p>
+					Свойства компонента:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									TUDAlignButton = (udLeft, udRight) ; property AlignButton:
+									TUDAlignButton;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Определяет положение компонента относительно компаньона:
+									udLeft - TUpDown располагается слева от него; udRight -
+									справа от него
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									property Associate: TWinuontrol;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Определяет связанный компонент. TupDown автоматически
+									располагается с нужной стороны компаньона и выравнивает
+									свою высоту с его высотой
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									property Increment: Smallint;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Определяет шаг наращивания/уменьшения регулируемой величины
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									property Max: Smallint;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Определяет максимальное значение диапазона
+								</p>
+								<p>
+									изменения регулируемой величины
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									property Min: Smallint;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Определяет минимальное значение диапазона изменения
+									регулируемой величины
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									TUDOrientation = (udHorizontal,
+								</p>
+								<p>
+									udVertical) ; property Orientation: TUDOrientation;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Определяет ориентацию компонента: udHorizontal - по
+									горизонтали; udVertical - по вертикали
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									property Positior-.: Sallint;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Содержит текущее значение регулируемой величины
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									property Thousands: Boolean;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Если содержит True, в отображение числовой величины в
+									компаньоне вставляются разделители тысяч
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									property Wrap: Boolean;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Запрещает/разрешает выход position из диапазона Max...Min
+									(True - запрещает)
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					Для компонента определены события
+				</p>
+				<p>
+					<strong>type</strong>
+					TUDChangingEvent =<strong> procedure</strong> (Sender: TObject;
+				</p>
+				<p>
+					<strong>var</strong>
+					AllowChange: Boolean)<strong> of object;</strong>
+				</p>
+				<p>
+					<strong>property</strong>
+					OnChar.ging: TUDChanginEvent;
+				</p>
+				<p>
+					И
+				</p>
+				<p>
+					<strong>type</strong>
+					TUDBtnType = (btNext, btPrev) ;
+				</p>
+				<p>
+					<strong>type</strong>
+					TUDClickEvent =<strong> procedure</strong> (Sender: TObject; Button:
+				</p>
+				<p>
+					TUDBtnType) ;
+				</p>
+				<p>
+					<strong>property</strong>
+					OnClick: TUDClickEvent;
+				</p>
+				<p>
+					Первое возникает при любом изменении регулируемой величины. Обработчик
+					события в параметре AllowChange сообщает, может ли величина измениться.
+					Второе - при щелчке по кнопкам элемента. Параметр Button определяет нажатую
+					кнопку: btprev - вниз или влево; btNext - вверх или вправо.
+				</p>
+				<p align="center">
+					<a name="2"></a>
+					<strong>TSpinEdit - редактор для ввода целого числа</strong>
+				</p>
+				<p>
+					Компонент TSpinEdit предназначен для ввода/отображения числа. Он
+					представляет собой комбинацию специализированного потомка однострочного
+					редактора rcustomEdit и кнопок TSpinButton. Редактор способен вводить
+					только числа (в этом и заключается его специализация), а кнопки
+					используются для изменения числа на некоторую фиксированную величину.
+				</p>
+				<p>
+					Свойства компонента:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									property Button: TSpinButton;
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Содержит ссылку на встроенный объект TSpinButton
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									property EditorEnabled: Boolean;
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Разрешает/запрещает использовать редактор для ручного ввода
+									числа
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									property Increment: Longint;
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Содержит число, на которое будет изменяться свойство value
+									при нажатии кнопок TSpinButton
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									property MaxValue: Longint;
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Содержит верхнюю границу диапазона возможных значений value
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									property MinValue: Longint;
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Содержит нижнюю границу диапазона возможных значений value
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									property Value: Longint;
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Содержит текущее значение числовой величины
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p align="center">
+				<a name="3"></a>
+					<strong>TDateTimePicker - ввод и отображение даты/времени</strong>
+				</p>
+				<p>
+					Компонент предназначен для ввода и/или отображения даты или времени. Ниже показаны различные варианты использования компонента.
+				</p>
+				<p>
+					<img
+						width="211"
+						height="344"
+						src="tema2/image002.jpg"
+					/>
+				</p>
+				<p>
+					<em> Примеры использования компонента TDateTimePicker</em>
+				</p>
+				<p>
+					При показе даты в режиме DateMode=dmComboBox календарь можно не раскрывать
+					и установить дату вручную в верхнем окне. Это удобно, если нужно установить
+					сразу и день, и месяц, и год. На раскрытом календаре изменить месяц можно
+					небольшими кнопками вверхней части компонента. Календарь закрывается после
+					выбора даты или при щелчке по раскрывающей кнопке. Установив в свойство
+					Kind значение dtkTime, можно заставить компонент отображать время (справа
+					на рисунке). Это время в момент установки компонента на форму соответствует
+					системному времени, и в дальнейшем его можно изменить, задав новое значение
+					в свойство Time.
+				</p>
+				<p>
+					Свойства компонента:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td valign="top">
+								<p>
+									TDTCalAlignment <em>=</em> (dtaLeft, dtaRight) ;
+								</p>
+							</td>
+							<td width="59%" valign="top">
+								<p>
+									Определяет положение раскрывающегося календаря: dtaLeft -
+									слева от компонента;
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td valign="top">
+								<p>
+									property CalAlignment: TDTCalAlignment;
+								</p>
+							</td>
+							<td width="59%" valign="top">
+								<p>
+									dtaRight - справа от компонента. Учитывается только ДЛЯ
+									Kind = dtkDate и Date-Mode <sup>=</sup> dmComboBox
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td valign="top">
+								<p>
+									property CalColors: TDateTimeColors;
+								</p>
+							</td>
+							<td width="59%" valign="top">
+								<p>
+									С календарем связан объект класса
+								</p>
+								<p>
+									TDateTimeColors, свойства которого определяют цвета
+									календаря
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td valign="top">
+								<p>
+									property Checked: Boolean;
+								</p>
+							</td>
+							<td width="59%" valign="top">
+								<p>
+									Если Checked=True И ShowCheckBox=True,
+								</p>
+								<p>
+									независимый переключатель рядом с датой
+								</p>
+								<p>
+									(временем) будет иметь состояние <em>Выбрано</em>
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td valign="top">
+								<p>
+									property Date: TDate;TDTDateFormat <em>=</em>
+									(dfShort,dfLong) ; property DateFormat: TDTDateFormat;
+								</p>
+							</td>
+							<td width="59%" valign="top">
+								<p>
+									Содержит введенную дату
+								</p>
+								<p>
+									Определяет формат показа даты: df short -08. 09. 99;
+									dfLong-8 Сентябрь 1999г.
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td valign="top">
+								<p>
+									TDTDateMode = (dmComboBox,
+								</p>
+								<p>
+									dmUpDown) ; property DateMode: TDTDateMode;
+								</p>
+							</td>
+							<td width="59%" valign="top">
+								<p>
+									Определяет способ выбора даты: dmComboBox - с помощью
+									раскрывающегося ка лендаря; dmUpDown - с помощью
+									встроенного объекта TupDown
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td valign="top">
+								<p>
+									property Format: String;
+								</p>
+							</td>
+							<td width="59%" valign="top">
+								<p>
+									Определяет формат вывода даты и времени (см. табл. 7.8 в
+									гл. 7)
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td valign="top">
+								<p>
+									TDateTimeKind = (dtkDate,
+								</p>
+								<p>
+									dtkTime); property Kind: TDateTimeKind;
+								</p>
+							</td>
+							<td width="59%" valign="top">
+								<p>
+									Определяет содержимое компонента:
+								</p>
+								<p>
+									dtkDate -дата; dtkTime - время
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td valign="top">
+								<p>
+									property MaxDate: TDate;
+								</p>
+							</td>
+							<td width="59%" valign="top">
+								<p>
+									Определяет максимальную дату, которую может выбрать иди
+									ввести пользователь
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td valign="top">
+								<p>
+									property MinDate: TDate;
+								</p>
+							</td>
+							<td width="59%" valign="top">
+								<p>
+									Определяет минимальную дату, которую может выбрать или
+									ввести пользователь
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td valign="top">
+								<p>
+									property Parselnput: Boolean;
+								</p>
+							</td>
+							<td width="59%" valign="top">
+								<p>
+									Если True, возникает событие OnUserlnput при каждом вводе
+									пользователя в окне
+								</p>
+								<p>
+									редактора
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td valign="top">
+								<p>
+									property ShowCheckbox: Boolean;
+								</p>
+							</td>
+							<td width="59%" valign="top">
+								<p>
+									Если True, рядом с датой (временем) вставляется независимый
+									переключатель
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td valign="top">
+								<p>
+									property Time: TTime;
+								</p>
+							</td>
+							<td width="59%" valign="top">
+								<p>
+									Содержит введенное пользователем время
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td colspan="2" valign="top">
+								<p>
+									Для компонента определены следующие события:
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="41%" valign="top">
+								<p>
+									property OnChange: TNotifyEvent;
+								</p>
+							</td>
+							<td width="59%" valign="top">
+								<p>
+									Возникает при любом изменении содержимого компонента
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="41%" valign="top">
+								<p>
+									property OnCloseUp: TNotifyEvent;
+								</p>
+							</td>
+							<td width="59%" valign="top">
+								<p>
+									Возникает при закрытии календаря
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="41%" valign="top">
+								<p>
+									property OnDropDown: TNotifyEvent;
+								</p>
+							</td>
+							<td width="59%" valign="top">
+								<p>
+									Возникает при открытии календаря
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="41%" valign="top">
+								<p>
+									TParseInputEvent = procedure (Sender: TObject; const
+									User-String: String” var DateAndTime: TDateTime; var
+									AllowChange: Boolean) of objects-property OnUserInput:
+									TDTParseIn-putEvent;
+								</p>
+							</td>
+							<td width="59%" valign="top">
+								<p>
+									Возникает при ручном вводе в окне редактора, если
+									ParseInput=True.UserString -введенная пользователем строка;
+									DateAndTime - значения свойств Date и Time. В параметре
+									AllowChange обработчик разрешает или запрещает изменение
+									даты или времени
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p align="center">
+					<a name="4"></a>
+					<strong>TMonthCalendar - календарь</strong>
+				</p>
+				<p>
+					<img
+						width="395"
+						height="198"
+						src="tema2/image003.jpg"
+					/>
+				</p>
+				<p>
+					Как видно из рисунка слева, компонент предназначен для выбора или
+					отображения даты. Он очень похож на календарь, который появляется В
+					компоненте TDateTimePicker (при значении dmComboBox В свойстве DateMode),
+					но в отличие от последнего может отображать одновременно несколько смежных
+					месяцев - в зависимости от своих размеров.
+				</p>
+				<p>
+					Свойства компонента:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									property CalColors: TMonthCalColors;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									С компонентом связан объект класса
+								</p>
+								<p>
+									TMonthCalColors, имеющий такие свойства:BackColor -
+									определяет цвет фона, разделяющего смежные месяцы;
+									MonthBackColor- цвет фона дат; TextColor - цвет дат;
+									TitIeBackColor - цвет фона заголовка
+								</p>
+								<p>
+									месяца: TitleTextColor - цвет текста заголовка;
+									TrailingTextColor - цвет текста ведущих и ведомых дат
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									property Date: TDate;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Определяет выбранную дату
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									property EndDate: TDate;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Определяет конечную дату диапазона вы бранных дат
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									type TCalDayOfWeek = (dowMonday,
+								</p>
+								<p>
+									dowTuesday, dowWednesday,
+								</p>
+								<p>
+									dowThursday, dowFriday, dowSaturday, dowSunday,
+									dowLocaleDefault) ;
+								</p>
+								<p>
+									property FirstDayOfWeek: TCalDay
+								</p>
+								<p>
+									OfWeek;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Определяет первый день недели
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									property MaxDate: TDate;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Содержит максимальную дату, месяц которой еще будет
+									доступен для отображения в компоненте. Если свойство
+									содержит пустое значение, отображается любой следующий
+								</p>
+								<p>
+									месяц
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									property MaxSelectRange: Integer;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Содержит максимальное количество дат в выбранном диапазоне
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									property MinDate: TDate;
+								</p>
+								<p>
+									property MultiSelect: Boolean; property ShowToday: Boolean;
+								</p>
+								<p>
+									property ShowTodayCircle: Boolean; property WeekNumbers:
+									Boolean;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Содержит минимальную дату, месяц которой еще будет доступен
+									для отображения в компоненте. Если свойство содержит пустое
+									значение, отображается любой предыдущий месяц
+									Разрешает/запрещает выбор диапазона дат Разрешает/запрещает
+									показ текущей даты (по показаниям системных часов) внизу
+									календаря Разрешает/запрещает обводить кружком текущую дату
+									Разрешает/запрещает показ порядковых номеров недель от
+									начала года в левой колонке
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p align="center">
+				<a name="5"></a>
+					<strong>TCalendar - ввод и отображение даты</strong>
+				</p>
+				<p>
+					Компонент TCalendar отображает календарь на выбранный месяц и год. Его
+					свойства Day, Month и Year могут содержать любую дату от 1 до 9999 года от
+					Рождества Христова.
+				</p>
+				<p>
+					Свойства компонента:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									property CalendarDate: ~DateTime; property CellText[ACol,
+									ARow: Integer]: String;
+								</p>
+								<p>
+									property Day: Integer; property GridLineWidth: Integer;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Содержит выбранную дату Содержит текст в ячейке календаря
+									на пересечении столбца ACol с рядом ARow (только для
+									чтения) Определяет выбранный день месяца
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									property Month: Integer; property Readonly: Boolean;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Устанавливает толщину линий таблицы календаря Определяет
+									выбранный месяц Если содержит True, пользователь не может
+									выбрать другую дату
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									type TDayOfWeek = 0..6;property StartOfWeek: TSayOfWeek;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Определяет день недели, который будет отображаться в самом
+									левом столбце таблицы
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									property UseCurrentDate: Boolean;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Если содержит True, компонент будет показывать текущую
+									системную дату
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									property Year: Integer;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Определяет выбранный год
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" valign="top">
+								<p align="center">
+									Методы компонента:
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									procedure NextMonth; procedure NextYear; procedure
+									PrevMonth;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Показывает календарь на следующий месяц Показывает
+									календарь на следующий год Показывает календарь на
+									предыдущий месяц
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									procedure PrevYear;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Показывает календарь на предыдущий год
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>	
+		</main>
+		<footer class="footer">
+			<div></div>
+		</footer>
+		<script src="../../scripts.js"></script>
+	</body>
+</html>

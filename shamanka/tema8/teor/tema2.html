@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link href="../../style.css" rel="stylesheet">
+	</head>
+	<body>
+		<header>
+			<div>
+				<a href="../../index.html"><h1>Учебный портал</h1></a>
+			</div>
+			<nav>
+					<ul class="main_menu">
+					<li>
+<<<<<<< HEAD
+						<a href="#"><p>Справочные материалы</p></a>
+=======
+						<a href="#"><p>Справочные материалы&#9207;</p></a>
+>>>>>>> f12edd62888d7f1067e2a4e99743dfe436d13998
+						<ul class="submenu" id="sub1">
+							<li><a href="../../delphi-lab-teor.html">Теория по Delphi</a></li>
+						</ul>
+					</li>
+					<li>
+<<<<<<< HEAD
+						<a href="#"><p>Лабораторные работы</p></a>
+=======
+						<a href="#"><p>Лабораторные работы&#9207;</p></a>
+>>>>>>> f12edd62888d7f1067e2a4e99743dfe436d13998
+						<ul class="submenu" id="sub2">
+							<li><a href="../../delphi-lab-prac.html">Задания по Delphi</a></li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<main>
+			<div class="prev"><a href="tema1.html"><img src="../../res/prev.png"></a></div>
+			<div class="next"><a href="tema3.html"><img src="../../res/next.png"></a></div>
+			<aside id="sidebar">
+				<h2>Быстрая навигация</h2>
+				<ol>
+					<li><a href="#1">Разновидности форм</a></li>
+					<li><a href="#2">Компонент TFORM</a></li>
+					<li><a href="#3">Создание и использование форм</a></li>
+					<li><a href="#4">Программы с многими формами</a></li>
+				</ol>
+			</aside>
+			<article class="tema">
+				<a name="1"></a>
+				<h2>
+					Разновидности форм 
+				</h2>
+				<p>
+					Разновидности форм определяются значениями их свойств FormStyle, а также
+					разнообразием форм-заготовок, хранящихся в репозитории Delphi.
+				</p>
+				<p>
+					Стиль формы задается одним из значений свойства
+				</p>
+				<p>
+					TFormStyle <em>=</em> (fsNormal, fsMDIChild, fsMDIForm, fsStayOnTop) ;
+				</p>
+				<p>
+					<strong>property</strong>
+					FormStyle: TFormStyle;
+				</p>
+				<p>
+					Стиль fsNormal определяет обычную форму, использующуюся для решения самых
+					различных задач, в том числе - для общего управления всей программой
+					(главная форма).
+				</p>
+				<p>
+					Стили fsMDIChild и fsMDIForm используются при создании так называемых
+					многодокументных приложений в стиле MDI (MDI -Multi Document Interface).
+					Этот немодный сегодня стиль предполагает создание главного окна MDI (его
+					обычно называют рамочным), внутри которого по мере надобности появляются
+					дочерние окна.' Дочерние окна, подобно дочерним элементам контейнера, не
+					могут выходить за границы своего владельца - рамочного окна. В
+					MDI-приложениях есть специальные средства управления взаимодействием
+					рамочного окна с дочерними окнами. Например, каждое дочернее окно в момент
+					активизации может нужным образом настроить главное меню рамочного окна
+					(дочерние MDI-окна не имеют собственного главного меню). В Delphi для
+					создания рамочного окна используется стиль fsMDIForm, а для создания
+					дочернего MDI-окна - стиль fsMDIChild.
+				</p>
+				<p>
+					Стиль fsStayOnTop предназначен для окон, которые всегда должны
+					располагаться над всеми другими окнами программы[
+					<em>
+						В терминологии Windows такие окна называются Popup Window, что
+						буквально переводится как окно-поплавок.
+					</em>
+					]. В момент активизации окна оно обычно становится видимым на экране, даже
+					если перед этим его загораживали другие раскрытые окна. Стиль fsStayOnTop
+					препятствует перекрытию окна другими окнами, даже если оно становится
+					неактивным и теряет фокус ввода (так сказано в документации, однако на
+					самом деле это не так, см. ниже). Понятно, что этот стиль используется в
+					исключительных случаях, когда окно содержит что-то, требующее повышенного
+					внимания пользователя.
+				</p>
+				<p>
+					Как показывает практика, объявление окна со стилевым признаком fsStayOnTop
+					еще не решает проблему создания окна-поплавка, т. е. окна, которое
+					невозможно перекрыть другими окнами. Более того, несложные эксперименты
+					убедят вас, что этот признак вообще не играет никакой роли! Чтобы создать
+					окно-поплавок, нужно обратиться к API-функции SetWindowPos.
+				</p>
+				<p>
+					Например:
+				</p>
+				<p>
+					SetWindowPos(fmAlarmForm.Handle, hwnd_TopMost, 300, 300, 250, 70,
+					swp_noActvate)
+				</p>
+				<p>
+					Полное описание этой функции (как и всех других API-функций Windows) вы
+					найдете в Help-файлах WIN32.HLP или WIN32SDK.HLP, которые поставляются
+					вместе с Delphi и по умолчанию располагаются В папке Program Files | Common
+					Files | Borland shared | MSHelp. Здесь я лишь кратко поясню назначение
+					параметров вызова.
+				</p>
+				<p>
+					Первым параметром обращения к функции является дескриптор окна, которое
+					должно стать “поплавком”. Напомню, что дескриптор формы содержится в ее
+					свойстве Handle, поэтому для формы fmAlarmForm параметр вызова имеет вид
+					fmAlarmForm. Handle. вторым параметром определяется расположение окна
+					относительно других окон в так называемом Z-порядке их расположения.
+					Константа nwnd_TopMost указывает, что окно должно стать самым верхним и
+					впредь до его закрытия не может перекрываться другими (обычными) окнами.
+					Четыре следующие параметра определяют координаты левого верхнего угла окна,
+					его ширину и высоту. Все параметры указываются в пикселях, координаты угла
+					задаются относительно, левого верхнего угла экрана. Последним указывается
+					один или несколько битовых флагов, уточняющих поведение окна. В нашем
+					примере использован флаг swp_noActvate, означающий, что окно не получает
+					фокуса ввода в момент своего появления на экране. Поясню, что на практике я
+					часто использую окна-поплавки, чтобы сообщить пользователю, например, о
+					необходимости обновить набор данных, которые он видит в настоящий момент,
+					так как эти данные были изменены другими пользователями клиент-серверной
+					БД. Такое окно не должно отнимать активность (фокус ввода) у окна, с
+					которым работает пользователь.
+				</p>
+				<p>
+					И последнее замечание. “Поплавком” может стать и обычное окно (со значением
+					FormStyle=fsNormai). Однако “поплавок” действительно появится на экране,
+					только если в его свойстве visible содержится значение True.
+				</p>
+				<p>
+					Иными словами, если пользователь закроет такое окно, оно не появится в
+					результате вызова функции setwindowpos - его предварительно нужно сделать
+					видимым методом show. Поскольку окно-поплавок может вызываться в разных
+					местах программы, удобно поместить вызов функции setwindowspos в его
+					обработчик события onActivate. Однако если вы попытаетесь создать такой
+					обработчик для окна со стилем FormStyle=fsStayonTop, то компилятор выдаст
+					сообщение об ошибке и поместит заготовку метода в тексте модуля после
+					ограничителя “.”. В этом случае определяйте окно со стилем fsNormal.
+				</p>
+				<p>
+					Современные многооконные приложения чаще всего строятся в стиле SDI (SDI -
+					Single Document Interface), который в противоположность MDI не накладывает
+					ограничений на положение и размеры вспомогательных форм, каждая из которых
+					при необходимости может иметь свое главное меню (в стиле SDI реализована,
+					например, среда Delphi). Для создания форм в этом случае используется стиль
+					fsNormal.
+				</p>
+				<p>
+					Замечу, что в рамках SDI-приложений могут использоваться рамочные MDI-формы
+					со своими дочерними окнами, так что термин SDI носит весьма условный
+					характер и применяется в основном для противопоставления давно
+					используемому термину MDI.
+				</p>
+				<p>
+					В репозитории Delphi хранится множество стандартных форм-заготовок,
+					предназначенных для решения конкретных задач (доступ к репозиторию
+					открывает опция меню File | New | other).
+				</p>
+				<p>
+					Помимо универсальной пустой формы Form (страница New peno-зитория)
+					репозитории содержит следующие специализированные формы:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td valign="top">
+								<p>
+									Название
+								</p>
+							</td>
+							<td width="17%" valign="top">
+								<p>
+									Страница
+								</p>
+							</td>
+							<td width="41%" valign="top">
+								<p>
+									Назначение
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td valign="top">
+								<p>
+									About box
+								</p>
+							</td>
+							<td width="17%" valign="top">
+								<p>
+									Forms
+								</p>
+							</td>
+							<td width="41%" valign="top">
+								<p>
+									Окно <em>0 </em><em>программе</em>
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td valign="top">
+								<p>
+									Dual list box
+								</p>
+							</td>
+							<td width="17%" valign="top">
+								<p>
+									Forms
+								</p>
+							</td>
+							<td width="41%" valign="top">
+								<p>
+									Диалоговое окно с двумя компонентами ListBox. Используется
+									для гибкого управления списками, в том числе для
+									перемещения элементов из одного списка в другой
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="42%" valign="top">
+								<p>
+									Quick Report Labels
+								</p>
+							</td>
+							<td valign="top">
+								<p>
+									Forms
+								</p>
+							</td>
+							<td width="41%" valign="top">
+								<p>
+									Используется в приложениях баз данных для печати этикеток
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td valign="top">
+								<p>
+									Quick Report List
+								</p>
+							</td>
+							<td width="17%" valign="top">
+								<p>
+									Forms
+								</p>
+							</td>
+							<td width="41%" valign="top">
+								<p>
+									Используется в приложениях баз данных для создания обычных
+									отчетов
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td valign="top">
+								<p>
+									Quick Report Master/Detail
+								</p>
+							</td>
+							<td width="17%" valign="top">
+								<p>
+									Forms
+								</p>
+							</td>
+							<td width="41%" valign="top">
+								<p>
+									Используется в приложениях баз данных для создания отчетов
+									типа главный/детальный
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td valign="top">
+								<p>
+									Tabbed Pages
+								</p>
+							</td>
+							<td width="17%" valign="top">
+								<p>
+									Forms
+								</p>
+							</td>
+							<td width="41%" valign="top">
+								<p>
+									Заготовка для многостраничного диалогового окна с
+									закладками, кнопками ok, cancel и
+								</p>
+								<p>
+									Help
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td valign="top">
+								<p>
+									Dialog with Help
+								</p>
+							</td>
+							<td width="17%" valign="top">
+								<p>
+									Dialogs
+								</p>
+							</td>
+							<td width="41%" valign="top">
+								<p>
+									Заготовка для диалогового окна с кнопками ok. Cancel, Help.
+									Имеются варианты с вертикальным асположением кнопок и с
+									горизонтальным расположением
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td valign="top">
+								<p>
+									Password Dialog
+								</p>
+							</td>
+							<td width="17%" valign="top">
+								<p>
+									Dialogs
+								</p>
+							</td>
+							<td width="41%" valign="top">
+								<p>
+									Диалоговое окно с редактором TEdit, кнопками ok и Cancel
+									для ввода паролей
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td valign="top">
+								<p>
+									Reconcile Error
+								</p>
+								<p>
+									Dialog
+								</p>
+							</td>
+							<td width="17%" valign="top">
+								<p>
+									Dialogs
+								</p>
+							</td>
+							<td width="41%" valign="top">
+								<p>
+									Используется в приложениях баз данных для пояснения
+									обнаруженной ошибки при изменении таблицы
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td valign="top">
+								<p>
+									Standard Dialog
+								</p>
+							</td>
+							<td width="17%" valign="top">
+								<p>
+									Dialogs
+								</p>
+							</td>
+							<td width="41%" valign="top">
+								<p>
+									Заготовка для диалогового окна с кнопками ok, cancel.
+									Имеются варианты с вертикальным расположение кнопок и с
+									горизонтальным расположением
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td valign="top">
+								<p>
+									Dialog Wizard
+								</p>
+							</td>
+							<td width="17%" valign="top">
+								<p>
+									Dialogs
+								</p>
+							</td>
+							<td width="41%" valign="top">
+								<p>
+									Мастер создания диалоговых окон
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td valign="top">
+								<p>
+									Decision Cube Sample
+								</p>
+							</td>
+							<td width="17%" valign="top">
+								<p>
+									Business
+								</p>
+							</td>
+							<td width="41%" valign="top">
+								<p>
+									Заготовка для использование компонентов страницы Decision
+									Cube
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td valign="top">
+								<p>
+									Database Form Wizard
+								</p>
+							</td>
+							<td width="17%" valign="top">
+								<p>
+									Business
+								</p>
+							</td>
+							<td width="41%" valign="top">
+								<p>
+									Мастер создания форм для доступа к базам данных
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="42%" valign="top">
+								<p>
+									Quick Report Wizard
+								</p>
+							</td>
+							<td valign="top">
+								<p>
+									Business
+								</p>
+							</td>
+							<td width="41%" valign="top">
+								<p>
+									Мастер создания отчетов для баз данных
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td valign="top">
+								<p>
+									TeeChart Wizard
+								</p>
+							</td>
+							<td width="17%" valign="top">
+								<p>
+									Business
+								</p>
+							</td>
+							<td width="41%" valign="top">
+								<p>
+									Мастер форм для доступа к компоненту chart
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<a name="2"></a>
+				<h2>
+					Компонент TFORM
+				</h2>
+				<p>
+					Свойства формы:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="44%" valign="top">
+								<p>
+									property Active: Boolean-property ActiveControl:
+									TWinControl;
+								</p>
+							</td>
+							<td width="56%" valign="top">
+								<p>
+									Содержит True, если окно активно (имеет фокус ввода)
+									Определяет дочерний элемент, содержащий фокус ввода
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="44%" valign="top">
+								<p>
+									property ActiveMDIChild: TForm;
+								</p>
+							</td>
+							<td width="56%" valign="top">
+								<p>
+									Определяет дочернее midi oкнo с фокусом ввода
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="44%" valign="top">
+								<p>
+									TBorderIcon = (biSystemMenu, biMinimize, biMaximize,
+									biHelp) ; TBorderIcons = set of TBorderIcon; property
+									Borderlcons: TBorderIcons;
+								</p>
+							</td>
+							<td width="56%" valign="top">
+								<p>
+									Определяет наличие кнопок в заголовке окна: biSystemMenu -
+									имеется кнопка вызова системного меню; biMinimize - имеется
+									кнопка минимизации; biMaximize - имеется кнопка
+									максимизации; biHelp - имеется кнопка вызова справочной
+									службы
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="44%" valign="top">
+								<p>
+									property Canvas: TCanvas;
+								</p>
+							</td>
+							<td width="56%" valign="top">
+								<p>
+									Канва для прорисовки фона окна. Это свойство могут
+									использовать не оконные дочерние элемента
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="44%" valign="top">
+								<p>
+									property ClientHeight: Integer;
+								</p>
+							</td>
+							<td width="56%" valign="top">
+								<p>
+									Высота клиентской части окна
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="44%" valign="top">
+								<p>
+									property ClientRect: TRect;
+								</p>
+							</td>
+							<td width="56%" valign="top">
+								<p>
+									Прямоугольник клиентской части окна
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="44%" valign="top">
+								<p>
+									property ClientWidth: Integer;
+								</p>
+							</td>
+							<td width="56%" valign="top">
+								<p>
+									Ширина клиентской части окна
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="44%" valign="top">
+								<p>
+									property HelpFile: Strings;
+								</p>
+							</td>
+							<td width="56%" valign="top">
+								<p>
+									Каждая форма может иметь индивидуальный Help- файл, имя
+									которого содержит это свойство. Если имя не указано,
+									используется Hdp-файп приложения
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="44%" valign="top">
+								<p>
+									property Icon: TIcon;
+								</p>
+							</td>
+							<td width="56%" valign="top">
+								<p>
+									Содержит пиктограмму окна. Для главной
+								</p>
+								<p>
+									формы это свойство определяет также пиктограмму программы
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="44%" valign="top">
+								<p>
+									property KeyPreview: Boolean;
+								</p>
+							</td>
+							<td width="56%" valign="top">
+								<p>
+									Если имеет значение True, форма получает
+								</p>
+								<p>
+									события от клавиатуры, перед тем как они поступят в элемент
+									с фокусом ввода
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="44%" valign="top">
+								<p>
+									property MDIChildCount: Integer;
+								</p>
+							</td>
+							<td width="56%" valign="top">
+								<p>
+									В рамочном MDI-окне указывает количество связанных с ним
+									дочерних midi-oкнo
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="44%" valign="top">
+								<p>
+									property MDIChildren[I: Integer]:
+								</p>
+								<p>
+									Tforms;
+								</p>
+							</td>
+							<td width="56%" valign="top">
+								<p>
+									В рамочном MDI-окне открывает доступ к I-му дочернему окну
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="44%" valign="top">
+								<p>
+									property Menu: TMainMenu;
+								</p>
+							</td>
+							<td width="56%" valign="top">
+								<p>
+									Содержит главное меню окна
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="44%" valign="top">
+								<p>
+									TModalResuit = Low(Integer)..High(Integer) ; property
+									ModalResult: TModalResuit;
+								</p>
+							</td>
+							<td width="56%" valign="top">
+								<p>
+									Для модального окна содержит результат диалога
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="44%" valign="top">
+								<p>
+									property PixelsPerInch: Integer;
+								</p>
+							</td>
+							<td width="56%" valign="top">
+								<p>
+									Определяет разрешающую способность окна в пикселях на один
+									линейный дюйм для этапа конструирования формы
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="44%" valign="top">
+								<p>
+									TPosition = (poDesigned, poDe-
+								</p>
+								<p>
+									fault, poDefaultPosOnly, poDe-
+								</p>
+								<p>
+									faultSizeOnly, poScreenCenter) ;
+								</p>
+								<p>
+									property Position: TPosition;
+								</p>
+							</td>
+							<td width="56%" valign="top">
+								<p>
+									Определяет положение и размеры окна в момент его появления
+									на экране: poDesigned - такие же, как на этапе
+									конструирования окна; poDefault - положение и размеры
+									определяет Windows; poDefaultposOnly - положение, как на
+									этапе конструирования, размеры определяет Windows; л
+									poDefaultSizeOnly - размеры, как на этапе конструирования,
+									положение определяет Windows; poScreenCenter - в центре
+									экрана с размерами, как на этапе конструирования
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="44%" valign="top">
+								<p>
+									TPrintScale = (poNone, poProportional, poPrintToFit);
+								</p>
+								<p>
+									property PrintScale: TPrintScale;
+								</p>
+							</td>
+							<td width="56%" valign="top">
+								<p>
+									Определяет масштабирование окна при его печати на принтере:
+									poNone - нет масштабирования; каждый пиксель окна
+									воспроизводится одной точкой на бумаге; рорrороrtional -
+									форма масштабируется так, чтобы ее образ на бумаге был
+									максимально похож на ее изображение на экране;
+									poPrintToFit- форма печатается с такими же пропорциями, как
+									на экране, но с размерами, за полняющими лист бумаги
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="44%" valign="top">
+								<p>
+									property Scaled: Boolean;
+								</p>
+							</td>
+							<td width="56%" valign="top">
+								<p>
+									Разрешает/запрещает масштабировать форму, если значение ее
+									свойства PixelPerinch отличается от текущего разрешения
+									экрана
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="44%" valign="top">
+								<p>
+									TileMode = (tbHorizonial, tbVertical);
+								</p>
+								<p>
+									property TileMode: TTileMode;
+								</p>
+							</td>
+							<td width="56%" valign="top">
+								<p>
+									Определяет стиль расположения дочерних окон MDI-приложения
+									при их упорядочении мозаикой
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="44%" valign="top">
+								<p>
+									property WindowMenu: TMenuItem;
+								</p>
+							</td>
+							<td width="56%" valign="top">
+								<p>
+									Определяет пункт главного меню рамочного MDI-окна, к
+									которому добавляются опции дочернего окна
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="44%" valign="top">
+								<p>
+									TWindowState = (wsNormal, wsMinimized, wsMaximized) ;
+								</p>
+							</td>
+							<td width="56%" valign="top">
+								<p>
+									Определяет состояние окна в момент его
+								</p>
+								<p>
+									появления на экране: wsNormal - бычное
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="44%" valign="top">
+								<p>
+									property WindowState: TWindow
+								</p>
+								<p>
+									State;
+								</p>
+							</td>
+							<td width="56%" valign="top">
+								<p>
+									Окно; wsMinimized - минимизировано до
+								</p>
+								<p>
+									пиктограммы; wsMaximized - распахнуто на
+								</p>
+								<p>
+									весь экран
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					<em>
+						Если в множестве свойства BоrderIcon убрать кнопки biMinimize:
+						biMaximize, а в свойство WindowState поместить значение wsMaximized,
+						форма займет все пространство экрана, включая нижнюю панель задач.
+					</em>
+				</p>
+				<p>
+					Методы формы:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									procedure Arrangelcons;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Упорядочивает пиктограммы закрытых дочерних окон
+									MDI-приложения
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									procedure Cascade;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Располагает дочерние MDI-окна каскадом
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									procedure Close;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Закрывает окно. Для главного окна завершает работу
+									программы
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									function CloseQuery: Boolean
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Возвращает True, если можно закрыть окно
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									procedure DefocusControl(Control: TWinControl;
+								</p>
+								<p>
+									Removing: Boolean);
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Отбирает фокус ввода у дочернего элемента Control. Если при
+									этом Removing=True, фокус ввода получает форма
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									procedure FocusControl(Control: TWinControl);
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Передает фокус ввода дочернему элементу Control
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									function GetFormImage: TBitmap;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Содержит текущее изображение окна формы
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									procedure Next;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Делает активным следующее mdi-okнo
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									procedure Previous;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Делает активным предыдущее mdi-okнo
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									procedure Tile;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Располагает дочерние MDI-окна мозаикой
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									procedure Print;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Печатает окно на принтере
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									procedure Release;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Ожидает окончания обработки всех событий формы и ее
+									дочерних элементов, после чего уничтожает окно и
+									освобождает всю связанную с ним память
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									procedure SendCancel-
+								</p>
+								<p>
+									Mode(Sender: TControl);
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Восстанавливает начальное состояние окна: освобождает мышь,
+									прекращает прокрутку и закрывает меню
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									procedure SetFocus;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Передает фокус ввода форме. Форма при этом должна быть
+									активной и видимой
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									procedure Show;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Показывает форму в немодальном режиме
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="43%" valign="top">
+								<p>
+									function ShowModal: Integer;
+								</p>
+							</td>
+							<td width="57%" valign="top">
+								<p>
+									Показывает форму в модальном режиме и возвращает результат
+									диалога
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					События формы:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="44%" valign="top">
+								<p>
+									property OnActivate: TNoti
+								</p>
+								<p>
+									fyEvent;
+								</p>
+							</td>
+							<td width="56%" valign="top">
+								<p>
+									Возникает в момент активизации окна (при полученииею фокуса
+									ввода)
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="44%" valign="top">
+								<p>
+									TCloseAction = (caNone, caHide,
+								</p>
+								<p>
+									caFree, caMinimize);
+								</p>
+								<p>
+									TCloseEvent = procedure(Sender:
+								</p>
+								<p>
+									TObject; var Action: TCloseAction) of object;
+								</p>
+								<p>
+									property OnClose: TCloseEvent;
+								</p>
+							</td>
+							<td width="56%" valign="top">
+								<p>
+									Возникает перед закрытием окна. Параметр Action уточняет
+									необходимые действия:
+								</p>
+								<p>
+									саNоnе - не закрывать окно; caHide - спрятать окно; caFree
+									- уничтожить окно;
+								</p>
+								<p>
+									caMimimize - минимизировать окно
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="44%" valign="top">
+								<p>
+									TCloseQueryEvent = proce
+								</p>
+								<p>
+									dure(Sender: TObject; var CanClose: Boolean) of object;
+								</p>
+								<p>
+									property OnCloseQuery: TCloseQueryEvent;
+								</p>
+							</td>
+							<td width="56%" valign="top">
+								<p>
+									Возникает перед закрытием окна. В параметре canclose
+									обработчик сообщает о возможности закрытия окна
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="44%" valign="top">
+								<p>
+									property OnCreate: TNotifyEvent;
+								</p>
+							</td>
+							<td width="56%" valign="top">
+								<p>
+									Возникает при создании окна, но до его появления на экране
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="44%" valign="top">
+								<p>
+									property OnDeactivate: TNoti
+								</p>
+								<p>
+									fyEvent;
+								</p>
+							</td>
+							<td width="56%" valign="top">
+								<p>
+									Возникает при передаче активности другому окну той же
+									программы
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="44%" valign="top">
+								<p>
+									property OnDestroy: TNotifyEvent;
+								</p>
+							</td>
+							<td width="56%" valign="top">
+								<p>
+									Возникает перед разрушением окна
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="44%" valign="top">
+								<p>
+									THelpEvent = function (Command:
+								</p>
+								<p>
+									Word; Data: Longint; var CallHelp: Boolean): Boolean of
+									object;
+								</p>
+								<p>
+									property OnHelp: THelpEvent;
+								</p>
+							</td>
+							<td width="56%" valign="top">
+								<p>
+									Возникает при обращении к справочной службе. В параметре
+									callHelp обработчик сообщает о возможности получения помощи
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="44%" valign="top">
+								<p>
+									property OnHide: TNotifyEvent;
+								</p>
+							</td>
+							<td width="56%" valign="top">
+								<p>
+									Возникает перед исчезновением окна
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="44%" valign="top">
+								<p>
+									property OnPaint: TNotifyEvent;
+								</p>
+							</td>
+							<td width="56%" valign="top">
+								<p>
+									Возникает при необходимости прорисовки окна
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="44%" valign="top">
+								<p>
+									property OnResize: TNotifyEvent;
+								</p>
+							</td>
+							<td width="56%" valign="top">
+								<p>
+									Возникает при изменении размеров окна
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="44%" valign="top">
+								<p>
+									property OnShow: TNotifyEvent;
+								</p>
+							</td>
+							<td width="56%" valign="top">
+								<p>
+									Возникает при появлении окна на экране
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					<strong> </strong>
+				</p>
+				<a name="3"></a>
+				<h2>
+					Создание и использование форм
+				</h2>
+				<p>
+					Для подключения новой формы к проекту достаточно обратиться к репозиторию и
+					выбрать нужную разновидность формы. Менеджер проекта автоматически
+					подключает новую форму к списку используемых форм и обеспечивает все
+					необходимые действия по ее инициации. Самая первая подключенная к проекту
+					форма (стандартное имя формы - Form1) становится главным окном программы.
+					Окно этой формы автоматически появляется на экране в момент старта
+					программы. Впрочем, программист может указать любую форму, окно которой
+					станет главным. Для этого нужно обратиться к опции
+				</p>
+				<p>
+					Project | Options<strong> </strong>И, раскрыв список Main form, выбрать
+					нужную
+				</p>
+				<p>
+					форму (рис. 19.1).
+				</p>
+				<p>
+					<img
+						width="424"
+						height="399"
+						src="tema2/image001.jpg"
+					/>
+				</p>
+				<p>
+					<strong><em>Pис 19.1.</em></strong>
+					<em> Окно управления проектом</em>
+				</p>
+				<p>
+					Каждое следующее окно становится видно только после обращения к его методу
+					show или showModal. Чтобы обратиться к этим методам, нужно сослаться на
+					объект-окно, который автоматически объявляется в интерфейсном разделе
+					связанного с окном модуля. Для этого, в свою очередь, главное окно должно
+					знать о существовании другого окна, что достигается ссылкой на модуль окна
+					в предложении uses. Если, например, в ходе выполнения одного из методов
+					главного окна программист захочет вызвать окно с именем fmForm, связанное с
+					модулем Formunit, он должен сослаться на этот модуль в предложении uses
+					главного окна:
+				</p>
+				<p>
+					<strong>implementation Uses</strong>
+					FormUnit;
+				</p>
+				<p>
+					после чего вызвать окно на экран:
+				</p>
+				<p>
+					fmForm.Show;
+				</p>
+				<p>
+					или
+				</p>
+				<p>
+					fmForm.ShowModai;
+				</p>
+				<p>
+					Delphi автоматизирует вставку ссылки на модуль в предложение uses. Для
+					этого на этапе конструирования нужно активизировать главное окно, щелкнув
+					по нему мышью, после чего обратиться к опции File | uses unit. В
+					появившемся диалоговом окне (рис. 19.2) нужно выбрать модуль и нажать ок.
+					Вставляется ссылка в предложение, стоящее за зарезервированным словом
+					Implementation, т. к. обычно главное окно в своей интерфейсной части не
+					ссылается на элементы интерфейсной части второго окна. Точно так же можно
+					при необходимости сослаться в модуле второго окна на модуль главного окна:
+					активизируйте второе окно и вновь вызовите опцию File | uses Unit. Замечу,
+					что, если программист забыл сослаться на модуль, который подключен к
+					проекту, Delphi при первой же трансляции программы сообщит об этом и
+					предложит вставить недостающую ссылку.
+				</p>
+				<p>
+					<img
+						width="164"
+						height="282"
+						src="tema2/image002.jpg"
+					/>
+				</p>
+				<p>
+					<strong><em>Рис. 19.2</em></strong>
+					<em>. Вставка ссылки на модуль</em>
+				</p>
+				<p>
+					При вызове метода show второе окно появляется на экране и работает
+					одновременно с первым, поэтому управление сразу передается оператору,
+					стоящему за обращением к этому методу. Такие окна называются немодальными,
+					они всегда открываются в одном методе, а закрываются в другом. В отличие от
+					этого обращение к show-Modal создает модальное окно, которое полностью
+					берет на себя дальнейшее управление программой, поэтому оператор за
+					обращением к showModal в вызывающей части программы получит управление
+					только после закрытия модального окна.
+				</p>
+				<p>
+					Модальные окна всегда требуют от пользователя принятия какого-либо решения.
+					С их помощью реализуется диалог с пользователем или создается
+					информационное окно, которое пользователь должен закрыть после ознакомления
+					с содержащейся в нем информацией. Если от пользователя требуется принятие
+					решения, в модальное окно вставляются зависимые или независимые
+					переключатели, кнопки и другие интерфейсные элементы, с помощью которых
+					пользователь сможет сообщить программе о принятом решении. В момент
+					закрытия диалога модальное окно должно поместить число, соответствующее
+					решению пользователя, в свое свойство ModalResuit. Некоторые стандартные
+					кнопки (ok, Yes, No, cancel и т. п.) автоматически выполняют эти действия:
+					помещают нужное число в ModalResuit и закрывают окно. В других случаях об
+					этом должен позаботиться программист. Вызывающая программа получает
+					значение ModaiResuit как значение функции showModal и может тут же его
+					проанализировать:
+				</p>
+				<p>
+					<strong>if</strong>
+					Form2.ShowModai = mrXXX<strong> then ....</strong>
+				</p>
+				<p>
+					Возможен и такой вариант:
+				</p>
+				<p>
+					Form2.ShowModal ;
+				</p>
+				<p>
+					<strong>if</strong>
+					Form2.ModaiResuit = mrXXX<strong> then .....</strong>
+				</p>
+				<p>
+					Для закрытия окна (модального или немодального) используются методы Hide
+					или close. Следует учесть, что метод Close всегда помещает в ModalResult
+					значение 2 (mrCancel), в то время как Hide неt меняет значения этого
+					свойства, поэтому, если программист хочет передать в вызывающую программу
+					нестандартный модальный результат, следует писать:
+				</p>
+				<p>
+					ModaiResuit := MyResult;
+				</p>
+				<p>
+					Hide; // <em>Но ни в коем случае Close!</em>
+				</p>
+				<p>
+					<img
+						width="36"
+						height="35"
+						src="tema2/image003.png"
+						align="left"
+						hspace="12"
+					/>
+					<em>Подключение нового окна к проекту приводит к тому, что менеджер;</em>
+				</p>
+				<p>
+					<em>
+						проекта размещает его имя в списке автоматически создаваемых окон на
+						рис. 19.1 -список Auto-Create forms). В этом случае про-Дкшмист может
+						не заботиться об инициации, соответствующего объекта окна. Однако если
+						в программе используется множество окон, автоматическое их создание в
+						момент старта программы может существенно затянуть во времени процесс
+						загрузки программы; В то же Демя немедленное создание всех окон вовсе
+						не обязательно, так как вряд ли вам понадобится одновременно показывать
+						их на экране в немодальном режиме. Профессиональные программисты
+						никогда не создают: все оконные объекты в момент старта программы, но
+						используют их по мере надобности. Дчя .этого в окне менеджера проекта
+						ссылки на эти формы переносятся в панель Available forms (рис. 19.1), а
+						обращение к окну .
+					</em>
+				</p>
+				<p>
+					Мне известен случай, когда этот нехитрый прием позволил сократить время
+					загрузки программы с З с лишним минут до 15 секунд.
+				</p>
+				<p>
+					<em>Кстати, полезно соответствующим образом настроить среду Delphi:</em>
+				</p>
+				<p>
+					<em>
+						вызовите Tools I Environment Options и на странице Designer уберите
+						флажок в преключателе Autоcreate forms &amp; data modules.
+					</em>
+				</p>
+				<a name="4"></a>
+				<h2>
+					Программы с многими формами
+				</h2>
+				<p>
+					Сложные программы подчас требуют создания множества форм, каждая из которых
+					решает ту или иную конкретную задачу. Например, при создании систем
+					управления базами данных типичным для проекта будет разработка от 50 до 100
+					и более форм. Процесс создания такого проекта обычно растягивается на
+					несколько месяцев, а над его реализацией трудятся одновременно несколько
+					программистов.<strong> </strong>Все это затрудняет ориентацию программиста,
+					его способность быстро вспомнить назначение той или иной формы. В этом
+					случае существенную помощь может оказать файл проекта. Как уже говорилось,
+					рядом с описанием включенного в проекта модуля содержится строка
+					комментария, в которой Delphi указывает имя файла формы. Этот комментарий
+					появляется в диалоговом окне после щелчка по инструментальной кнопке выбора
+					формы Я или выбора опции view | Forms главного меню. Если вы поместите в
+					этом комментарии произвольный текст, он также будет виден в окне и поможет
+					вам вспомнить назначение конкретной формы. На рис. 19.3 показана копия
+					экрана с окном проекта, содержащего несколько десятков форм, а на рис. 19.4
+					- соответствующее диалоговое окно выбора форм.
+				</p>
+				<p>
+					Если вы захотите воспользоваться моим советом, учтите, что имя файла должно
+					отделяться от вашего комментария только пробелами. Не пользуйтесь для
+					разделения клавишей табуляции, так как в этом случае Delphi откажется
+					включить комментарий в список форм проекта и вы просто не увидите его в
+					диалоговом окне. (В умалчи-ваемой настройке Delphi нажатие клавиши
+					табуляции имитируется вставкой нужного количества пробелов - опция Tools |
+					Environment, закладка Editor, флажок use tab character не отмечен; после
+					его отметки вместо пробелов вставляется символ табуляции #9, что и приводит
+					к отказу Delphi включать форму в список.)
+				</p>
+				<p>
+					<img
+						width="411"
+						height="484"
+						src="tema2/image004.jpg"
+					/>
+				</p>
+				<p>
+					<strong><em>Рис. 19.3</em></strong>
+					<em> Файл проекта с многими формами</em>
+				</p>
+				<p>
+					<img
+						width="304"
+						height="326"
+						src="tema2/image005.jpg"
+					/>
+				</p>
+				<p>
+					<strong><em>Рис. 19.4.</em></strong>
+					<em> Диалоговое окно выбора формы</em>
+				</p>
+			</article>	
+		</main>
+		<footer class="footer">
+			<div></div>
+		</footer>
+		<script src="../../scripts.js"></script>
+	</body>
+</html>

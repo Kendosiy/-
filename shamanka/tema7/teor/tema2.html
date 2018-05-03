@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link href="../../style.css" rel="stylesheet">
+	</head>
+	<body>
+		<header>
+			<div>
+				<a href="../../index.html"><h1>Учебный портал</h1></a>
+			</div>
+			<nav>
+					<ul class="main_menu">
+					<li>
+<<<<<<< HEAD
+						<a href="#"><p>Справочные материалы</p></a>
+=======
+						<a href="#"><p>Справочные материалы&#9207;</p></a>
+>>>>>>> f12edd62888d7f1067e2a4e99743dfe436d13998
+						<ul class="submenu" id="sub1">
+							<li><a href="../../delphi-lab-teor.html">Теория по Delphi</a></li>
+						</ul>
+					</li>
+					<li>
+<<<<<<< HEAD
+						<a href="#"><p>Лабораторные работы</p></a>
+=======
+						<a href="#"><p>Лабораторные работы&#9207;</p></a>
+>>>>>>> f12edd62888d7f1067e2a4e99743dfe436d13998
+						<ul class="submenu" id="sub2">
+							<li><a href="../../delphi-lab-prac.html">Задания по Delphi</a></li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<main>
+			<div class="prev"><a href="tema1.html"><img src="../../res/prev.png"></a></div>
+			<div class="next" style="opacity: 0.5;"><img src="../../res/next.png"></div>
+			<aside id="sidebar">
+				<h2>Быстрая навигация</h2>
+				<ol>
+					<li><a href="#1">TTabControl</a></li>
+					<li><a href="#2">TPageControl</a></li>
+					<li><a href="#3">TTabSet</a></li>
+					<li><a href="#4">TNotebook</a></li>
+				</ol>
+			</aside>
+			<article class="tema">
+				<a name="1"></a>
+				<h2>
+					TTabControl - набор закладок
+				</h2>
+				<p>
+					Компонент TTabControl представляет собой контейнер с закладками. Свойство
+					Tabs определяет названия и количество закладок. Событие onchange. возникает
+					при выборе новой закладки и позволяет управлять содержимым окна компонента.
+					Для примера на рис. 18.22 показано использование компонента для управления
+					календарем (с помощью TTabControl созданы закладки с названиями месяцев).
+				</p>
+				<p>
+					Свойства компонента:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="39%" valign="top">
+								<p>
+									property DisplayRect: TRect;
+								</p>
+							</td>
+							<td width="61%" valign="top">
+								<p>
+									Определяет рабочую зону компонента, предназначенную для
+									размещения других компонентов. Клиентская часть компонента
+									содержит зону закладок и рабочую зону
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="39%" valign="top">
+								<p>
+									property HotTrack: Boolean;
+								</p>
+							</td>
+							<td width="61%" valign="top">
+								<p>
+									Если содержит True, название закладки автоматически
+									выделяется цветом при перемещении над ней указателя мыши
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="39%" valign="top">
+								<p>
+									property Images: TCustomImageList;
+								</p>
+							</td>
+							<td width="61%" valign="top">
+								<p>
+									Определяет объект - хранилище изображений, которые будут
+									прорисовываться слева от текста
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="39%" valign="top">
+								<p>
+									property Multi-Line: Boolean;
+								</p>
+							</td>
+							<td width="61%" valign="top">
+								<p>
+									Разрешает расположение закладок в несколько рядов. Если
+									содержит False и закладки не умещаются в границах
+									компонента, в зону закладок автоматически вставляются
+									кнопки прокрутки
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="39%" valign="top">
+								<p>
+									property OwnerDraw: Boolean;
+								</p>
+							</td>
+							<td width="61%" valign="top">
+								<p>
+									Разрешает программную прорисовку закладок
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="39%" valign="top">
+								<p>
+									property ScrollOpposite:
+								</p>
+								<p>
+									Boolean;
+								</p>
+							</td>
+							<td width="61%" valign="top">
+								<p>
+									Разрешает/запрещает перемещение неактивных рядов закладок
+									на противоположную сторону компонента. Учитывается, если
+									количество рядов больше 2
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="39%" valign="top">
+								<p>
+									type TTabStyle = (tsTabs,
+								</p>
+								<p>
+									tsButtons, tsFlatButtons) ;
+								</p>
+								<p>
+									property Style: TTabStyle;
+								</p>
+							</td>
+							<td width="61%" valign="top">
+								<p>
+									Определяет стиль закладок: tsTabs - обычные
+								</p>
+								<p>
+									надписи; tsButtons -трехмерные кнопки; tsFlat Buttons -
+									плоские кнопки
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="39%" valign="top">
+								<p>
+									property TabHeight: Smallint;
+								</p>
+							</td>
+							<td width="61%" valign="top">
+								<p>
+									Определяет высоту каждой закладки в пикселях.
+								</p>
+								<p>
+									Если содержит 0, высота закладок выбирается автоматически в
+									зависимости от выбранного шрифта
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="39%" valign="top">
+								<p>
+									property Tablndex: Integer;
+								</p>
+							</td>
+							<td width="61%" valign="top">
+								<p>
+									Определяет индекс выбранной закладки или содержит -1, если
+									ни одна закладка не выбрана. Индексация начинается с 0
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="39%" valign="top">
+								<p>
+									TTabPosition = (tpTop,
+								</p>
+								<p>
+									tpBottom) ;
+								</p>
+								<p>
+									property TabPosition: TTab
+								</p>
+								<p>
+									Position;
+								</p>
+							</td>
+							<td width="61%" valign="top">
+								<p>
+									Определяет положение зоны закладок относительно рабочей
+									зоны компонента (tpTop - вверху, tpBottom - ВНИЗУ)
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="39%" valign="top">
+								<p>
+									property Tabs: TStrings;
+								</p>
+							</td>
+							<td width="61%" valign="top">
+								<p>
+									Определяет надписи на закладках и их количество.
+								</p>
+								<p>
+									Чтобы добавить или удалить закладку, нужно добавить ее
+									надпись к списку Tabs или удалить надпись из списка
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="39%" valign="top">
+								<p>
+									property TabWidth: Smallint;
+								</p>
+							</td>
+							<td width="61%" valign="top">
+								<p>
+									Определяет ширину каждой закладки в пикселях.
+								</p>
+								<p>
+									Если содержит 0, ширина каждой закладки выбирается
+									индивидуально в зависимости от длины ее надписи
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					<img
+						width="195"
+						height="202"
+						src="tema2/image001.jpg"
+					/>
+				</p>
+				<p>
+					<strong><em>Рис. 18.22.</em></strong>
+					<em> Управление календарем с помощью TTabControl</em>
+				</p>
+				<p>
+					Помимо события OnChange, возникающего после выбора новой закладки, для
+					компонента определено также событие OnChanging, которое возникает перед
+					сменой закладки:
+				</p>
+				<p>
+					<strong>type</strong>
+					TTabChangingEvent =
+				</p>
+				<p>
+					<strong>procedure</strong>
+					(Sender: TObject;
+				</p>
+				<p>
+					<strong>var</strong>
+					AllowChange: Boolean)<strong> of object; </strong>
+				</p>
+				<p>
+					<strong>property</strong>
+					OnChanging: TTabChangingEvent;
+				</p>
+				<p>
+					Обработчик события может запретить выбор закладки, вернув в параметре
+					Alliowchange значение False.
+				</p>
+				<a name="2"></a>
+				<h2>
+					
+					TPageControl - набор страниц с закладками
+				</h2>
+				<p>
+					Компонент TPageControl в отличие от TTabControl может содержать несколько
+					перекрывающих друг друга панелей класса TTabSheet. Каждая панель выбирается
+					связанной с ней закладкой и может содержать свой набор помещенных на нее
+					компонентов.
+				</p>
+				<p>
+					Чтобы на этапе конструирования добавить новую панель или выбрать ранее
+					вставленную, щелкните по компоненту правой кнопкой мыши и выберите New page
+					(новая панель), Next page (следующая панель) или previous page (предыдущая
+					панель). Смена панелей идет циклически, т. е. после показа последней
+					показывается первая и наоборот.
+				</p>
+				<p>
+					Помимо свойств HotTrack, MultiLine, ScrollOpposite, TabHeight, TabPosition
+					и TabWidth, которые аналогичны одноименным свойствам TTabcontrol, компонент
+					имеет следующие специфичные свойства:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="41%" valign="top">
+								<p>
+									property ActivePage: TTabSheet;
+								</p>
+							</td>
+							<td width="59%" valign="top">
+								<p>
+									Содержит ссылку на активную панель. Установка нового
+									значения ActivePage размещает соответствующую панель поверх
+									остальных. Для выбора новой панели следует использовать
+									методы SelectNextPage и FindNextPage
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="41%" valign="top">
+								<p>
+									property ActivePageIndex: Integer;
+								</p>
+							</td>
+							<td width="59%" valign="top">
+								<p>
+									Содержит индекс активной панели
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="41%" valign="top">
+								<p>
+									property PageCount: Integers;
+								</p>
+							</td>
+							<td width="59%" valign="top">
+								<p>
+									Содержит количество панелей (только для чтения)
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="41%" valign="top">
+								<p>
+									property Pages[Index: Integer] : TTabSheet;
+								</p>
+							</td>
+							<td width="59%" valign="top">
+								<p>
+									Возвращает ссылку на панель по ее индексу (только для
+									чтения)
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					Методы компонента:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="41%" valign="top">
+								<p>
+									function FindNextPage (CurPage: TTabSheet; GoForward,
+									CheckTabVisible: Boolean) : TTabSheet;
+								</p>
+							</td>
+							<td width="59%" valign="top">
+								<p>
+									Ищет следующую панель: CurPage - текущая панель; GoForward
+									- содержит True, если поиск идет от первой панели к
+									последней; CheckTabVisible -содержит True, если из поиска
+									исключаются панели с признаком Tabvisible=False. Возвращает
+									ссылку на найденную панель. Если CurPage не принадлежит
+									компоненту, возвращает ссылку на первую или последнюю
+									панель в зависимости от параметра GoForward
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="41%" valign="top">
+								<p>
+									procedure SelectNextPage (GoForward: Boolean);
+								</p>
+							</td>
+							<td width="59%" valign="top">
+								<p>
+									Делает активной следующую панель. Если GoForward=True,
+									активизируется следующая панели, в противном случае -
+									предыдущая
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<a name="3"></a>
+				<h2>
+					TTabSet - набор закладок
+				</h2>
+				<p>
+					Компонент TTabSet представляет собой набор закладок. В отличие от
+					компонента TTabControl он не может служить контейнером для размещения
+					других компонентов и поэтому обычно работает совместно с каким-либо
+					компонентом-контейнером (чаще всего - с TNotebook).
+				</p>
+				<p>
+					Свойства компонента:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									property AutoScroll: Boolean;
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Разрешает/запрещает появление стрелок прокрутки, если
+									закладки не умещаются целиком в границах компонента
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									property BackgroundColor: TColor;
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Определяет цвет фона закладок
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									property DitherBackground: Boolean;
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Если содержит True, уменьшается насыщенность цвета
+									BackgroundColor
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									property EndMargin: Integer;
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Отступ закладок от правой границы компонента
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									property Firstlndex: Integer;
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Содержит индекс самой левой закладки, целиком видимой на
+									экране
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									property SelectedColor: TColor;
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Содержит цвет выбранной закладки (обычно совпадает с цветом
+									связанного компонента-контейнера)
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									property StartMargin: Integer;
+								</p>
+								<p>
+									TTabStyle = (tsStandard, tsOwnerDraw);
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Отступ закладок от левой границы компонента
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									property Style: TTabStyle;
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Определяет способ прорисовки закладок: tsStandard -
+									автоматический; tsOwnerDraw - программный
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									property TabHeight: Integer,
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Определяет высоту закладок в пикселях
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									property Tablndex: Integer;
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Содержит индекс выбранной закладки (индексация начинается с
+									0)
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									property UnselectedColor: TColor;
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Определяет цвет невыбранных закладок
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									property VisibleTabs: Integer;
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Содержит количество закладок, целиком видимых в границах
+									компонента
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" valign="top">
+								<p align="center">
+									Методы компонента:
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									function ItemAtPos(Pos: TPoint): Integer;
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Возвращает индекс закладки, которой принадлежит точка Pos
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									function ItemRect(Item: Integer): TRect;
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Возвращает прямоугольник прорисовки закладки с индексом
+									item
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									procedure SelectNext(Direction: Boolean) ;
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Смещает выбор к соседней закладке: Direction - направление
+									смещения (True - вправо)
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" valign="top">
+								<p align="center">
+									Для компонента определены следующие события:
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									TTabChangEvent = procedure (Sender: TObject; NewTab:
+									Integer; var AllowChange: Boolean) of object;
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Возникает перед сменой выбранной закладки: NewTab - индекс
+									закладки, которая будет выбрана. В параметре AllowChange
+									обработчик должен разрешить или запретить выбор закладки
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									property OnChange: TTabChangingEvent; TDrawTabEvent =
+									procedure(Sender: TObject; TabCanvas: TCanvas; R: TRect;
+									Index: Integer; Selected: Boolean) of object;
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Возникает при необходимости прорисовать закладку с индексом
+									index, если она имеет стиль tsOwnerDraw: TabCanvas - канва
+									для прорисовки; Selected - содержит True для выбранной
+									закладки
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									property OnDrawTab: TDrawTabEvent; TMeasureTabEvent =
+									procedure(Sender: TObject; Index: Integer; var TabWidth:
+									Integer) of object-property OnMeasureTab: TMeasureTabEvent;
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Возникает перед прорисовкой закладки с индексом index, если
+									она имеет стиль tsOwnerDraw. В параметре TabWidth
+									обработчик должен вернуть ширину закладки
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					Как уже говорилось, часто компонент TTabSet связывается с компонентом
+					TNotebook для организации многостраничного блокнота с закладками. В этом
+					случае в обработчике событий OnChange или
+				</p>
+				<p>
+					OnClick компонента следует предусмотреть изменение текущей страницы
+					блокнота. Например:
+				</p>
+				<p>
+					<strong>procedure</strong>
+					TFormI.TabSetlChange(Sender: TObject;
+				</p>
+				<p>
+					NewTab: Integer;
+				</p>
+				<p>
+					<strong>var</strong>
+					AllowChange: Boolean);
+				</p>
+				<p>
+					<strong>begin</strong>
+				</p>
+				<p>
+				AllowChange := True; // <em>Разрешаем</em><em> </em><em>смену</em>	<em> </em><em>закладки</em><em> </em>
+				</p>
+				<p>
+				Notebookl.Pagelndex := NewTab // <em>Меняем</em><em> </em><em>страницу</em>	<em> </em><em>блокнота</em>
+				</p>
+				<p>
+					<strong>end;</strong>
+				</p>
+				<a name="4"></a>
+				<h2>
+					TNotebook - набор страниц
+				</h2>
+				<p>
+					Многостраничный контейнер TNotebook обычно работает в паре с TTabSet и
+					предназначен для размещения других компонентов на нескольких перекрывающих
+					друг друга страницах (панелях).
+				</p>
+				<p>
+					Свойства компонента:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									property ActivePage: Strings;
+								</p>
+							</td>
+							<td width="53%" valign="top">
+								<p>
+									Определяет имя верхней страницы блокнота
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									property Pagelndex: Integers;
+								</p>
+							</td>
+							<td width="53%" valign="top">
+								<p>
+									Содержит индекс верхней страницы блокнота
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									property Pages: TStrings;
+								</p>
+							</td>
+							<td width="53%" valign="top">
+								<p>
+									Содержит набор строк с именами страниц
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					Ключевым свойством является Pages. С помощью его методов Add, Delete, Find
+					и т. д. можно добавлять и удалять страницы, отыскивать Нужную и т. д. (см.
+					класс TStrings).
+				</p>
+				<p>
+					Для компонента определено событие
+				</p>
+				<p>
+					<strong>property</strong>
+					OnChange: TNotifyEvent;
+				</p>
+				<p>
+					которое возникает при смене страницы.
+				</p>
+				<p>
+					<a name="79"></a>
+					<strong>TTabbedNotebook</strong>
+					- набор страниц с закладками
+				</p>
+				<p>
+					Компонент TTabbedNotebook представляет собой объединение TTabSet и
+					TNotebook в готовый многостраничный блокнот с заклад-ками. В отличие от
+					TTabSet закладки в TabbedNotebook могут располагаться в несколько рядов.
+				</p>
+				<p>
+					Свойства ActivePage, Pagelndex И Pages компонента совпадают c одноименными
+					свойствами компонента TNotebook. Свойство property TabsPerRow: Integer;
+					определяет количество закладок в одном ряду.
+				</p>
+				<p>
+					С помощью метода function GetIndexForPage(const PageName: String): Integer;
+					программа может получить индекс страницы по ее имени PageName.
+				</p>
+			</article>	
+		</main>
+		<footer class="footer">
+			<div></div>
+		</footer>
+		<script src="../../scripts.js"></script>
+	</body>
+</html>

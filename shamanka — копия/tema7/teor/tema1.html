@@ -1,0 +1,3445 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link href="../../style.css" rel="stylesheet">
+	</head>
+	<body>
+		<header>
+			<div>
+				<a href="../../index.html"><h1>Учебный портал</h1></a>
+			</div>
+			<nav>
+					<ul class="main_menu">
+					<li>
+						<a href="#"><p>Справочные материалы</p></a>
+						<ul class="submenu" id="sub1">
+							<li><a href="../../delphi-lab-teor.html">Теория по Delphi</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#"><p>Лабораторные работы</p></a>
+						<ul class="submenu" id="sub2">
+							<li><a href="../../delphi-lab-prac.html">Задания по Delphi</a></li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<main>
+			<div class="prev" style="opacity: 0.5;"><img src="../../res/prev.png"></div>
+			<div class="next"><a href="tema2.html"><img src="../../res/next.png"></a></div>
+			<aside id="sidebar">
+				<h2>Быстрая навигация</h2>
+				<ol>
+					<li><a href="#1">TTreeView</a></li>
+					<li><a href="#2">TListView</a></li>
+					<li><a href="#3">TOutLine</a></li>
+					<li><a href="#4">TProgressBar</a></li>
+					<li><a href="#5">TGauge</a></li>
+					<li><a href="#6">TChart</a></li>
+				</ol>
+			</aside>
+			<article class="tema">
+				<a name="1"></a>
+				<h2>
+					TTreeView - дерево иерархии
+				</h2>
+				<p>
+					Компонент TTreeView служит для показа ветвящихся иерархических структур,
+					таких как дерево наследования объектов или файловая структура диска. Он
+					содержит связанные узлы, каждый из которых может содержать пиктограмму,
+					текст и произвольный объект (подобно спискам TStringList - см. п. 14.3.2).
+					Любой узел может иметь собственный список подузлов (рис. 18.27), которые
+					можно раскрывать или закрывать щелчком мыши на пиктограмме узла.
+				</p>
+				<p>
+					<img
+						width="286"
+						height="313"
+						src="tema1/image001.jpg"
+					/>
+				</p>
+				<p>
+					<strong><em>Рис. 18.27.</em></strong>
+					<em> Пример использования компонента TTreeView</em>
+				</p>
+				<p>
+					Для наполнения списка на этапе конструирования программы нужно щелкнуть по
+					компоненту правой кнопкой мыши и выбрать Items Editor., либо щелкнуть по
+					нему дважды, либо, наконец, щелкнуть по кнопке в свойстве Items - во всех
+					случаях на экране появится окно редактора компонента (рис. 18.28).
+				</p>
+				<p>
+					<img
+						width="432"
+						height="213"
+						src="tema1/image002.jpg"
+					/>
+				</p>
+				<p>
+					<strong><em>Рис. 18.28.</em></strong>
+					<em> Редактор компонента</em>
+				</p>
+				<p>
+					Чтобы начать наполнение, щелкните по кнопке New item и введите связанный с
+					узлом текст в поле Text. С помощью image index панели item properties
+					устанавливается индекс связанной с узлом пиктограммы, с помощью selected
+					index - индекс пиктограммы для выбранного узла. Для ввода подузла любого
+					уровня сначала нужно щелкнуть в окошке Items по узлу, который должен стать
+					родительским, и лишь затем - на кнопке New subitem.
+				</p>
+				<p>
+					Для ввода списка в режиме прогона программы широко используется центральное
+					свойство компонента - items типа TTreeNodes, открывающее индексированный
+					доступ ко всем узлам списка. Каждый узел описывается классом TTreeNode,
+					имеющим свои собственные методы и свойства. В частности, его свойство item
+					содержит список всех подузлов данного узла; с помощью многочисленных
+					методов свойства TTreeview. items к этому списку можно добавить новый
+					подузел, а с помощью метода TTreeNode. MoveTo - переместить узел в любую
+					позицию дерева иерархии.
+				</p>
+				<p>
+					Следующий обработчик события oncreate формы создал рис. 18.29:
+				</p>
+				<p>
+					<strong>procedure</strong>
+					TFormI.PormCreate(Sender: TObject) ;
+				</p>
+				<p>
+					<strong>var</strong>
+				</p>
+				<p>
+					k: Integer;
+				</p>
+				<p>
+					<strong>begin with</strong>
+					TreeViewl<strong> do </strong>
+				</p>
+				<p>
+					<strong>begin</strong>
+				</p>
+				<p>
+					// <em>Добавляем</em><em> </em><em>корневой</em><em> </em><em>узел</em>
+				</p>
+				<p>
+					Items.Add<strong>(NIL,'</strong>Корень') ;
+				</p>
+				<p>
+					<em>//Добавляем 10 вложенных узлов </em>
+				</p>
+				<p>
+					<strong>for</strong>
+					k := 1 <strong>to</strong> 10 <strong>do</strong>
+				</p>
+				<p>
+					Items.AddChild(Items[k-1],IntToStr(k))
+				</p>
+				<p>
+					<strong>end </strong>
+				</p>
+				<p>
+					<strong>end;</strong>
+				</p>
+				<p>
+					<img
+						width="286"
+						height="313"
+						src="tema1/image003.jpg"
+					/>
+				</p>
+				<p>
+					<strong><em>Puc. 18.29.</em></strong>
+					<em> Создание подузлов на этапе прогона программы</em>
+				</p>
+				<p>
+					Свойства компонента TTreeview:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="35%" valign="top">
+								<p>
+									lean;TBorderStyle =
+								</p>
+								<p>
+									bsNone..bsSingle;
+								</p>
+								<p>
+									property BorderStyle: TBorderStyle;
+								</p>
+							</td>
+							<td width="65%" valign="top">
+								<p>
+									Определяет стиль рамки, охватывающей компонент: bsNone -
+									нет рамки; bsSingle - рамка толщиной в 1 пиксель
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="35%" valign="top">
+								<p>
+									property ChangeDelay: Integer;
+								</p>
+							</td>
+							<td width="65%" valign="top">
+								<p>
+									Указывает задержку (в миллисекундах) перед раскрытием узла
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="35%" valign="top">
+								<p>
+									property DropTarget: TTreeNode;
+								</p>
+							</td>
+							<td width="65%" valign="top">
+								<p>
+									Указывает узел, который может служить приемником операций
+									Drag&amp;Drop
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="35%" valign="top">
+								<p>
+									property HideSelection:Boolean;
+								</p>
+							</td>
+							<td width="65%" valign="top">
+								<p>
+									Указывает, будет ли убираться выделение узлов, когда
+									компонент теряет фокус ввода
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="35%" valign="top">
+								<p>
+									property Images: TImageList;
+								</p>
+							</td>
+							<td width="65%" valign="top">
+								<p>
+									Содержит набор изображений, которые будут использоваться
+									при прорисовке узлов
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="35%" valign="top">
+								<p>
+									property Indent: Integer;
+								</p>
+							</td>
+							<td width="65%" valign="top">
+								<p>
+									Определяет отступ в пикселях от левого угла узла для всех
+									его подузлов
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="35%" valign="top">
+								<p>
+									property Items: TTreeNodes;
+								</p>
+							</td>
+							<td width="65%" valign="top">
+								<p>
+									Открывает доступ к любому узлу по его индексу.
+								</p>
+								<p>
+									Индексация начинается с нуля и соответствует просмотру всех
+									узлов полностью раскрытого списка
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="35%" valign="top">
+								<p>
+									property MultiSelect: Boo
+								</p>
+								<p>
+									lean;
+								</p>
+							</td>
+							<td width="65%" valign="top">
+								<p>
+									Разрешает/запрещает одновременный выбор несколь
+								</p>
+								<p>
+									ких узлов
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="35%" valign="top">
+								<p>
+									type TMultiSelectStyles =
+								</p>
+								<p>
+									(msControlSel-ect, msShift
+								</p>
+								<p>
+									Select, msVisibleOnly,
+								</p>
+								<p>
+									msSiblingOnly) ;
+								</p>
+								<p>
+									TMultiSelectStyle = set
+								</p>
+								<p>
+									of TMultiSelectStyles;
+								</p>
+								<p>
+									property MultiSelectStyle:
+								</p>
+								<p>
+									TMultiSelect-Style default
+								</p>
+								<p>
+									[msControlSelect];
+								</p>
+							</td>
+							<td width="65%" valign="top">
+								<p>
+									Определяет способ выбора нескольких узлов: msControiselect
+									- с нажатой и удерживаемой клавишей Ctrl для выбора узлов в
+									произвольном порядке;
+								</p>
+								<p>
+									msShiftSelect - с нажатой и удерживаемой клавишей Shift для
+									выбора сплошного диапазона;
+								</p>
+								<p>
+									msVisibleOnly - подобно msShiftSelect, но в диапазон не
+									включаются дочерние нераскрытые узлы; msSiblingOnly -
+									подобно msShiftSelect, но в диапазон включаются только узлы
+									одного уровня
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="35%" valign="top">
+								<p>
+									property Readonly: Boolean;
+								</p>
+							</td>
+							<td width="65%" valign="top">
+								<p>
+									Запрещает/разрешает редактирование надписей в узлах
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="35%" valign="top">
+								<p>
+									property RightClickSelect:
+								</p>
+								<p>
+									Boolean;
+								</p>
+							</td>
+							<td width="65%" valign="top">
+								<p>
+									Разрешает выбор узлов правой кнопкой мыши
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="35%" valign="top">
+								<p>
+									property Selected:
+								</p>
+								<p>
+									TTreeNode;
+								</p>
+							</td>
+							<td width="65%" valign="top">
+								<p>
+									Содержит список всех выбранных узлов или nil, если таких
+									нет
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="35%" valign="top">
+								<p>
+									property SelectionCount:
+								</p>
+								<p>
+									Cardinal;
+								</p>
+							</td>
+							<td width="65%" valign="top">
+								<p>
+									Содержит количество выбранных узлов
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="35%" valign="top">
+								<p>
+									property Selections[Index:
+								</p>
+								<p>
+									Integer]: TTreeNode;
+								</p>
+							</td>
+							<td width="65%" valign="top">
+								<p>
+									Обеспечивает индексированный доступ к выбранным узлам
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="35%" valign="top">
+								<p>
+									property RowSelect: Boolean;
+								</p>
+							</td>
+							<td width="65%" valign="top">
+								<p>
+									Разрешает цветовыделение линий выбранных узлов.
+									Игнорируется, если showLinesFalse
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="35%" valign="top">
+								<p>
+									property ShowButfcons: Boolean;
+								</p>
+							</td>
+							<td width="65%" valign="top">
+								<p>
+									Разрешает/запрещает показ стандартных кнопок раскрытия
+									подузлов. По умолчанию содержит True. Если False, узел
+									раскрывается двойным щелчком мыши
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="35%" valign="top">
+								<p>
+									property ShowLines: Boolean;
+								</p>
+							</td>
+							<td width="65%" valign="top">
+								<p>
+									Разрешает/запрещает показ линий
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="35%" valign="top">
+								<p>
+									property ShowRoot: Boolean;
+								</p>
+							</td>
+							<td width="65%" valign="top">
+								<p>
+									Разрешает/запрещает показ линий, идущих от самого верхнего
+									уровня иерархии. Игнорируется, если ShowLines=False
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="35%" valign="top">
+								<p>
+									TSortType = (stNone,
+								</p>
+								<p>
+									stData, stText, stBoth) ;
+								</p>
+								<p>
+									property SortType: TSort
+								</p>
+								<p>
+									Type;
+								</p>
+							</td>
+							<td width="65%" valign="top">
+								<p>
+									Указывает способ сортировки узлов: stNone - нет сортировки;
+									stData - сортировка по данным; stText - сортировка по
+									тексту надписей; stBoth - сортировка
+								</p>
+								<p>
+									по тексту и по данным. См. также событие OnCompare
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="35%" valign="top">
+								<p>
+									property Topitern: , TTreeNode;
+								</p>
+							</td>
+							<td width="65%" valign="top">
+								<p>
+									Определяет корневой узел
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" valign="top">
+								<p align="center">
+									Методы компонента:
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td valign="top">
+								<p>
+									function AlphaSort: Boolean; TTVCompare = function
+									(IParamI,
+								</p>
+								<p>
+									lParam2, IParamSort: Longint)
+								</p>
+								<p>
+									Integer stdcall;
+								</p>
+								<p>
+									tfunction CustomSort(SortProc: TTVCompare; Data: Longint):
+									Boolean;
+								</p>
+							</td>
+							<td width="65%" valign="top">
+								<p>
+									Сортирует узлы по тексту и возвращает
+								</p>
+								<p>
+									True, если сортировка прошла успешно Определяет
+									нестандартную сортировку с
+								</p>
+								<p>
+									: помощью функции SortProc. Эта функция
+								</p>
+								<p>
+									должна рассматривать IParamI и lParam2
+								</p>
+								<p>
+									: как объекты TTreeNode и возвращает отрицательное число,
+									если lParaml&lt;lParam2;
+								</p>
+								<p>
+									ноль, если IParamel^lParamS; положитель
+								</p>
+								<p>
+									ное число, если lParaml&gt;lParam2
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td valign="top">
+								<p>
+									procedure FullCollapse;
+								</p>
+							</td>
+							<td width="65%" valign="top">
+								<p>
+									Прячет все узлы, кроме узлов самого верх
+								</p>
+								<p>
+									него уровня иерархии
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td valign="top">
+								<p>
+									Procedure FullExpand;
+								</p>
+							</td>
+							<td width="65%" valign="top">
+								<p>
+									Показывает все узлы дерева иерархии
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="35%" valign="top">
+								<p>
+									function GetNodeAt(X, Y: Integer) : TTreeNode;
+								</p>
+							</td>
+							<td width="65%" valign="top">
+								<p>
+									Возвращает узел, располагающийся в указанной точке, или
+									nil, если точка не принадлежит ни одному узлу
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="35%" valign="top">
+								<p>
+									function IsEditing: Boolea'
+								</p>
+							</td>
+							<td width="65%" valign="top">
+								<p>
+									Возвращает True, если пользователь редактирует какой-либо
+									узел
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="35%" valign="top">
+								<p>
+									procedure LoadPromFile(const
+								</p>
+								<p>
+									FileName: String);
+								</p>
+							</td>
+							<td width="65%" valign="top">
+								<p>
+									Загружает дерево иерархии из файла
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="35%" valign="top">
+								<p>
+									procedure SaveToFile(const File
+								</p>
+								<p>
+									Name: String) ;
+								</p>
+							</td>
+							<td width="65%" valign="top">
+								<p>
+									Сохраняет в файле дерево иерархии
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="35%" valign="top">
+								<p>
+									procedure SaveToStream(Stream: TStream) ;
+								</p>
+							</td>
+							<td width="65%" valign="top">
+								<p>
+									Сохраняет в потоке данных дерево иерархии
+								</p>
+								<p>
+									события: С компонентом связаны такие
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="35%" valign="top">
+								<p>
+									TTVChangedEvent = procedure(Sender: TObject; Node:
+									TTreeNode) of object; property OnChange: TTVChangedE
+								</p>
+								<p>
+									vent;
+								</p>
+							</td>
+							<td width="65%" valign="top">
+								<p>
+									Возникает при смене состояния выбора у
+								</p>
+								<p>
+									одного из узлов. Node - узел, который
+								</p>
+								<p>
+									изменил состояние
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="35%" valign="top">
+								<p>
+									TTVChangingEvent = procedure(
+								</p>
+								<p>
+									Sender: TObject; Node: TTreeNode;
+								</p>
+								<p>
+									var AllowChange: Boolean) of objectproperty OnChangir.g:
+									TTVChang ingEvent;
+								</p>
+							</td>
+							<td width="65%" valign="top">
+								<p>
+									Возникает перед сменой состояния выбора
+								</p>
+								<p>
+									у одного из узлов. Node - узел, который
+								</p>
+								<p>
+									будет выбран. Обработчик в параметре
+								</p>
+								<p>
+									AllowChange разрешает или запрещает
+								</p>
+								<p>
+									выбор узла
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="35%" valign="top">
+								<p>
+									TTVExpandedEvent = procedure(
+								</p>
+								<p>
+									Sender: TObject; Node: TTreeNode) of object;property
+									OnCollapsed: TTVExpand edEvent;
+								</p>
+							</td>
+							<td width="65%" valign="top">
+								<p>
+									Возникает при закрытии списка подузлов узла Node
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="35%" valign="top">
+								<p>
+									TTVCollapsingEvent = procedure(
+								</p>
+								<p>
+									Sender: TObject; Node: TTreeNode; var AllowCollapse:
+									Boolean) of object; property OnCollapsing:
+									TTVCollapsingEvent;
+								</p>
+							</td>
+							<td width="65%" valign="top">
+								<p>
+									Возникает перед закрытием списка подуз
+								</p>
+								<p>
+									лов узла Node. В параметре AllowCollapse
+								</p>
+								<p>
+									обработчик разрешает или запрещает
+								</p>
+								<p>
+									закрыть список
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="35%" valign="top">
+								<p>
+									TTVCompareEvent = procedure(
+								</p>
+								<p>
+									Sender: TObject; Nodel, Node2:
+								</p>
+								<p>
+									TTreeNode; Data: Integer; var
+								</p>
+								<p>
+									Compare: Integer) of object; property OnCompare: TTVCom
+								</p>
+								<p>
+									pareEvent;
+								</p>
+							</td>
+							<td width="65%" valign="top">
+								<p>
+									Возникает при сравнении двух узлов
+								</p>
+								<p>
+									Nodel И Node2. В параметре Compare
+								</p>
+								<p>
+									обработчик должен вернуть отрицательное число, если
+									Nodel&lt;Node2; ноль, если Model=Node2; положительное
+									число, если
+								</p>
+								<p>
+									Nodel&gt;Node2
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="35%" valign="top">
+								<p>
+									TTVExpandedEvent = procedure(
+								</p>
+								<p>
+									Sender: TObject; Node: TTreeNode)
+								</p>
+								<p>
+									of object; property OnDeletion: TTVExpand
+								</p>
+								<p>
+									edEvent;
+								</p>
+							</td>
+							<td width="65%" valign="top">
+								<p>
+									Возникает при удалении узла Node из дерева иерархии
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="35%" valign="top">
+								<p>
+									TTVEditedEvent = procedure(Sender: TObject; Node:
+								</p>
+								<p>
+									TTreeNode; var S: String) of object;
+								</p>
+								<p>
+									property OnEdited: TTVEditedEvent;
+								</p>
+							</td>
+							<td width="65%" valign="top">
+								<p>
+									Возникает при завершении редактирования надписи в узле
+									Node: S - новая надпись
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="35%" valign="top">
+								<p>
+									TTVExpandedEvent = procedure(
+								</p>
+								<p>
+									Sender: TObject; Node: TreeNode)
+								</p>
+								<p>
+									of object; property OnExpanded: TTVExpand edEvent;
+								</p>
+							</td>
+							<td width="65%" valign="top">
+								<p>
+									Возникает при распахивании списка подузлов узла Node
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="35%" valign="top">
+								<p>
+									TTVExpandingEvent = procedure(
+								</p>
+								<p>
+									Sender: TObject; Node: TTreeNode;
+								</p>
+								<p>
+									var AllowExpansion: Boolean) of
+								</p>
+								<p>
+									object; property OnExpanding: TTVExpand ingEvent;
+								</p>
+							</td>
+							<td width="65%" valign="top">
+								<p>
+									Возникает перед открытием списка подузлов узла Node. В
+									параметре AllowExpansion обработчик разрешает или запрещает
+								</p>
+								<p>
+									открыть список
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="35%" valign="top">
+								<p>
+									TTVExpandedEvent = procedure(
+								</p>
+								<p>
+									Sender: TObject; Node: TreeNode)
+								</p>
+								<p>
+									of object;property OnGetImageIndex: TTVEx
+								</p>
+								<p>
+									pandedEvent;
+								</p>
+							</td>
+							<td width="65%" valign="top">
+								<p>
+									Возникает при необходимости получения
+								</p>
+								<p>
+									индекса изображения для прорисовки узла
+								</p>
+								<p>
+									Node в обычном состоянии
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="35%" valign="top">
+								<p>
+									TVExpandedEvent == procedure(
+								</p>
+								<p>
+									Sender: TObject; Node: TTreeNode)
+								</p>
+								<p>
+									of object;
+								</p>
+								<p>
+									property OnGetSelectedIndex:
+								</p>
+								<p>
+									TTVExpandedEvent;
+								</p>
+							</td>
+							<td width="65%" valign="top">
+								<p>
+									Возникает при необходимости получения
+								</p>
+								<p>
+									индекса изображения для прорисовки узла
+								</p>
+								<p>
+									Node в выбранном состоянии
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					При программном заполнении списка следует пользоваться свойством TTreeView.
+					Items класса TTreeNodes.
+				</p>
+				<p>
+					Свойства класса TTreeNodes:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									property Count: Integer; property Item[Index: Integer]:
+									TTreeNode; default-property Owner: TCustomTreeView;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Количество узлов, входящих в items Открывает
+									индексированный доступ к узлам Содержит ссылку на
+									родительский список
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" valign="top">
+								<p align="center">
+									Методы класса TTreeNodes:
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									function Add(Node: TTreeNode; const S: String): TTreeNode;
+								</p>
+								<p>
+									function AddChild(Node: TTreeNode; const S: String):
+									TTreeNode; function AddChildFirst(Node: TTreeNode; const S:
+									String): TTreeNode; function AddChildObject(Node:
+									TTreeNode; const S: String; Ptr: Pointer): TTreeNode;
+								</p>
+								<p>
+									function AddChildObjectFirst( Node: TTreeNode; const S:
+									String;
+								</p>
+								<p>
+									Ptr: Pointer): TTreeNode;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Добавляет узел в конец того списка, в котором
+									зарегистрирован узел Node. Если Node=NlL, добавляется
+									корневой узел для всего компонента Добавляет узел в конец
+									списка item дочерних узлов узла Node
+								</p>
+								<p>
+									Добавляет узел в начало списка Item дочерних узлов узла
+									Node
+								</p>
+								<p>
+									Добавляет узел и данные в конец списка item дочерних узлов
+									узла Node. На данные ссылается указатель Ptr. Связанная с
+									данными область памяти не освобождается автоматически при
+									уничтожении списка Добавляет узел и данные в начало списка
+									item дочерних узлов узла Node. На данные ссылается
+									указатель Ptr. Связанная с данными область памяти не
+									освобождается автоматически при уничтожении списка
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									function AddFirst(Node:
+								</p>
+								<p>
+									TTreeNode; const S: String):
+								</p>
+								<p>
+									TTreeNode;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Добавляет узел в начало того списка, в котором
+									зарегистрирован узел Node
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									function AddObject(Node:
+								</p>
+								<p>
+									TTreeNode; const S: String; Ptr:
+								</p>
+								<p>
+									Pointer): TTreeNode;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Добавляет узел и данные в конец того же списка, в котором
+									зарегистрирован узел
+								</p>
+								<p>
+									Node. На данные ссылается указатель Ptr. Связанная с
+									данными область памяти не освобождается автоматически при
+									уничтожении списка
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									function AddObjectFirst(Node:
+								</p>
+								<p>
+									TTreeNode; const S: String; Ptr:
+								</p>
+								<p>
+									Pointer): TTreeNode;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Добавляет узел и данные в начало того же списка, в котором
+									зарегистрирован узел Node. На данные ссылается указатель
+									Ptr. Связанная с данными область памяти не освобождается
+									автоматически при уничтожении списка
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									procedure Assign(Source: TPersistent) ;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Связывает список текущего компонента со списком компонента
+									Source
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									procedure BeginUpdate;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Блокирует обновление экрана до тех пор, пока не будет
+									выполнен метод EndUpdate.
+								</p>
+								<p>
+									Используется при одновременной вставке нескольких элементов
+									списка для предотвращения мерцания экрана
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									procedure Clear;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Очищает список всех узлов и подузлов компонента
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									procedure Delete(Node:
+								</p>
+								<p>
+									TTreeNode);
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Уничтожает узел Nods
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									procedure EndUpdate;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Отменяет действие метода BeginUdate
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									function GetFirstNode: TTreeNode;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Возвращает самый первый узел в списке Items[0]
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									function GetNode(Itemid:
+								</p>
+								<p>
+									HTreeItem): TTreeNode;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Возвращает узел по его идентификатору Itemid
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									function Insert(Node: TTreeNode;
+								</p>
+								<p>
+									const S: String): TTreeNode;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Вставляет узел непосредственно перед узлом Node
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									function InsertObj ect(Node:
+								</p>
+								<p>
+									TTreeNode; const S: String; Ptr:
+								</p>
+								<p>
+									Pointer): TTreeNode;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Вставляет узел и данные непосредственно
+								</p>
+								<p>
+									перед узлом Node
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					Как уже отмечалось, каждый узел класса TTreeNode имеет свой набор методов,
+					свойств и событий.
+				</p>
+				<p>
+					Свойства TTreeNode:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									property Absolutelndex: Integer;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Возвращает абсолютный индекс узла (с учетом всех подузлов)
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									property Count: Integer;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Содержит количество подузлов в списке Item
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									property Cut: Boolean;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Вырезает узел и помещает его в clipboard
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									property Data: Pointer;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Указывает на связанные с узлом данные
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									property Deleting: Boolean;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Содержит True, если для узла вызван De-story
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									property DropTarget: Boolean;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Содержит True, если узел может служить приемником операции
+									Drag&amp;Drop
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									property Expanded: Boolean;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Содержит True, если узел распахнут
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									property Focused: Boolean;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Содержит True, если узел сфокусирован
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									property HasChildren: Boolean;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Содержит True, если узел имеет дочерние узлы
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									property Imagelndex: TImageIndex;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Содержит индекс связанной с узлом пиктограммы
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									property Index: Longint;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Содержит индекс узла в списке дочерних узлов его
+									родительского узла
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									property IsVisible: Boolean;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Содержит True, если узел виден
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									property Item[Index: Integer]:
+								</p>
+								<p>
+									TTreeNode;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Открывает индексированный доступ ко всем дочерним узлам
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									property Itemid: HTreeItem;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Содержит уникальный Windows-дескриптор узла
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									property Level: Integer;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Содержит иерархический уровень узла
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									property Overlaylndex: Integers-
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Содержит индекс оверлейной пиктограммы.
+								</p>
+								<p>
+									Оверлейная пиктограмма вычерчивается
+								</p>
+								<p>
+									поверх основной, чтобы, например, указать, что узел стал
+									недоступен
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									property Owner: TTreeNodes;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Содержит ссылку на владельца данного узла
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									property Parent: TTreeNode;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Содержит ссылку на родительский узел
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									property Selected: Boolean;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Содержит True, если узел выделен цветом
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									property Selectedlndex: Integer;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Содержит номер пиктограммы для выделенного узла
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									property Text: Strings-
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Содержит текст узла
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									property TreeView: TCustomTree-
+								</p>
+								<p>
+									View;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Содержит ссылку на компонент TreeView, к которому
+									принадлежит узел
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					Методы класса TTreeNode:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									function AlphaSort: Boolean;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Сортирует узлы по алфавиту свойств Text и возвращает True в
+									случае успеха
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									procedure Assign(Source: TPersis tent); override;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Связывает список подузлов с источником Source
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									procedure Collapse(Recurse: Boolean) ;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Закрывает все узлы (Recource=True) или только
+									распахнутые(Resource=False)
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									type TTVCompare = function(
+								</p>
+								<p>
+									IParamI, lParam2, IParamSort:
+								</p>
+								<p>
+									Longint): Integer stdcall; func
+								</p>
+								<p>
+									tion CustomSort(SortProc: TTVCom
+								</p>
+								<p>
+									pare; Data: Longint): Boolean;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Реализует нестандартную сортировку узлов
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									procedure Delete;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Удаляет текущий узел
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									procedure DeleteChildren;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Удаляет дочерние узлы
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									function DisplayRect(TextOnly:
+								</p>
+								<p>
+									Boolean): TRect;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Возвращает очерчивающий прямоугольник узла. Если
+									TextOnly=True - возвращает
+								</p>
+								<p>
+									очерчивающий прямоугольник текста
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									function EditText: Boolean;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Переводит текст узла в режим редактирования
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									procedure EndEdit(Cancel Boo
+								</p>
+								<p>
+									lean) ;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Заканчивает редактирование текста и со храняет его
+									изменения, если <em>Cancel=False</em>
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									procedure Expand(Recurse: Boo
+								</p>
+								<p>
+									lean) ;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Открывает узел (и его подузлы, если Recurce=True)
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									function GetFirstChild: TTreeNode;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Возвращает ссылку на первый подузел или nil, если нет
+									подузлов
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									function GetLastChild: TTreeNode;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Возвращает ссылку на последний подузел или nil, если нет
+									подузлов
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									function GetNext: TTreeNode;
+								</p>
+								<p>
+									function GetNextChild(Value:
+								</p>
+								<p>
+									TTreeNode): TTreeNode;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Возвращает ссылку на очередной подузел dозвращает ссылку на
+									подузел после value
+								</p>
+								<p>
+									(или nil, если такового нет).
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									function GetNextSibling:
+								</p>
+								<p>
+									TTreeNode;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Возвращает ссылку на очередной узел в том же списке.
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									function GetNextVisible:
+								</p>
+								<p>
+									TTreeNode;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Возвращает ссылку на очередной видимый узел (для которого
+									раскрыты все дочерние
+								</p>
+								<p>
+									узлы)
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									function GetPrev: TTreeNode;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Возвращает ссылку на предыдущий узел в том же списке
+									независимо от его видимости
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									function GetPrevChild(Value:
+								</p>
+								<p>
+									TTreeNode): TTreeNode;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Возвращает ссылку на предыдущий по отношению к value
+									дочерний узел
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									function GetPrevSibling:
+								</p>
+								<p>
+									TTreeNode;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Возвращает ссылку на предыдущий узел того же уровня
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									function GetPrevVisible:
+								</p>
+								<p>
+									TTreeNode;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Возвращает ссылку на видимый узел того же уровня
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									function HasAsParent(Value:
+								</p>
+								<p>
+									TTreeNode): Boolean;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Возвращает True, если value - родительский узел
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									function IndexOf(Value:
+								</p>
+								<p>
+									TTreeNode): Integer;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Возвращает идентификатор узла value
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									procedure MakeVisible;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Если родительский узел видимый, делает видимыми все
+									дочерние узлы
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									type TNodeAttachMode = (naAdd,
+								</p>
+								<p>
+									naAddFirst, naAddChild,
+								</p>
+								<p>
+									naAddChildFirst, nalnsert) ;
+								</p>
+								<p>
+									procedure MoveTo(Destination:
+								</p>
+								<p>
+									TTreeNode; Mode: TNodeAttach
+								</p>
+								<p>
+									Mode) ;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Перемещает текущий узел в позицию относительно Destination
+									в зависимости от параметра Mode: naAdd - добавляет в конец
+									списка узла того же уровня; naAddFirst -
+								</p>
+								<p>
+									делает первым в списке узлов того же уровня; naAddchild -
+									добавляет в конец списка
+								</p>
+								<p>
+									дочерних узлов; naAddChildFirst -делает
+								</p>
+								<p>
+									первым в списке дочерних узлов; nalnsert
+								</p>
+								<p>
+									- вставляет непосредственно перед узлом
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<a name="2"></a>
+				<h2>
+					TListView - список просмотра
+				</h2>
+				<p>
+					Компонент TListView предназначен для показа и выбора нескольких элементов.
+					Каждый элемент может содержать пиктограмму и текст и подобно TTreeView
+					иметь список связанных с ним подэлементов. В отличие от TTreeview в
+					TListView допускается не более одного уровня вложенности подэлементов.
+					TListView показывает свои элементы в одной или нескольких колонках, с
+					крупными или мелкими пиктограммами, а также в виде “отчетов”,
+					представляющих элементы в двухмерной таблице: по вертикали изображаются
+					элементы верхнего уровня, по горизонтали - вложенные подэлементчатели,
+					упрощающие множественный выбор элементов.
+				</p>
+				<p>
+					Компонент может наполняться как на этапе конструирования, ты. Рядом с
+					элементами могут показываться независимые переклютак и на этапе прогона
+					программы
+				</p>
+				<p>
+					Выполните следующую несложную программу, которая продемонстрирует вам
+					основные особенности использования компонента.
+				</p>
+				<p>
+				Задача: Введите на свой ПК задачу(см.В низу) и отредактируйте.	<strong></strong>
+				</p>
+				<p>
+					<strong><em> </em></strong>
+					На Пустую форму положите компоненты TListView, TImageList, TComboBox И
+					TCheckBox.
+				</p>
+				<p>
+					· Компонент ImageList1 будет служить контейнером для нескольких пиктограмм,
+					отображаемых компонентом Listview. Для наполнения контейнера дважды
+					щелкните по нему мышью или нажмите на нем правую кнопку и выберите
+					продолжение ImageList Editor.
+				</p>
+				<p>
+					· В появившемся окне редактора imageList нажмите кнопку Add и выберите файл
+					images | ICONS | CHEMICAL[<em>См. замечание в начале главы.</em>].
+				</p>
+				<p>
+					· Повторите п. 3 для выбора нескольких пиктограмм. Обратите внимание, что
+					каждой помещаемой в imageListi пиктограмме редактор присваивает уникальный
+					индекс.
+				</p>
+				<p>
+					· Напишите такой обработчик события oncreate для формы:
+				</p>
+				<p>
+					<strong>procedure</strong>
+					TFormI.FormCreate(Sender: TObject);
+				</p>
+				<p>
+					<strong>var</strong>
+				</p>
+				<p>
+					k: Integer;
+				</p>
+				<p>
+					Listltem: TListItem;
+				</p>
+				<p>
+					begin
+				</p>
+				<p>
+					<strong>with</strong>
+					ListViewl do
+				</p>
+				<p>
+					<strong>begin</strong>
+				</p>
+				<p>
+					// <em>Указываем источник изображений:</em>
+				</p>
+				<p>
+					Smalllmages := ImageListI;
+				</p>
+				<p>
+					Largelmages := ImageListI;
+				</p>
+				<p>
+					// <em>Наполняем ListViewl пиктограммами и текстом:</em>
+				</p>
+				<p>
+					<strong>for</strong>
+					k := 0 to ImageListI.Count<strong> - 1 do </strong>
+				</p>
+				<p>
+					<strong>begin</strong>
+				</p>
+				<p>
+					// <em>Добавляем элемент и получаем ссылку на него </em>
+				</p>
+				<p>
+					Listltem := Items.Add;
+				</p>
+				<p>
+					// <em>Указываем индекс связанного изображения </em>
+				</p>
+				<p>
+					Listltem.Imagelndex := k;
+				</p>
+				<p>
+					// <em>Вставляем надпись ImageN </em>
+				</p>
+				<p>
+					Listltem.Caption := 'Image' + IntToStr(k);
+				</p>
+				<p>
+					<strong>end;</strong>
+				</p>
+				<p>
+				// <em>Наполняем</em><em> </em><em>список</em><em> ComboBoxl </em>	<em>доступными</em><em> </em><em>стилями</em><em> ListView </em>
+					ComboBoxl.Items.AddObject('vslcon', TObject(vslcon)) ;
+				</p>
+				<p>
+					ComboBoxl.Items.AddObject('vsLisf, TObject (vsList)) ;
+				</p>
+				<p>
+					ComboBoxl.Items.AddObject('vsReporf, TObject(vsReport)) ;
+				</p>
+				<p>
+					ComboBoxl.Items.AddObject('vsSmall Icon',
+				</p>
+				<p>
+					TObject(vsSmallIcon)) ;
+				</p>
+				<p>
+					// <em>Показываем первый стиль в Combo Box </em>
+				</p>
+				<p>
+					ComboBoxl.Itemlndex := 0;
+				</p>
+				<p>
+					// <em>Создаем колонку для режима vsReport:</em>
+				</p>
+				<p>
+					Columns.Add; Columns[0].Caption := 'Колонка T;
+				</p>
+				<p>
+					Columns [.0 ] .Width := 80;
+				</p>
+				<p>
+					<strong>end;</strong>
+				</p>
+				<p>
+					<strong>end; </strong>
+				</p>
+				<ul>
+					<li>
+						<strong>Напишите такие Обработчики событий</strong>
+						ComboBoxl.OnChange И A. CheckBoxl.Click:
+					</li>
+				</ul>
+				<p>
+					<strong>procedure</strong>
+					TFormI.ComboBoxIChange(Sender: TObject);
+				</p>
+				<p>
+					<strong>begin</strong>
+				</p>
+				<p>
+					<strong>with</strong>
+					ComboBoxl do
+				</p>
+				<p>
+					ListViewl.ViewStyle := TViewStyle(Iterns.Objects[Itemlndex]) ;
+				</p>
+				<p>
+					<strong>end;</strong>
+				</p>
+				<p>
+					<strong>procedure</strong>
+					TFormI.CheckBoxIClick(Sender: TObject);
+				</p>
+				<p>
+					<strong>begin</strong>
+				</p>
+				<p>
+					ListViewl.CheckBoxes := CheckBoxl.Checked
+				</p>
+				<p>
+					<strong>end;</strong>
+				</p>
+				<p>
+					Некоторые важные свойства компонента:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									property AllocBy: Integer;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Используется перед вставкой большого количества элементов:
+									для экономии времени и памяти перед добавлением установите
+									в это свойство количество добавляемых элементов
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									property Checkboxes: Boolean;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Разрешает/запрещает показ независимых переключателей рядом
+									с элементами
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									property Column[Index: Integer]:
+								</p>
+								<p>
+									TListColumn;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Открывает доступ к колонкам элементов по их индексам
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									property ColumnClick: Boolean;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Разрешает/запрещает генерацию события OnColumnClick
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									property Columns: TListCoiumns;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Содержит объект-колонки. Используйте это
+								</p>
+								<p>
+									свойство для удаления или добавления колонок, а также для
+									изменения их свойств.
+								</p>
+								<p>
+									Колонки видны только для режима View-Style = vsReport. И
+									наоборот: элементы в этом режиме видны, только если
+									определена хотя бы одна колонка
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									property GridLines: Boolean;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Разрешает/запрещает показ линий в режиме ViewStyle =
+									vsReport
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									property HideSelection: Boolean;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Запрещает/разрешает сохранять выбор
+								</p>
+								<p>
+									элементов при потере компонентом фокуса ввода
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									property HotTrack: Boolean;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Разрешает/запрещает подсветку элементов,
+								</p>
+								<p>
+									над которыми проходит указатель мыши
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									property IconOptions: TIconOptions;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									С помощью объекта класса TiconOptions задаются
+									дополнительные условия отображения (см.ниже)
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									property Items: TListItems;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Содержит список всех элементов
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									property Largelmages: TImageList;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Указывает источник крупных пиктограмм
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									property MultiSelect: Boolean;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Разрешает/запрещает множественный выбор
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									property Readonly: Boolean;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Запрещает/разрешает редактирование надписей
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									property ShowColumnHeaders: Boolean;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Разрешает/запрещает показ заголовков
+								</p>
+								<p>
+									колонок в режиме ViewStyle = vsReport
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									property Smalllmages: TImageList;
+								</p>
+								<p>
+									TSortType = (stNone, stData,
+								</p>
+								<p>
+									stText, stBoth) ;
+								</p>
+								<p>
+									property SortType: TSortType;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Указывает источник мелких пиктограмм
+								</p>
+								<p>
+									Указывает способ сортировки элементов
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									property Statelmages: TImageList;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Указывает источник пиктограмм для вы
+								</p>
+								<p>
+									бранных элементов
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									TViewStyle = (vslcon, vsSmallI-
+								</p>
+								<p>
+									con, vsList, vsReport) ; property ViewStyle: TViewStyle;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Определяет стиль показа элементов: vslcon - крупные
+									пиктограммы; vsSmalllcon - мелкие пиктограммы; vsList -
+									список
+								</p>
+								<p>
+									пиктограмм; vsReport - таблица пиктограмм
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					Обратите внимание: чтобы компонент работал в режиме vsReport, необходимо
+					создать хотя бы одну колонку. На этапе конструирования программы колонки
+					создаются и изменяются с помощью редактора колонок, окно которого
+					открывается после щелчка по компоненту правой кнопкой и выборе в локальном
+					меню опции
+				</p>
+				<p>
+					Column Editor. Пример программного создания колонки показан на стр.483.
+				</p>
+				<p>
+					Класс TIconOption определяет дополнительные условия отображения узлов и
+					имеет такие свойства:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="48%" valign="top">
+								<p>
+									type TIconArrangement = (iaTop, iaLeft) ; property
+									Arrangement: TIconArrangement; property AutoArrange:
+									Boolean;
+								</p>
+								<p>
+									property WrapText: Boolean;
+								</p>
+							</td>
+							<td width="52%" valign="top">
+								<p>
+									Показывает способ расположения изображения: iaTop - слева
+									направо (вверху колонки); iaLeft - сверху вниз слева от
+									ряда колонок Если содержит True, элементы будут
+									автоматически располагаться правильными рядами при
+									изменении их количества Если содержит True, текст элемента
+									может переноситься на границах слов на несколько строк,
+									если он выходит за границы пиктограммы
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					При программном заполнении компонента центральную роль играет свойство
+					Items класса TListItems.
+				</p>
+				<p>
+					Свойства класса TListItems:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									property Count: Integers-property Item[Index: Integer]:
+									TListItem;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Содержит количество элементов в item Открывает индексный
+									доступ к элементам списка
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" valign="top">
+								<p align="center">
+									Методы класса TListItems:
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									function Add: TListItem; procedure Assign(Source:
+									TPersis-tent); override; procedure BeginUpdate;
+								</p>
+								<p>
+									procedure Clear;
+								</p>
+								<p>
+									procedure Delete(Index: Integers-procedure EndUpdate;”
+									function IndexOf(Value: TListItem) : Integers-function
+									Insert(Index: Integer): TListItem; procedure
+									SetCount(Value: Integer) ;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Добавляет очередной элемент к списку Связывает список
+									компонента со списком компонента source Блокирует
+									обновление экрана до тех пор, пока не будет выполнен метод
+									EndUpdate. Используется при одновременной вставке
+									нескольких элементов списка для предотвращения мерцания
+									экрана Очищает список Удаляет элемент списка с индексом
+									index Отменяет действие BeginUpdate Возвращает индекс узла
+									value
+								</p>
+								<p>
+									Вставляет новый элемент после элемента, заданного индексом
+									index Устанавливает новое количество компонентов списка
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					Свойство item типа TListItem открывает индексированный доступ к
+					подэлементам конкретного элемента верхнего уровня (допускается только два
+					уровня иерархии элементов). За информацией по этому классу обратитесь к
+					справочной службе Delphi
+				</p>
+				<a name="3"></a>
+				<h2>
+					TOutLine - просмотр иерархических структур
+				</h2>
+				<p>
+					Подобно компоненту TTreeview страницы Win32 компонент Tout-Line(Win3.1)
+					предназначен для отображения иерархических структур данных (каталогов,
+					например). Элементом отображения является узел. Каждый узел имеет
+					родительский узел и дочерние узлы. Исключение составляет узел самого
+					верхнего уровня (он не имеет родительского узла) и узлы самых нижних
+					уровней (они не имеют дочерних узлов),
+				</p>
+				<p>
+					Для каждого узла компонент создает объект класса TOutLineNode. Его
+					свойства:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									property Data: Pointers;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Указатель на связанные с узлом данные
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									property Expanded: Boolean;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Если содержит True, с узлом связан раскрытый список
+									дочерних узлов
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									property FullPath: String;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Содержит полное имя узла со списком имен всех родительских
+									узлов, разделенных символом ItemSeparator объекта ToutLine
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									property Hasltems: Boolean;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Содержит True, если с узлом связаны дочерние узлы
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									property Index: Longint;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Содержит уникальный идентификатор узла в компоненте
+									ToutLine
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									property IsVisible: Boolean;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Содержит True, если узел виден в окне компонента ToutLine
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									property Level: Integer;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Определяет уровень иерархии узла. Узел самого верхнего
+									уровня имеет уровень 0, его дочерние узлы - уровень 1, их
+									дочерние узлы - уровень 2 и т. д.
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									property Text: String;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Определяет имя узла
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="46%" valign="top">
+								<p>
+									property Topltem: Longint;
+								</p>
+							</td>
+							<td width="54%" valign="top">
+								<p>
+									Содержит индекс своего родительского узла первого уровня
+									(родительский узел нулевого уровня не виден в компоненте
+									TOutLine)
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					Методы класса TOutLineNode:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="37%" valign="top">
+								<p>
+									procedure ChangeLevelBy(Value: TChangeRange) ;
+								</p>
+							</td>
+							<td width="63%" valign="top">
+								<p>
+									Перемещает уровень узла на один вверх (Value=-1) или
+									вниз(Value=+l) Закрывает список дочерних узлов
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="37%" valign="top">
+								<p>
+									procedure Collapse; procedure FullExpand;
+								</p>
+							</td>
+							<td width="63%" valign="top">
+								<p>
+									Раскрывает список всех своих дочерних узлов на всех уровнях
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="37%" valign="top">
+								<p>
+									function GetFirstChild: TTreeNode;
+								</p>
+							</td>
+							<td width="63%" valign="top">
+								<p>
+									Возвращает ссылку на первый дочерний узел или nil, если нет
+									дочерних узлов
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="37%" valign="top">
+								<p>
+									function GetPrevChild(Value: Longint): Longint;
+								</p>
+							</td>
+							<td width="63%" valign="top">
+								<p>
+									Возвращает индекс узла, предшествующего узлу Value
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="37%" valign="top">
+								<p>
+									TAttachMode = (oaAdd, oaAddChild, oalnsert) ; procedure
+									MoveTo(Destination: Longint; AttachMode: TAttachMode) ;
+								</p>
+							</td>
+							<td width="63%" valign="top">
+								<p>
+									Перемещает узел со всеми потомками в положение,
+									определяемое индексом Destination и режимом AttachMode:
+									oaAdd -добавить последним на том же уровне, что и
+									Destination; oaAddChild -добавить последним к потомкам узла
+									Destination; oalnsert - вставить на место Destination,
+									который смещается ниже него на том же уровне
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					Свойства компонента TOutLine:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="37%" valign="top">
+								<p>
+									property Canvas: TCanvas;
+								</p>
+							</td>
+							<td width="63%" valign="top">
+								<p>
+									Определяет канву для прорисовки компонента
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="37%" valign="top">
+								<p>
+									property itemHeight: Integer;
+								</p>
+							</td>
+							<td width="63%" valign="top">
+								<p>
+									Определяет высоту узлов
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="37%" valign="top">
+								<p>
+									property Items[Index: Longint]: TOutlineNode;
+								</p>
+							</td>
+							<td width="63%" valign="top">
+								<p>
+									Открывает доступ к узлу по его индексу
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="37%" valign="top">
+								<p>
+									property ItemCount: Longing;
+								</p>
+							</td>
+							<td width="63%" valign="top">
+								<p>
+									Содержит общее количество узлов
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="37%" valign="top">
+								<p>
+									property Lines: TStrings;
+								</p>
+							</td>
+							<td width="63%" valign="top">
+								<p>
+									Содержит список всех узлов
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="37%" valign="top">
+								<p>
+									TOutlineOption <em>=</em> (ooDrawTreeRoot,
+								</p>
+								<p>
+									ooDrawFocusRect, ooStretchBitmaps) ; TOutlineOptions = set
+									of Tout lineOption; property Options: TOutlineOptions;
+								</p>
+							</td>
+							<td width="63%" valign="top">
+								<p>
+									Определяет атрибуты прорисовки: ooDraw TreeRoot - соединять
+									линии узлов верхнего уровня; ooDrawFocusRect - выделять
+									пунктиром сфокусированный узел; oostretch Bitmaps -
+									масштабировать пиктограммы
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="37%" valign="top">
+								<p>
+									TOutlineStyle = (osText, osPlus-
+								</p>
+								<p>
+									MinusText, osPictureText, osPlus-
+								</p>
+								<p>
+									MinusPictureText, osTreeText,
+								</p>
+								<p>
+									osTreePictureText) ;
+								</p>
+								<p>
+									property OutlineStyle: TOutlineStyle;
+								</p>
+							</td>
+							<td width="63%" valign="top">
+								<p>
+									Задает стиль прорисовки: osText - выводится только
+									текст(без линий); osPlusMinusText - текст и пиктограммы
+									PicturePlus/PictureMinus;osPictureText -текст и пиктограммы
+									PictureOpen/PictureClosed/PictureLeaf;osPlusMinus-PictureText
+									- объединяет два предыдущих стиля; osTreeText - текст и
+									линии связи между узлами; osTreePictureText - объединяет
+									osTreeText и osPictureText
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="37%" valign="top">
+								<p>
+									property PictureClosed: TBitmap;
+								</p>
+							</td>
+							<td width="63%" valign="top">
+								<p>
+									Содержит пиктограмму узла с закрытым списком дочерних
+									узлов. По умолчанию -закрытая папка
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="37%" valign="top">
+								<p>
+									property PictureMinus: TBitmap;
+								</p>
+							</td>
+							<td width="63%" valign="top">
+								<p>
+									Содержит пиктограмму узла с закрытым списком дочерних
+									узлов. По умолчанию - пиктограмма со знаком минус
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="37%" valign="top">
+								<p>
+									property PictureOpen: TBitmap;
+								</p>
+							</td>
+							<td width="63%" valign="top">
+								<p>
+									Содержит пиктограмму узла с открытым списком дочерних
+									узлов. По умолчанию - открытая папка
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="37%" valign="top">
+								<p>
+									property PictureLeaf: TBitmap;
+								</p>
+							</td>
+							<td width="63%" valign="top">
+								<p>
+									Содержит пиктограмму узла, не имеющего дочерних узлов. По
+									умолчанию - пиктограмма документа
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="37%" valign="top">
+								<p>
+									property PicturePlus: TBitmap;
+								</p>
+							</td>
+							<td width="63%" valign="top">
+								<p>
+									Содержит пиктограмму узла с открытым списком дочерних
+									узлов. По умолчанию - пиктограмма со знаком плюс
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="37%" valign="top">
+								<p>
+									property Row: Longint;
+								</p>
+							</td>
+							<td width="63%" valign="top">
+								<p>
+									Содержит индекс сфокусированного узла
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="37%" valign="top">
+								<p>
+									property ScrollBars: TScroll-Style;
+								</p>
+							</td>
+							<td width="63%" valign="top">
+								<p>
+									Определяет наличие полос прокрутки: ssNone - нет полос;
+									ssHorizontal - горизонтальная полоса; ssVertical -
+									вертикальная полоса; ssBoth - и горизонтальная, и
+									вертикальная полоса
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					Методы компонента:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="33%" valign="top">
+								<p>
+									function Add(Index: Longint; const Text: String): Longint;
+								</p>
+							</td>
+							<td width="67%" valign="top">
+								<p>
+									Добавляет узел с именем Text как последний на тот же
+									уровень иерархии, что и узел index, и возвращает его индекс
+									(режим oaAdd)
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="33%" valign="top">
+								<p>
+									function AddChild(Index: Longint;
+								</p>
+								<p>
+									const Text: String): Longing;
+								</p>
+							</td>
+							<td width="67%" valign="top">
+								<p>
+									Добавляет дочерний узел с именем Text к узлу index и
+									возвращает его индекс (режим oaAddChild)
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="33%" valign="top">
+								<p>
+									function AddChildObject(Index:
+								</p>
+								<p>
+									Longint; const Text: String; const Data: Pointer): Longint;
+								</p>
+							</td>
+							<td width="67%" valign="top">
+								<p>
+									Добавляет дочерний узел с именем Text и данными Data к узлу
+									index и возвращает его индекс
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="33%" valign="top">
+								<p>
+									function AddObject(Index: Long
+								</p>
+								<p>
+									int; const Text: String; const Data: Pointer): Longint;
+								</p>
+							</td>
+							<td width="67%" valign="top">
+								<p>
+									Добавляет узел с именем Text и с данными Data как последний
+									на тот же уровень иерархии, что и узел index, и возвращает
+									его индекс
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="33%" valign="top">
+								<p>
+									procedure BeginUpdate ;
+								</p>
+							</td>
+							<td width="67%" valign="top">
+								<p>
+									Блокирует перерисовку компонента перед вставкой/удалением
+									нескольких узлов
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="33%" valign="top">
+								<p>
+									procedure Clear;
+								</p>
+							</td>
+							<td width="67%" valign="top">
+								<p>
+									Удаляет все узлы компонента
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="33%" valign="top">
+								<p>
+									procedure EndUpdate;
+								</p>
+							</td>
+							<td width="67%" valign="top">
+								<p>
+									Разрешает перерисовку компонента после вставки/удаления
+									нескольких узлов
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="33%" valign="top">
+								<p>
+									procedure FullCollapse;
+								</p>
+							</td>
+							<td width="67%" valign="top">
+								<p>
+									Закрывает списки всех дочерних узлов на всех уровнях
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="33%" valign="top">
+								<p>
+									procedure FullExpand;
+								</p>
+							</td>
+							<td width="67%" valign="top">
+								<p>
+									Раскрывает списки всех дочерних узлов на всех уровнях
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="33%" valign="top">
+								<p>
+									function GetDataItem(Value: Pointer): Longint;
+								</p>
+							</td>
+							<td width="67%" valign="top">
+								<p>
+									Возвращает индекс узла по его данным
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="33%" valign="top">
+								<p>
+									function GetItem(X, Y: Integer): Longint;
+								</p>
+							</td>
+							<td width="67%" valign="top">
+								<p>
+									Возвращает индекс узла по его координатам
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="33%" valign="top">
+								<p>
+									function GetTextItem(Value: String) : Longing;
+								</p>
+							</td>
+							<td width="67%" valign="top">
+								<p>
+									Возвращает индекс узла по его имени
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="33%" valign="top">
+								<p>
+									function Insert(Index: Longint;
+								</p>
+								<p>
+									const Text: String): Longing;
+								</p>
+							</td>
+							<td width="67%" valign="top">
+								<p>
+									Вставляет узел с именем Text на место узла Index(режим
+									oalnsert)
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="33%" valign="top">
+								<p>
+									function InsertObj ect(Index:
+								</p>
+								<p>
+									Longint; const Text: String;
+								</p>
+								<p>
+									const Data: Pointer): Longint;
+								</p>
+							</td>
+							<td width="67%" valign="top">
+								<p>
+									Вставляет узел с именем Text и данными Data на место узла
+									index (режим oalnsert)
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="33%" valign="top">
+								<p>
+									procedure LoadFromFile(const
+								</p>
+								<p>
+									FileName: String);
+								</p>
+							</td>
+							<td width="67%" valign="top">
+								<p>
+									Загружает содержимое компонента из файла с именем FileName
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="33%" valign="top">
+								<p>
+									procedure LoadFromFile(const FileName: Strings;
+								</p>
+							</td>
+							<td width="67%" valign="top">
+								<p>
+									Сохраняет содержимое компонента в файле
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="33%" valign="top">
+								<p>
+									procedure SetUpdateState(Value: Boolean);
+								</p>
+							</td>
+							<td width="67%" valign="top">
+								<p>
+									С именем FileName если Value=True, соответствует BeginUp
+									date, в противном случае - EndUpdate
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					Для компонента определены следующие события:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="37%" valign="top">
+								<p>
+									EOutlineChange = procedure
+								</p>
+								<p>
+									(Sender: TObject; Index: Longint)
+								</p>
+								<p>
+									of object;
+								</p>
+								<p>
+									property OnCollapse: EOut lineChange;Возникает при закрытии
+									списка дочерних узлов узда Index
+								</p>
+							</td>
+							<td width="63%">
+							</td>
+						</tr>
+						<tr>
+							<td width="37%" valign="top">
+								<p>
+									TOwnerDrawState = set of
+								</p>
+								<p>
+									(odSelected, odGrayed, odDisabled, odChecked, odFocused) ;
+								</p>
+								<p>
+									TListBox; Index: Integer; Rect:TRect; State:
+									TOwnerDrawState) of Object;
+								</p>
+								<p>
+									property OnDrawItem: TDrawItemEvent;
+								</p>
+							</td>
+							<td width="63%" valign="top">
+								<p>
+									Возникает при необходимости прорисовки узла index: Rect -
+									прямоугольник прори совки; State - состояние узла
+									(odSelected - узел выделен; odDisabled - узел запрещен для
+									выбора; odFocused - узел сфокусирован)
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="37%" valign="top">
+								<p>
+									EOutlineChange = procedure (Sender: TObject; Index:
+									Longint) of object; property OnExpand: EOut lineChange;
+								</p>
+							</td>
+							<td width="63%" valign="top">
+								<p>
+									Возникает при открытии списка дочерних узлов узла Index
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					<strong></strong>
+				</p>
+				<a name="4"></a>
+				<h2>
+					TProgressBar - индикатор прогресса
+				</h2>
+				<p>
+					Компонент TProgressBar предназначен для отображения хода выполнения
+					длительного по времени процесса. Он имеет много общего с TSrollBar и
+					TTrackBar, но в отличие от них у него нет ползунка, т. е. с его помощью
+					можно только отображать числовую величину, но пользователь не может ее
+					изменять.
+				</p>
+				<p>
+					Свойства компонента:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="41%" valign="top">
+								<p>
+									property Max: Integer; property Min: Integer-property
+									Position: Integers-
+								</p>
+							</td>
+							<td width="59%" valign="top">
+								<p>
+									Определяет максимальное значение диапазона изменения
+									свойства position Определяет минимальное значение диапазона
+									изменения свойства position Содержит текущее значение
+									отображаемой величины
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="41%" valign="top">
+								<p>
+									type TProgressBarOrienta-tion == (pbHorizontal, pbVertical)
+									; property Orientation: TProgressBarOrientation;
+								</p>
+							</td>
+							<td width="59%" valign="top">
+								<p>
+									Определяет ориентацию компонента: pbHorizontal - слева
+									направо; pbVertical - снизу вверх
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="41%" valign="top">
+								<p>
+									property Smooth: Boolean;
+								</p>
+							</td>
+							<td width="59%" valign="top">
+								<p>
+									Определяет, будет ли полоса сплошной (True) или
+									сегментированной
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="41%" valign="top">
+								<p>
+									property Step: Integer;
+								</p>
+							</td>
+							<td width="59%" valign="top">
+								<p>
+									Шаг наращивания свойства position методом
+								</p>
+								<p>
+									Stepit
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					Методы компонента:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="38%" valign="top">
+								<p>
+									procedure StepBy(Delta: Integer); procedure Stepit;
+								</p>
+							</td>
+							<td width="60%" valign="top">
+								<p>
+									Наращивает значение свойства Position на величину Delta
+									Наращивает значение свойства Position на величину,
+									определяемую свойством step
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<a name="5"></a>
+				<h2>
+					TGauge - индикатор величины
+				</h2>
+				<p>
+					Компонент TGauge предназначен для отображения некоторой изменяющейся
+					числовой величины. Он отличается от TProgress разнообразием форм (см. рис.
+					18.45).
+				</p>
+				<p>
+					<img
+						width="277"
+						height="250"
+						src="tema1/image004.jpg"
+					/>
+				</p>
+				<p>
+					<strong><em>Рис. 18.45.</em></strong>
+					<em> Различные формы компонента TGauge</em>
+				</p>
+				<p>
+					Свойства компонента:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									property BackColor: TColor; property ForeColor: TColor;
+									TGaugeKind = (gkText, gkHorizon-talBar, gkVerticalBar,
+									gkPie, gkNeedle) ;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Цвет незакрашенной части индикатора Цвет закрашенной части
+									индикатора Определяет форму индикатора (см. рис. 18.44)
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									property Kind: TGaugeKind; property MaxValue: Longint;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Определяет максимальное значение диапазона изменения
+									свойства progress
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									property MinValue: Longint;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Определяет минимальное значение диапазона изменения
+									свойства progress
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									property PercentDone: Longint;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Содержит текущее значение progress в процентах от его
+									диапазона изменения
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									property Progress: Longing;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Содержит текущее значение изменяющейся числовой величины
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="49%" valign="top">
+								<p>
+									property ShowText: Boolean;
+								</p>
+							</td>
+							<td width="51%" valign="top">
+								<p>
+									Если содержит True, в центре компонента выводится строковое
+									представление значения PercentDone
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					С помощью метода
+				</p>
+				<p>
+					<strong>procedure</strong>
+					AddProgress(Value: Longint);
+				</p>
+				<p>
+					к текущему значению progress можно добавить величину value.
+				</p>
+				<a name="6"></a>
+				<h2>
+					TChart - построитель графиков
+				</h2>
+				<p>
+					Этот компонент предназначен для графического представления числовых данных.
+					На рис. 18.18 показан пример использования компонента.
+				</p>
+				<p>
+					Компонент содержит большое количество специфичных свойств, событий и
+					методов - их детальное рассмотрение потребовало бы значительного объема
+					книги и здесь не приводится.
+				</p>
+				<p>
+					Общая схема его использования такова.
+				</p>
+				<p>
+					Вначале компонент помещается на форму. После щелчка по нему правой кнопкой
+					мыши вызывается его вспомогательное меню, которое в числе прочих содержит
+					опцию Edit chart - с помощью этой опции вызывается многолистное окно
+					редактора компонента. Закладка Series этого окна открывает доступ к так
+					называемым <em>сериям -</em> объектам класса TChartSeries, которые,
+					собственно, и будут отображать наборы чисел в графическом виде. Чтобы
+					отобразить данные, нужно создать как минимум одну серию - для этого следует
+					в окне редактора нажать кнопку Add и выбрать подходящий тип графика (рис.
+					18.19).
+				</p>
+				<p>
+					После закрытия редактора компонент будет содержать примерный вид графика.
+					Однако его реальный вид зависит от фактических данных, которые создаются в
+					работающей программе и добавляются к серии с помощью методов AddX, AddY или
+					AddXY объекта TChartSeries (получить доступ к нужной серии можно с помощью
+					индексированного свойстваSeriesList - первая созданная серия имеет индекс
+					0, вторая 1 и т. д.). Например, такой обработчик события OnActivate формы
+					создал график, показанный на рис. 18.18:
+				</p>
+				<p>
+					<strong>procedure</strong>
+					TForm1.FormActivate(Sender: TObject);
+				</p>
+				<p>
+					<strong>var</strong>
+				</p>
+				<p>
+					k: Integer;
+				</p>
+				<p>
+					<strong>begin</strong>
+				</p>
+				<p>
+					<strong>for</strong>
+					k := 0 to 20 do
+				</p>
+				<p>
+					Chartl.SeriesList[0].AddXY(k,sin(k*pi/10),' ',clRed) ;
+				</p>
+				<p>
+					<strong>end; </strong>
+				</p>
+				<p>
+					<img
+						width="377"
+						height="252"
+						src="tema1/image005.jpg"
+					/>
+				</p>
+				<p>
+					<strong><em>Рис. 18.18.</em></strong>
+					<em> Пример использования компонента Tchart</em>
+				</p>
+				<p>
+					<img
+						width="423"
+						height="356"
+						src="tema1/image006.jpg"
+					/>
+				</p>
+				<p>
+					<strong><em>Рис. 18.19.</em></strong>
+					<em> Возможные виды графиков компонента TChart</em>
+				</p>
+			</article>	
+		</main>
+		<footer class="footer">
+			<div></div>
+		</footer>
+		<script src="../../scripts.js"></script>
+	</body>
+</html>

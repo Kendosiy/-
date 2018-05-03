@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link href="../../style.css" rel="stylesheet">
+	</head>
+	<body>
+		<header>
+			<div>
+				<a href="../../index.html"><h1>Учебный портал</h1></a>
+			</div>
+			<nav>
+					<ul class="main_menu">
+					<li>
+						<a href="#"><p>Справочные материалы</p></a>
+						<ul class="submenu" id="sub1">
+							<li><a href="../../delphi-lab-teor.html">Теория по Delphi</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#"><p>Лабораторные работы</p></a>
+						<ul class="submenu" id="sub2">
+							<li><a href="../../delphi-lab-prac.html">Задания по Delphi</a></li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<main>
+			<div class="prev" style="opacity: 0.5;"><img src="../../res/prev.png"></div>
+			<div class="next"><a href="tema2.html"><img src="../../res/next.png"></a></div>
+			<aside id="sidebar">
+				<h2>Быстрая навигация</h2>
+				<ol>
+					<li><a href="#1">Свойства</a></li>
+				</ol>
+			</aside>
+			<article class="tema">
+				<h2>Рисование</h2>
+				<p>
+					Основным компонентом для собственно рисования является PaintBox. Он
+					представляет собой поверхность для рисования. Основным свойством этого
+					компонента является Canvas (канва, холст). Это свойство относится к классу
+					ТCanvas . Этим свойством обладают и другие компоненты, например форма,
+					Image, Мемо.
+				</p>
+				<p>
+				В Windows используется термин «контекст устройства»	<em> (device context)</em>, который означает поверхность, на которой можно
+					рисовать. К контекстам устройств относятся клиентская часть формы, экран,
+					память, принтер или другое устройство вывода. Для рисования на контексте
+					устройства используются API-функции Windows. Использование класса Canvas
+					упрощает этот процесс.
+				</p>
+				<p>
+					Каждая точка канвы имеет координаты x и y.
+				</p>
+				<p>
+					После того как на холст выведена графическая информация, она отображается в
+					рамках до тех пор, пока область холста не закроется другим окном или
+					приложение не будет свёрнуто, то есть пока область окна не окажется
+					закрытой. Если Вы хотите, чтобы рисунок на форме был всегда, то выод
+					графической информации нужно вставить в обработчик события OnPaint, которое
+					возникает при необходимости перерисовки окна.
+				</p>
+				<p>
+					Класс Canvas имеет ряд свойств и методов.
+				</p>
+				<p>
+					Свойства:
+				</p>
+				<p>
+					1. Brush – кисть, определяет заливку фигуры;
+				</p>
+				<p>
+					2. Font – шрифт, который используется для вывода текста;
+				</p>
+				<p>
+					3. Pen – перо, определяет контур фигур и вид линий;
+				</p>
+				<p>
+					4. Handle – определяет дескриптор контекста устройства (HDC) и используется
+					при обращении к API-функциям;
+				</p>
+				<p>
+					5. Pixels – массив всех точек канвы;
+				</p>
+				<p>
+					6. PenPos – координаты х и у той точки, где сейчас установлено перо;
+				</p>
+				<p>
+					7. ClipRect – часть канвы в которой разрешено рисование;
+				</p>
+				<p>
+					8. CopyMode – определяет режим взаимодействия инструмента с канвой
+					(нормальный, инверсный и т.д.).
+				</p>
+				<p>
+					Методы:
+				</p>
+				<p>
+					1. MoveTo – установка позиции пера в определенную точку;
+				</p>
+				<p>
+					2. LineTo – рисует линию из текущей точки до точки с заданными координатами
+					х,у.
+				</p>
+				<p>
+					3. Ellipse – рисует на канве эллипс с помощью текущего пера и делает
+					заливку текущей кистью;
+				</p>
+				<p>
+					4. Rectangle – рисует на канве прямоугольник с помощью текущего пера и
+					делает заливку текущей кистью;
+				</p>
+				<p>
+					5. Polygon – рисует по точкам многоугольник с заливкой текущей кистью;
+				</p>
+				<p>
+					6. Draw – копирует на канву рисунок из памяти;
+				</p>
+				<p>
+					7. FloodFill – закрашивает часть канвы текущей кистью;
+				</p>
+				<p>
+					8. TextOut – рисует на канве текст, используя текущий шрифт;
+				</p>
+				<p>
+					<strong>Перо </strong>
+					– это объект класса TPen и оно обладает следующими свойствами:
+				</p>
+				<p>
+					1. Color – цвет пера;
+				</p>
+				<p>
+					2. Width – толщина пера;
+				</p>
+				<p>
+					3. Style – стиль (сплошная линия, прерывистая линия, линия из точек и т.д.)
+				</p>
+				<p>
+					4. Mode – режим взаимодействия с канвой.
+				</p>
+				<a name="1"></a>
+				<p>
+					Возможные значения свойства пера Mode:
+				</p>
+				<table border="1" cellspacing="0" cellpadding="0">
+					<tbody>
+						<tr>
+							<td width="191" valign="top">
+								<p>
+									Режим
+								</p>
+							</td>
+							<td width="466" valign="top">
+								<p>
+									Цвет пикселя
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="191" valign="top">
+								<p>
+									pmBlack
+								</p>
+							</td>
+							<td width="466" valign="top">
+								<p>
+									Всегда чёрный
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="191" valign="top">
+								<p>
+									pmWhite
+								</p>
+							</td>
+							<td width="466" valign="top">
+								<p>
+									Всегда белый
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="191" valign="top">
+								<p>
+									pmNop
+								</p>
+							</td>
+							<td width="466" valign="top">
+								<p>
+									Неизменный
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="191" valign="top">
+								<p>
+									pmNot
+								</p>
+							</td>
+							<td width="466" valign="top">
+								<p>
+									Инверсный по отношению к цвету фона канвы
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="191" valign="top">
+								<p>
+									pmCopy
+								</p>
+							</td>
+							<td width="466" valign="top">
+								<p>
+									Цвет, указанный в свойстве Color пера Pen: это значение
+									принято по умолчанию
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="191" valign="top">
+								<p>
+									pmNotCopy
+								</p>
+							</td>
+							<td width="466" valign="top">
+								<p>
+									Инверсия цвета пера
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="191" valign="top">
+								<p>
+									pmMergePenNot
+								</p>
+							</td>
+							<td width="466" valign="top">
+								<p>
+									Комбинация цвета пера и инверсного цвета фона канвы
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="191" valign="top">
+								<p>
+									PmMaskPenNot
+								</p>
+							</td>
+							<td width="466" valign="top">
+								<p>
+									Комбинация цветов, общих для цвета пера и инверсного цвета
+									фона канвы
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="191" valign="top">
+								<p>
+									pmMergeNotPen
+								</p>
+							</td>
+							<td width="466" valign="top">
+								<p>
+									Комбинация цвета фона канвы и инверсного цвета пера
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="191" valign="top">
+								<p>
+									PmMaskNotPen
+								</p>
+							</td>
+							<td width="466" valign="top">
+								<p>
+									Комбинация цветов, общих для цвета фона канвы и инверсного
+									цвета пера
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="191" valign="top">
+								<p>
+									pmMerge
+								</p>
+							</td>
+							<td width="466" valign="top">
+								<p>
+									Комбинация цвета пера и цвета фона канвы
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="191" valign="top">
+								<p>
+									pmNotMerge
+								</p>
+							</td>
+							<td width="466" valign="top">
+								<p>
+									Инверсия режима pmMerge: комбинация цвета пера и цвета фона
+									канвы
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="191" valign="top">
+								<p>
+									pmMask
+								</p>
+							</td>
+							<td width="466" valign="top">
+								<p>
+									Комбинация цветов, общих для цвета пера и цвета фона канвы
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="191" valign="top">
+								<p>
+									pmNotMask
+								</p>
+							</td>
+							<td width="466" valign="top">
+								<p>
+									Инверсия режима pmMask: Комбинация цветов, общих для цвета
+									пера и цвета фона канвы
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="191" valign="top">
+								<p>
+									pmXor
+								</p>
+							</td>
+							<td width="466" valign="top">
+								<p>
+									Операция Xor: комбинация цветов или пера, или фона канвы но
+								</p>
+								<p>
+									не обоих
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="191" valign="top">
+								<p>
+									pmNotXor
+								</p>
+							</td>
+							<td width="466" valign="top">
+								<p>
+									Инверсия режима mpXor: комбинация цветов или пера, или фона
+									канвы но
+								</p>
+								<p>
+									не обоих
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					Возможные значения свойства Style класса TPen:
+				</p>
+				<table border="1" cellspacing="0" cellpadding="0">
+					<tbody>
+						<tr>
+							<td  >
+								<p>
+									Свойство
+								</p>
+							</td>
+							<td  >
+								<p>
+									Изображение
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td  >
+								<p>
+									psSolid
+								</p>
+							</td>
+							<td  >
+								<p>
+									Сплошная линия
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td  >
+								<p>
+									psDash
+								</p>
+							</td>
+							<td  >
+								<p>
+									Штриховая линия
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td  >
+								<p>
+									psDot
+								</p>
+							</td>
+							<td  >
+								<p>
+									Пунктирная линия
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td  >
+								<p>
+									PsDashDot
+								</p>
+							</td>
+							<td  >
+								<p>
+									Штрих-пунктирная линия
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td  >
+								<p>
+									PsDashDotDot
+								</p>
+							</td>
+							<td  >
+								<p>
+									Линия, чередующая штрих и два пунктира
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td  >
+								<p>
+									PsClear
+								</p>
+							</td>
+							<td  >
+								<p>
+									Отсутствие линии
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td  >
+								<p>
+									psInsideFrame
+								</p>
+							</td>
+							<td  >
+								<p>
+									Сплошная линия, но при Width&gt;1 допускающая цвета,
+									отличные от палитры Windows.
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					Пример: нарисовать на форме штриховую линию красного цвета.
+				</p>
+				<p>
+					Procedure Tform1.Button1Click(Sender: Tobject);
+				</p>
+				<p>
+					begin
+				</p>
+				<p>
+					PaintBox1.Canvas.Pen.Color:=clRed;
+				</p>
+				<p>
+					PaintBox1.Canvas.Pen.Style:= psDash;
+				</p>
+				<p>
+					PaintBox1.Canvas.MoveTo(20, 20);
+				</p>
+				<p>
+					PaintBox1.Canvas.LineTo(120, 20);
+				</p>
+				<p>
+					End;
+				</p>
+				<p>
+					Все линии, кроме сплошной, имеют толщину 1.
+				</p>
+				<p>
+					<strong>Кисть</strong>
+					– это объект класса Tbrush. Свойства:
+				</p>
+				<p>
+					1. Color – цвет;
+				</p>
+				<p>
+					2. Style – стиль заливки (сплошной, штриховка, сетка и т.д.)
+				</p>
+				<p>
+					3. Bitmap – картинка, используемая в качестве заливки;
+				</p>
+				<p>
+					Пример: нарисовать на форме прямоугольник синего цвета.
+				</p>
+				<p>
+					procedure TForm1.FormPaint(Sender: TObject);
+				</p>
+				<p>
+					begin
+				</p>
+				<p>
+					Canvas.Brush.Color:=clBlue;
+				</p>
+				<p>
+					Canvas.Brush.Style:=bsSolid;
+				</p>
+				<p>
+					Canvas.Rectangle(20,20,80,80);
+				</p>
+				<p>
+					end;
+				</p>
+				<p>
+					Если в качестве заливки используется картинка, то сначала нужно создать
+					такой объект, затем загрузить в него картинку из файла, потом уничтожить
+					сам объект.
+				</p>
+				<p>
+					Пример: нарисовать на экране круг с заливкой в виде картинки.
+				</p>
+				<p>
+					procedure TForm1.FormPaint(Sender: TObject);
+				</p>
+				<p>
+					begin
+				</p>
+				<p>
+					Canvas.Brush.Bitmap := TBitmap.Create;
+				</p>
+				<p>
+					Canvas.Brush.BitMap.LoadFromFile('chemical.bmp');
+				</p>
+				<p>
+					Canvas.Ellipse(20,20,200,200);
+				</p>
+				<p>
+					Canvas.Brush.Bitmap.Free;
+				</p>
+				<p>
+					end;
+				</p>
+			</article>	
+		</main>
+		<footer class="footer">
+			<div></div>
+		</footer>
+		<script src="../../scripts.js"></script>
+	</body>
+</html>

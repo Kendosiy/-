@@ -1,0 +1,1540 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link href="../../style.css" rel="stylesheet">
+	</head>
+	<body>
+		<header>
+			<div>
+				<a href="../../index.html"><h1>Учебный портал</h1></a>
+			</div>
+			<nav>
+					<ul class="main_menu">
+					<li>
+						<a href="#"><p>Справочные материалы&#9207;</p></a>
+						<ul class="submenu" id="sub1">
+							<li><a href="../../delphi-lab-teor.html">Теория по Delphi</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#"><p>Лабораторные работы&#9207;</p></a>
+						<ul class="submenu" id="sub2">
+							<li><a href="../../delphi-lab-prac.html">Задания по Delphi</a></li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<main>
+			<div class="prev" style="opacity: 0.5;"><img src="../../res/prev.png"></div>
+			<div class="next"><a href="tema2.html"><img src="../../res/next.png"></a></div>
+			<aside id="sidebar">
+				<h2>Быстрая навигация</h2>
+				<ol>
+					<li><a href="#1">Свойства компонента</a></li>
+					<li><a href="#2">Пример</a></li>
+				</ol>
+			</aside>
+			<article class="tema">
+				<h2>
+				Компонент TStringGrid - таблица строк
+				</h2>
+				<p>
+					Компонент TStringGrid предназначен для создания таблиц, в ячейках которых
+					располагаются произвольные текстовые строки. Он является прямым потомком
+					TDrawGrid, от которого им унаследовано большинство свойств и методов.
+				</p>
+				<p>
+					Таблица делится на две части - фиксированную и рабочую. Фиксированная
+					служит для показа заголовков столбцов/рядов и для ручного управления их
+					размерами. Обычно фиксированная часть занимает крайний левый столбец и
+					самый верхний ряд таблицы, однако с помощью свойств FixedCols и FixedRows
+					можно задать другое количество фиксированных столбцов и рядов (если эти
+					свойства имеют 0, таблица не содержит фиксированной зоны). Рабочая часть -
+					это остальная часть таблицы. Она может содержать произвольное количество
+					столбцов и рядов, более того, эти величины могут изменяться программно.
+					Рабочая часть может не умещаться целиком в пределах окна компонента, в этом
+					случае в него автоматически помещаются нужные полосы прокрутки. При
+					прокрутке рабочей области фиксированная область не исчезает, но меняется ее
+					содержимое - заголовки строк и рядов.
+				</p>
+				<p>
+					Центральным свойством компонента является Cells - двухмерный массив ячеек,
+					каждая из которых может содержать произвольный текст. Конкретная ячейка
+					определяется парой чисел - номером столбца и номером ряда, на пересечении
+					которых она находится (нумерация начинается с нуля). Свойство cells имеет
+					тип String, поэтому программа может легко прочитать или записать содержимое
+					нужной ячейки. Например:
+				</p>
+				<p>
+					Cells [1,1] := 'Левая верхняя ячейка рабочей зоны';
+				</p>
+				<p>
+					Количество ячеек по каждому измерению хранит пара свойств ColCount
+					(количество столбцов) и RowCount (количество рядов). Значения-этих свойств
+					и, следовательно, размеры таблицы могут меняться как на этапе разработки
+					программы, так и в ходе ее работы, однако их значения должны быть как
+					минимум на единицу больше соответственно значений в свойства FixedCois и
+					FixedRows, определяющих размеры фиксированной зоны.
+				</p>
+				<p>
+					Содержимое ячеек можно редактировать. Для этого в таблице используется
+					специализированный потомок редактора TMaskEdit.
+				</p>
+				<p>
+					<a name="1"></a>
+					Свойства компонента:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									property BorderStyle: TBorderStyle;
+								</p>
+							</td>
+							<td width="53%" valign="top">
+								<p>
+									Определяет рамку компонента: bsNone нет рамки; bsSingle -
+									рамка толщиной 1 пиксель
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									property Cells[ACol, ARow: Integer] :String;
+								</p>
+							</td>
+							<td width="53%" valign="top">
+								<p>
+									Определяет содержимое ячейки с табличными координатами
+									(ACol, ARow)
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									property Col: Longint;
+								</p>
+							</td>
+							<td width="53%" valign="top">
+								<p>
+									Содержит номер столбца сфокусированной ячейки
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									property ColCount: Longing-
+								</p>
+							</td>
+							<td width="53%" valign="top">
+								<p>
+									Содержит количество столбцов таблицы
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									property Cols[Index: Integer]:
+								</p>
+								<p>
+									TStrings;
+								</p>
+							</td>
+							<td width="53%" valign="top">
+								<p>
+									Содержит все строки колонки с индексом Index
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									property ColWidths[Index: Longint] : Integer;
+								</p>
+							</td>
+							<td width="53%" valign="top">
+								<p>
+									Содержит ширину столбца с индексом Index
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									property DefaultColWidth: Integers;
+								</p>
+							</td>
+							<td width="53%" valign="top">
+								<p>
+									Содержит умалчиваемое значение ширины столбца
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									property DefaultDrawing: Boolean;
+								</p>
+							</td>
+							<td width="53%" valign="top">
+								<p>
+									Разрешает/запрещает автоматическую прорисовку служебных
+									элементов таблицы - фиксированной зоны, фона и
+									прямоугольника сфокусированной ячейки и
+								</p>
+								<p>
+									т. п.
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									property DefaultRowHeight: Integers;
+								</p>
+							</td>
+							<td width="53%" valign="top">
+								<p>
+									Содержит умалчиваемую высоту рядов
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									property EditorMode: Boolean;
+								</p>
+							</td>
+							<td width="53%" valign="top">
+								<p>
+									Разрешает/запрещает редактирование ячеек. игнорируется,
+									если свойство Options включает goAlwayseShowEditor или не
+									включает goEditing
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									property FixedColor: TColor;
+								</p>
+							</td>
+							<td width="53%" valign="top">
+								<p>
+									Определяет цвет фиксированной зоны
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									property FixedCois: Integers;
+								</p>
+							</td>
+							<td width="53%" valign="top">
+								<p>
+									Определяет количество столбцов фиксированной зоны
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									property FixedRows: Integers;
+								</p>
+							</td>
+							<td width="53%" valign="top">
+								<p>
+									Определяет количество рядов фиксированной зоны
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									property GridHeight: Integers;
+								</p>
+							</td>
+							<td width="53%" valign="top">
+								<p>
+									Содержит высоту таблицы
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									property GridLineWidth: Integers;
+								</p>
+							</td>
+							<td width="53%" valign="top">
+								<p>
+									Определяет толщину линий, расчерчивающих таблицу
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									property GridWidth: Integers;
+								</p>
+							</td>
+							<td width="53%" valign="top">
+								<p>
+									Содержит ширину таблицы
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									property LeftCol: Longint;
+								</p>
+							</td>
+							<td width="53%" valign="top">
+								<p>
+									Содержит номер самого левого столбца, видимого в зоне
+									прокрутки
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									property Objects [ACols ARow: Integer] : TObject;
+								</p>
+							</td>
+							<td width="53%" valign="top">
+								<p>
+									Обеспечивает доступ к объекту, связанному с ячейкой (ACol,
+									ARow)
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									property Options: TGridOptions;
+								</p>
+							</td>
+							<td width="53%" valign="top">
+								<p>
+									Содержит параметры таблицы (см. ниже)
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									property Row: Longing;
+								</p>
+							</td>
+							<td width="53%" valign="top">
+								<p>
+									Содержит номер ряда сфокусированной ячейки
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									property RowCount: Longint;
+								</p>
+							</td>
+							<td width="53%" valign="top">
+								<p>
+									Содержит количество рядов таблицы
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									property RowHeights[Index: Long int] : Integer;
+								</p>
+							</td>
+							<td width="53%" valign="top">
+								<p>
+									Содержит высоту ряда с индексом index
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									property Rows[Index: Integer]: TStrings;
+								</p>
+							</td>
+							<td width="53%" valign="top">
+								<p>
+									Содержит все строки ряда с индексом
+								</p>
+								<p>
+									Index
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									type TScrollStyle = (ssNone,
+								</p>
+								<p>
+									ssHorizontal, ssVertical,
+								</p>
+								<p>
+									ssBoth) ;
+								</p>
+							</td>
+							<td width="53%" valign="top">
+								<p>
+									Определяет полосы прокрутки: ssNone -нет полос;
+									ssHorizontal - в таблицу вставляется горизонтальная полоса;
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									property ScrollBars: TScroll
+								</p>
+								<p>
+									Style;
+								</p>
+							</td>
+							<td width="53%" valign="top">
+								<p>
+									ssVertical - вставляется вертикальная
+								</p>
+								<p>
+									полоса; ssBoth - вставляются обе полосы
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									TGridRect = record
+								</p>
+								<p>
+									case Integer of
+								</p>
+								<p>
+									0: (Left,Top,Right,Bottom: Long int) ;
+								</p>
+								<p>
+									1: (TopLeft,
+								</p>
+								<p>
+									BottomRight: TGridCoord) ;
+								</p>
+								<p>
+									end;
+								</p>
+							</td>
+							<td width="53%" valign="top">
+								<p>
+									Определяет группу выделенных ячеек в
+								</p>
+								<p>
+									координатах левая верхняя и правая
+								</p>
+								<p>
+									нижняя ячейки(нумерация столбцов и рядов идет от нуля,
+									включая столбцы и
+								</p>
+								<p>
+									ряды фиксированной зоны). После выделения сфокусированной
+									окажется правая нижняя ячейка
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									property Selection: TGridRect;
+								</p>
+								<p>
+									property TabStops[Index: Long int] : Boolean;
+								</p>
+							</td>
+							<td width="53%" valign="top">
+								<p>
+									Разрешает/запрещает выбирать столбец с индексом index при
+									обходе ячеек клавишей Tab. Игнорируется, если Options не
+									содержит goTabs
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									property TopRow: Longint;
+								</p>
+							</td>
+							<td width="53%" valign="top">
+								<p>
+									Содержит номер самого верхнего ряда, видимого в
+									прокручиваемой зоне ячеек
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									property VisibleColCount: Integer;
+								</p>
+							</td>
+							<td width="53%" valign="top">
+								<p>
+									Содержит количество столбцов, полностью видимых в зоне
+									прокрутки
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="47%" valign="top">
+								<p>
+									property VisibleRowCount: Integer;
+								</p>
+							</td>
+							<td width="53%" valign="top">
+								<p>
+									Содержит количество рядов, полностью видимых в зоне
+									прокрутки
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					Для компонента определен тип TGridOptions:
+				</p>
+				<p>
+					<strong>type</strong>
+				</p>
+				<p>
+					TGridOption = (goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine,
+					goRangeSelect, goDrawFocusSelected, goRowSizing, goColSizing, goRowMoving,
+					goColMoving, goEditing, goTabs, goRowSelect, goAlwaysShowEditor,
+					goThumbTracking);
+				</p>
+				<p>
+					TGridOptions =<strong> set of</strong> TGridOptions;
+				</p>
+				<p>
+					Элементы множества TGridOptions имеют следующий смысл:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="40%" valign="top">
+								<p>
+									goFixedVertLine
+								</p>
+							</td>
+							<td width="60%" valign="top">
+								<p>
+									Столбцы фиксированной зоны разделяются вертикальными
+									линиями
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="40%" valign="top">
+								<p>
+									goFixedHorzLine
+								</p>
+							</td>
+							<td width="60%" valign="top">
+								<p>
+									Ряды фиксированной зоны разделяются горизонтальными линиями
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="40%" valign="top">
+								<p>
+									goVertLine
+								</p>
+							</td>
+							<td width="60%" valign="top">
+								<p>
+									Столбцы рабочей зоны разделяются вертикальными линиями
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="40%" valign="top">
+								<p>
+									goHorzLine
+								</p>
+							</td>
+							<td width="60%" valign="top">
+								<p>
+									Ряды рабочей зоны разделяются горизонтальными линиями
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="40%" valign="top">
+								<p>
+									goRangeSelect
+								</p>
+							</td>
+							<td width="60%" valign="top">
+								<p>
+									Разрешено выделение нескольких ячеек. Игнорируется, если
+									включен элемент goEdit
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="40%" valign="top">
+								<p>
+									goDrawFocus Selected
+								</p>
+							</td>
+							<td width="60%" valign="top">
+								<p>
+									Разрешено выделять сфокусированную ячейку так же, как
+									выделенные
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="40%" valign="top">
+								<p>
+									goRowSizing goColSizing goRowMoviog
+								</p>
+							</td>
+							<td width="60%" valign="top">
+								<p>
+									Разрешено ручное (мышью) изменение высоты строк Разрешено
+									ручное изменение ширины рядов Разрешено ручное перемещение
+									рядов (нажать левую кнопку мыши на фиксированной ячейке
+									перемещаемого ряда и, удерживая кнопку нажатой, переместить
+									ряд на новое место)
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="40%" valign="top">
+								<p>
+									goColMoving goEditing
+								</p>
+							</td>
+							<td width="60%" valign="top">
+								<p>
+									Разрешено ручное перемещение столбца Разрешено
+									редактирование ячейки. Игнорируется, если включен элемент
+									goRowSelect. Редактирование начинается после щелчка мыши
+									или нажатия клавиши F2 и завершается при щелчке по другой
+									ячейке или нажатии клавиши Enter
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="40%" valign="top">
+								<p>
+									goTabs goRowSelect
+								</p>
+							</td>
+							<td width="60%" valign="top">
+								<p>
+									Разрешено обходить ячейки клавишей Tab (Shift+Tab)
+									Обязывает выделять сразу все ячейки ряда и запрещает
+									редактирование ячеек Разрешено редактировать
+									сфокусированную ячейку: редактирование возможно после
+									выбора ячейки клавишей Tab (Shift+Tab). Игнорируется, если
+									не включен элемент goEditing
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="40%" valign="top">
+								<p>
+									goAlwaysShowEditorgoThumbTracking
+								</p>
+							</td>
+							<td width="60%" valign="top">
+								<p>
+									Разрешено обновление при прокрутке. Если этот элемент
+									отсутствует, обновление ячеек произойдет только после
+									окончания прокрутки
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					Два метода класса могут оказаться полезными для процедуры прорисовки:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="30%" valign="top">
+								<p>
+									function CellRect(ACol, ARow: TRect; Longint):
+								</p>
+							</td>
+							<td width="70%" valign="top">
+								<p>
+									Возвращает прямоугольник ячейки по номерам столбца ACol и
+									ряда Arow
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="30%" valign="top">
+								<p>
+									procedure MouseToCell(X, Y: Integer; var ACol, ARow:
+									Longint);
+								</p>
+							</td>
+							<td width="70%" valign="top">
+								<p>
+									Возвращает табличные координаты ячейки ACol и arow по
+									экранным координатам(X,У)точки
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					Остальные методы рассчитаны на перекрытие в потомках и представляют интерес
+					для разработчиков новых компонентов. Для программистов-пользователей важны
+					следующие доступные компоненту события:
+				</p>
+				<table border="1" cellspacing="1" cellpadding="0" width="100%">
+					<tbody>
+						<tr>
+							<td width="31%" valign="top">
+								<p>
+									TMovedEvent = procedure (Sender: TObject; Fromlndex,
+									Tolndex: Longint) of object; property OnColumnMoved:
+									TMovedEvent; TDrawCellEvent;
+								</p>
+							</td>
+							<td width="69%" valign="top">
+								<p>
+									Возникает при перемещении столбца с индексом Fromlndex в
+									положение, определяемое индексом ToIndex
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="31%" valign="top">
+								<p>
+									TGridDrawState = set of (gdSelected, gdFocused, gdFixed) ;
+									TDrawCellEvent = procedure (Sender: TObject; Col, Row:
+									Longint; Rect: TRect; State: TGridDrawState) of
+									object-property OnDrawCell:
+								</p>
+							</td>
+							<td width="69%" valign="top">
+								<p>
+									Возникает при необходимости перерисовать ячейку с
+									табличными координатами (Col, Row): Rect - прямоугольник
+									прорисовки; State - состояние ячейки (gdSelected -ячейка
+									выделена; gdFocused - ячейка сфокусирована; gdFixed -
+									ячейка принадлежит фиксированной зоне таблицы). Для
+									прорисовки используется табличное свойство Canvas
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="31%" valign="top">
+								<p>
+									GetEditEvent = procedure
+								</p>
+								<p>
+									(Sender: TObject; ACol, ARow:
+								</p>
+							</td>
+							<td width="69%" valign="top">
+								<p>
+									Возникает при редактировании текста в
+								</p>
+								<p>
+									ячейке с табличными координатами
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="31%" valign="top">
+								<p>
+									Longint; var Value: String) ofobject;
+								</p>
+								<p>
+									property OnGetEditMask: TGetE
+								</p>
+								<p>
+									ditEvent;
+								</p>
+							</td>
+							<td width="69%" valign="top">
+								<p>
+									(ACol.ARow). В параметре value обработчик должен вернуть
+									шаблон для редактора TeditMask
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="31%" valign="top">
+								<p>
+									property OnGetEditText: TGetE
+								</p>
+								<p>
+									ditEvent;
+								</p>
+							</td>
+							<td width="69%" valign="top">
+								<p>
+									Возникает при редактировании текста в ячейке с табличными
+									координатами (ACol.ARow). В параметре value обработчик
+									должен вернуть текст для редактора TEditMask (см. событие
+									OmGetEditMask)
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="31%" valign="top">
+								<p>
+									property OnRowMoved: TMovedEvent;
+								</p>
+							</td>
+							<td width="69%" valign="top">
+								<p>
+									Возникает при перемещении ряда с индексом Fromindex в
+									положение, определяемое
+								</p>
+								<p>
+									индексом ToIndex (см. событие onColMoved)
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="31%" valign="top">
+								<p>
+									SelectCellEvent = procedure (Sender: TObject; Col, Row:
+									Long int; var CanSelect: Boolean) of object;
+								</p>
+								<p>
+									property OnSelectCell: TSe lectCellEvent;
+								</p>
+							</td>
+							<td width="69%" valign="top">
+								<p>
+									Возникает при попытке выделить ячейку с табличными
+									координатами (col.Row). В параметре CanSelect обработчик
+									сообщает о возможности выделения ячейки
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="31%" valign="top">
+								<p>
+									TSetEditEvent = procedure
+								</p>
+								<p>
+									(Sender: TObject; ACol, ARow:
+								</p>
+								<p>
+									Longint; const Value: String) of
+								</p>
+								<p>
+									object;
+								</p>
+								<p>
+									property OnSetEditText: TSetEditEvent;
+								</p>
+							</td>
+							<td width="69%" valign="top">
+								<p>
+									Возникает при завершении редактирования
+								</p>
+								<p>
+									ячейки (ACol.ARow). В параметре value
+								</p>
+								<p>
+									обработчик получает результат ввода или
+								</p>
+								<p>
+									редактирования текста
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="31%" valign="top">
+								<p>
+									property OnTopLeftChanged: TNotifyEvent;
+								</p>
+							</td>
+							<td width="69%" valign="top">
+								<p>
+									Возникает после изменения значения ТоpRow или LeftCol в
+									результате прокрутки рабочей зоны
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<a name="2"></a>
+				<p>
+					Пример.
+				</p>
+				<p>
+					<img
+						width="674"
+						height="232"
+						src="tema1/image002.jpg"
+					/>
+				</p>
+				<p>
+					Рисунок 1 – Пример использования компонента StringGrid для ввода элементов
+					массива
+				</p>
+				<p>
+					Поместите на форму компонент StringGrid
+				</p>
+				<p>
+					Установите следующие свойства:
+				</p>
+				<p>
+					Таблица 1 – Свойства компонента StringGrid
+				</p>
+				<table border="1" cellspacing="0" cellpadding="0">
+					<tbody>
+						<tr>
+							<td width="143" valign="top">
+								<p>
+									Свойство
+								</p>
+							</td>
+							<td width="136" valign="top">
+								<p>
+									Значение
+								</p>
+							</td>
+							<td width="344" valign="top">
+								<p>
+									Пояснение
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="143" valign="top">
+								<p>
+									Name
+								</p>
+							</td>
+							<td width="136" valign="top">
+								<p>
+									StringGrid1
+								</p>
+							</td>
+							<td width="344" valign="top">
+								<p>
+									Имя
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="143" valign="top">
+								<p>
+									Enabled
+								</p>
+							</td>
+							<td width="136" valign="top">
+								<p>
+									True
+								</p>
+							</td>
+							<td width="344" valign="top">
+								<p>
+									Реагирует ли на события, связанные с мышью, клавиатурой,
+									таймером
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="143" valign="top">
+								<p>
+									FixedCols
+								</p>
+							</td>
+							<td width="136" valign="top">
+								<p>
+									1
+								</p>
+							</td>
+							<td width="344" valign="top">
+								<p>
+									Количество столбцов фиксированной области
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="143" valign="top">
+								<p>
+									FixedRows
+								</p>
+							</td>
+							<td width="136" valign="top">
+								<p>
+									1
+								</p>
+							</td>
+							<td width="344" valign="top">
+								<p>
+									Количество строк фиксированной области
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="143" valign="top">
+								<p>
+									FixedColor
+								</p>
+							</td>
+							<td width="136" valign="top">
+								<p>
+									clBackground
+								</p>
+							</td>
+							<td width="344" valign="top">
+								<p>
+									Цвет фиксированной области
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="143" valign="top">
+								<p>
+									ColCount
+								</p>
+							</td>
+							<td width="136" valign="top">
+								<p>
+									4
+								</p>
+							</td>
+							<td width="344" valign="top">
+								<p>
+									Количество столбцов
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="143" valign="top">
+								<p>
+									RowCount
+								</p>
+							</td>
+							<td width="136" valign="top">
+								<p>
+									4
+								</p>
+							</td>
+							<td width="344" valign="top">
+								<p>
+									Количество строк
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="143" valign="top">
+								<p>
+									Height
+								</p>
+							</td>
+							<td width="136" valign="top">
+								<p>
+									105
+								</p>
+							</td>
+							<td width="344" valign="top">
+								<p>
+									Высота
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="143" valign="top">
+								<p>
+									Width
+								</p>
+							</td>
+							<td width="136" valign="top">
+								<p>
+									265
+								</p>
+							</td>
+							<td width="344" valign="top">
+								<p>
+									Ширина
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					Поместите на форму компонент ListBox
+				</p>
+				<p>
+					Установите следующие свойства:
+				</p>
+				<p>
+					Таблица 2 – Свойства компонента ListBox
+				</p>
+				<table border="1" cellspacing="0" cellpadding="0">
+					<tbody>
+						<tr>
+							<td width="143" valign="top">
+								<p>
+									Свойство
+								</p>
+							</td>
+							<td width="136" valign="top">
+								<p>
+									Значение
+								</p>
+							</td>
+							<td width="344" valign="top">
+								<p>
+									Пояснение
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="143" valign="top">
+								<p>
+									Name
+								</p>
+							</td>
+							<td width="136" valign="top">
+								<p>
+									ListBox1
+								</p>
+							</td>
+							<td width="344" valign="top">
+								<p>
+									Имя
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="143" valign="top">
+								<p>
+									Enabled
+								</p>
+							</td>
+							<td width="136" valign="top">
+								<p>
+									True
+								</p>
+							</td>
+							<td width="344" valign="top">
+								<p>
+									Реагирует ли на события, связанные с мышью, клавиатурой,
+									таймером
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="143" valign="top">
+								<p>
+									Columns
+								</p>
+							</td>
+							<td width="136" valign="top">
+								<p>
+									3
+								</p>
+							</td>
+							<td width="344" valign="top">
+								<p>
+									Количество колонок
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="143" valign="top">
+								<p>
+									Height
+								</p>
+							</td>
+							<td width="136" valign="top">
+								<p>
+									105
+								</p>
+							</td>
+							<td width="344" valign="top">
+								<p>
+									Высота
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="143" valign="top">
+								<p>
+									Width
+								</p>
+							</td>
+							<td width="136" valign="top">
+								<p>
+									265
+								</p>
+							</td>
+							<td width="344" valign="top">
+								<p>
+									Ширина
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					Поместите на форму компонент Button
+				</p>
+				<p>
+					Установите следующие свойства:
+				</p>
+				<p>
+					Таблица 3 – Свойства компонента Button
+				</p>
+				<table border="1" cellspacing="0" cellpadding="0">
+					<tbody>
+						<tr>
+							<td width="143" valign="top">
+								<p>
+									Свойство
+								</p>
+							</td>
+							<td width="136" valign="top">
+								<p>
+									Значение
+								</p>
+							</td>
+							<td width="344" valign="top">
+								<p>
+									Пояснение
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="143" valign="top">
+								<p>
+									Name
+								</p>
+							</td>
+							<td width="136" valign="top">
+								<p>
+									Batton1
+								</p>
+							</td>
+							<td width="344" valign="top">
+								<p>
+									Имя
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="143" valign="top">
+								<p>
+									Enabled
+								</p>
+							</td>
+							<td width="136" valign="top">
+								<p>
+									True
+								</p>
+							</td>
+							<td width="344" valign="top">
+								<p>
+									Реагирует ли на события, связанные с мышью, клавиатурой,
+									таймером
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="143" valign="top">
+								<p>
+									Caption
+								</p>
+							</td>
+							<td width="136" valign="top">
+								<p>
+									Заполнить массив
+								</p>
+							</td>
+							<td width="344" valign="top">
+								<p>
+									Заголовок
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="143" valign="top">
+								<p>
+									Height
+								</p>
+							</td>
+							<td width="136" valign="top">
+								<p>
+									25
+								</p>
+							</td>
+							<td width="344" valign="top">
+								<p>
+									Высота
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="143" valign="top">
+								<p>
+									Width
+								</p>
+							</td>
+							<td width="136" valign="top">
+								<p>
+									265
+								</p>
+							</td>
+							<td width="344" valign="top">
+								<p>
+									Ширина
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					Поместите на форму компонент Button
+				</p>
+				<p>
+					Установите следующие свойства:
+				</p>
+				<p>
+					Таблица 4 – Свойства компонента Button
+				</p>
+				<table border="1" cellspacing="0" cellpadding="0">
+					<tbody>
+						<tr>
+							<td width="143" valign="top">
+								<p>
+									Свойство
+								</p>
+							</td>
+							<td width="136" valign="top">
+								<p>
+									Значение
+								</p>
+							</td>
+							<td width="344" valign="top">
+								<p>
+									Пояснение
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="143" valign="top">
+								<p>
+									Name
+								</p>
+							</td>
+							<td width="136" valign="top">
+								<p>
+									Batton2
+								</p>
+							</td>
+							<td width="344" valign="top">
+								<p>
+									Имя
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="143" valign="top">
+								<p>
+									Enabled
+								</p>
+							</td>
+							<td width="136" valign="top">
+								<p>
+									True
+								</p>
+							</td>
+							<td width="344" valign="top">
+								<p>
+									Реагирует ли на события, связанные с мышью, клавиатурой,
+									таймером
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="143" valign="top">
+								<p>
+									Caption
+								</p>
+							</td>
+							<td width="136" valign="top">
+								<p>
+									Вывести массив
+								</p>
+							</td>
+							<td width="344" valign="top">
+								<p>
+									Заголовок
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="143" valign="top">
+								<p>
+									Height
+								</p>
+							</td>
+							<td width="136" valign="top">
+								<p>
+									25
+								</p>
+							</td>
+							<td width="344" valign="top">
+								<p>
+									Высота
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="143" valign="top">
+								<p>
+									Width
+								</p>
+							</td>
+							<td width="136" valign="top">
+								<p>
+									265
+								</p>
+							</td>
+							<td width="344" valign="top">
+								<p>
+									Ширина
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					Напишите следующие обработчики событий:
+				</p>
+				<p>
+					procedure TForm1.FormCreate(Sender: TObject); // Событие – создание формы
+				</p>
+				<p>
+					var i:integer;
+				</p>
+				<p>
+					begin
+				</p>
+				<p>
+					StringGrid1.ColCount:=4;
+				</p>
+				<p>
+					StringGrid1.RowCount:=4;
+				</p>
+				<p>
+					for i:=1 to 3 do begin
+				</p>
+				<p>
+					StringGrid1.Cells[i,0]:='Столбец '+IntToStr(i);
+				</p>
+				<p>
+					StringGrid1.Cells[0,i]:='Строка '+IntToStr(i);
+				</p>
+				<p>
+					end;
+				</p>
+				<p>
+					StringGrid1.Options:=[goFixedVertLine,goFixedHorzLine,goVertLine,goHorzLine,goRangeSelect,goEditing];
+					// Добавили свойство, позволяющее редактировать содержимое таблицы
+				</p>
+				<p>
+					end;
+				</p>
+				<p>
+					procedure TForm1.Button1Click(Sender: TObject); //событие – щелчок по
+					кнопке 1
+				</p>
+				<p>
+					var i,j:integer;
+				</p>
+				<p>
+					begin
+				</p>
+				<p>
+					for i:=1 to 3 do begin
+				</p>
+				<p>
+					for j:=1 to 3 do begin
+				</p>
+				<p>
+					mas[i,j]:=StrToInt(StringGrid1.Cells[i,j]) ;
+				</p>
+				<p>
+					end;
+				</p>
+				<p>
+					end;
+				</p>
+				<p>
+					end;
+				</p>
+				<p>
+					procedure TForm1.Button2Click(Sender: TObject); //событие – щелчок по
+					кнопке 2
+				</p>
+				<p>
+					var i,j:integer;
+				</p>
+				<p>
+					begin
+				</p>
+				<p>
+					ListBox1.Clear;
+				</p>
+				<p>
+					for i:=1 to 3 do begin
+				</p>
+				<p>
+					for j:=1 to 3 do begin
+				</p>
+				<p>
+					ListBox1.Items.Add(IntToStr(mas[i,j]));
+				</p>
+				<p>
+					end;
+				</p>
+				<p>
+					end;
+				</p>
+				<p>
+					end;
+				</p>
+			</article>	
+		</main>
+		<footer class="footer">
+			<div></div>
+		</footer>
+		<script src="../../scripts.js"></script>
+	</body>
+</html>

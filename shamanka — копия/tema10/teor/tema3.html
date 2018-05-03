@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link href="../../style.css" rel="stylesheet">
+	</head>
+	<body>
+		<header>
+			<div>
+				<a href="../../index.html"><h1>Учебный портал</h1></a>
+			</div>
+			<nav>
+					<ul class="main_menu">
+					<li>
+<<<<<<< HEAD
+						<a href="#"><p>Справочные материалы</p></a>
+=======
+						<a href="#"><p>Справочные материалы&#9207;</p></a>
+>>>>>>> f12edd62888d7f1067e2a4e99743dfe436d13998
+						<ul class="submenu" id="sub1">
+							<li><a href="../../delphi-lab-teor.html">Теория по Delphi</a></li>
+						</ul>
+					</li>
+					<li>
+<<<<<<< HEAD
+						<a href="#"><p>Лабораторные работы</p></a>
+=======
+						<a href="#"><p>Лабораторные работы&#9207;</p></a>
+>>>>>>> f12edd62888d7f1067e2a4e99743dfe436d13998
+						<ul class="submenu" id="sub2">
+							<li><a href="../../delphi-lab-prac.html">Задания по Delphi</a></li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<main>
+			<div class="prev"><a href="tema2-3.html"><img src="../../res/prev.png"></a></div>
+			<div class="next" style="opacity: 0.5;"><img src="../../res/next.png"></div>
+<!-- 			<aside id="sidebar">
+				<h2>Быстрая навигация</h2>
+				<ol>
+					<li><a href="#1">Типы окна сообщения</a></li>
+					<li><a href="#2">Кнопки окна сообщения</a></li>
+					<li><a href="#3">Тип сообщения</a></li>
+				</ol>
+			</aside> -->
+			<article class="tema">
+				<h2>
+					Автоматизация OLE
+				</h2>
+				<p>
+					Технология Object Linking and Embedding (связывание и внедрение объектов)
+					обладает значительно большими возможностями, нежели механизм DDE. Она
+					позволяет обмениваться не только отдельными данными, но и работать с
+					программами и данными как с полноценными объектами. Практически все офисные
+					приложения поддерживают технологию OLE.
+				</p>
+				<p>
+					На вкладке System выберите компонент OLEContainer. После размещения его на
+					форме в контекстном меню выберите пункт InsertObject и выполните связывание
+					с объектом.
+				</p>
+				<p>
+					Внедрение и связывание позволяют запустить приложение, обрабатывающее
+					соответствующий документ как единое целое. Автоматизация OLE позволяет
+					управлять этим приложением (сервером OLE), используя экспонированные им
+					функции и процедуры. Осуществляется связь с сервером функцией
+					CreateOleObject.
+				</p>
+				<p>
+					Пример. Приложение, которое печатает идентичные письма, адресованные
+					различным адресатам.
+				</p>
+				<p>
+					Создайте форму, включающую в себя окно редактирования Memo, Edit, группу
+					радиокнопок, определяющих пол адресата, группу радиокнопок, определяющих
+					производимую операцию (запись в файл, печать), диалог FontDialog (для
+					выбора шрифта), диалог SaveDialog (для выбора имени сохраняемого файла. Две
+					кнопки – для выбора шрифта (ШРИФТ) и для выполнения заданной операции
+					(ВЫПОЛНИТЬ).
+				</p>
+				<p>
+					Подключите модуль ComObj, в котором содержиться объявление используемой
+					процедуры CreateOLeObject.
+				</p>
+				<p>
+					Объявите переменную W типа Variant.
+				</p>
+				<br clear="all"/>
+				<p>
+					procedure TForm1.Button2Click(Sender: TObject);
+				</p>
+				<p>
+					var s:string;
+				</p>
+				<p>
+					W:variant; i:integer;
+				</p>
+				<p>
+					procedure Insert(str:string);
+				</p>
+				<p>
+					begin
+				</p>
+				<p>
+					W.Font(Memo1.Font.Name,Memo1.Font.Size);
+				</p>
+				<p>
+					if fsBold in Memo1.Font.Style then W.Bold;
+				</p>
+				<p>
+					if fsItalic in Memo1.Font.Style then W.Italic;
+				</p>
+				<p>
+					W.Insert(str+#13);
+				</p>
+				<p>
+					end;
+				</p>
+				<p>
+					begin
+				</p>
+				<p>
+					W:=CreateOleObject('Word.Basic');
+				</p>
+				<p>
+					W.AppShow;
+				</p>
+				<p>
+					W.FileNew;
+				</p>
+				<p>
+					if (RadioButton1.Checked=false) and(RadioButton2.Checked=false)
+				</p>
+				<p>
+					then ShowMessage('Введите пол адресата')
+				</p>
+				<p>
+					else
+				</p>
+				<p>
+					if RadioButton1.Checked then Insert('Дорогой '+Edit1.Text+'!')
+				</p>
+				<p>
+					else Insert('Дорогая '+Edit1.Text+'!');
+				</p>
+				<p>
+					for i:=0 to Memo1.Lines.Count do
+				</p>
+				<p>
+					Insert(Memo1.Lines.Strings[i]);
+				</p>
+				<p>
+					if (RadioButton3.Checked=false) and(RadioButton4.Checked=false)
+				</p>
+				<p>
+					then ShowMessage(Выберите операцию')
+				</p>
+				<p>
+					else begin
+				</p>
+				<p>
+					if RadioButton3.Checked then s:='Записать это письмо в файл?'
+				</p>
+				<p>
+					else s:='Напечатать это письмо?';
+				</p>
+				<p>
+					if MessageDlg(s,mtConfirmation,[mbYes,mbNo],0)=mrYes then
+				</p>
+				<p>
+					if RadioButton3.Checked then
+				</p>
+				<p>
+					if SaveDialog1.Execute then W.FileSaveAs(SaveDialog1.FileName)
+				</p>
+				<p>
+					else W.FilePrint;
+				</p>
+				<p>
+					W.DocClose(2);
+				</p>
+				<p>
+					end;
+				</p>
+				<p>
+					end;
+				</p>
+				<p>
+					procedure TForm1.Button1Click(Sender: TObject);
+				</p>
+				<p>
+					begin
+				</p>
+				<p>
+					if FontDialog1.Execute then Memo1.Font.Assign(FontDialog1.Font);
+				</p>
+				<p>
+					end;
+				</p>
+				<p>
+					Функции работы с Word:
+				</p>
+				<p>
+					CreateOleObject('Word.Basic') – создание ссылки на объект, соответствующий
+					MS Word.
+				</p>
+				<p>
+					AppShow – делает окно видимым
+				</p>
+				<p>
+					FileNew – создает новый документ
+				</p>
+				<p>
+					Font – задает имя и размер шрифта
+				</p>
+				<p>
+					FileSaveAs – сохранить в файл с именем
+				</p>
+				<p>
+					FilePrint – напечатать файл.
+				</p>
+			</article>	
+		</main>
+		<footer class="footer">
+			<div></div>
+		</footer>
+		<script src="../../scripts.js"></script>
+	</body>
+</html>
