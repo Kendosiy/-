@@ -5,6 +5,13 @@
 	font-weight: normal;
 }
 
+@font-face{
+	font-family:"Roboto_Condensed_Light";
+	src: url("fonts/123.ttf") format("truetype"); 
+	font-style: normal; 
+	font-weight: normal;
+}
+
 html {
 	height: 100%;
 }
@@ -128,8 +135,8 @@ main .next{
 	padding: 30px 10px;
 }
 main aside{
-	font-family:"Segoe UI";
-	font-size:110%;
+	font-family:"Roboto_Condensed_Light";
+	font-size:100%;
 	float:right;
 	width: 250px;
 	background-color: #e4e4e4;
@@ -140,6 +147,7 @@ main aside{
 main aside h2{
 	font-weight: lighter;
 	font-style:italic;
+	
 }
 .fixed {
   position: fixed;
